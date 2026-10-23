@@ -22,6 +22,7 @@ Starter scaffold. See [docs/requirements.md](docs/requirements.md) for scope and
 ## Layout
 
 - `docs/requirements.md` - goals, priorities, safety rules, test targets
+- `docs/prototype-spec.md` - PC prototype: features, cyclist routing styles, architecture, build order
 - `data/bridges.json` - bridges, aliases, and directional crossings
 - `web/index.html` - starter map page (Leaflet + OpenStreetMap)
 
