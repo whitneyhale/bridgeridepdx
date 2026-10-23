@@ -88,7 +88,7 @@ Settings that apply on top of any style:
 - **Night**: prefer lit roads and paths.
 - **Alternatives**: show up to three options with distance, time, climbing, and a stress score.
 
-Each route shows an elevation profile and a breakdown: percent on greenway, path, bike lane, and shared road.
+Each route shows an elevation profile and a breakdown: percent on greenway, path, bike lane, and shared road. If the data can be used, label the breakdown with Metro's Bike There categories (Established Bikeway, Bike Friendly Street, Designated Bike Lane, Helpful Connection, Bike with Caution, Unpaved Trail) so the stress score matches a scale riders already see on Metro's map.
 
 ## Bridges
 
