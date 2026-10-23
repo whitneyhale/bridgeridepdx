@@ -20,6 +20,7 @@ A ride passes when the route matches what the rider would actually ride: same br
 | 10 | Home to downtown, passing Salmon Street Springs | Pass by: detour budget respected | | |
 | 11 | Home to downtown, riding N Williams Ave | Road stop | | |
 | 12 | Ride 1 with one street avoided | Avoid rule | | |
+| 13 | Home to the Hawthorne Bridge, cross westbound, north on the west side to the Steel Bridge, cross eastbound, past the Moda Center on the bike route to N Williams and home (about 5 to 6 mi). Rider's own ride. | Two Bridge stops in order (Hawthorne westbound, then Steel eastbound), Road stop (N Williams) | Hawthorne westbound, Steel eastbound, N Williams | |
 
 ## Ride log only (outside the Portland map)
 

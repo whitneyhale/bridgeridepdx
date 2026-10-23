@@ -35,6 +35,15 @@ Run with approximate start and waypoint coordinates, so treat the result as a ro
 - `greenway_first` did not. It rode the east side south, crossed the Sellwood Bridge to reach the west-side waypoint, and crossed back. It appears to rank the west-side riverfront path lower than east-side streets.
 - Lesson: the style alone does not reproduce a rider's habit. Bridge stops and via points are needed to force the intended side of the river, and the greenway weighting needs tuning for riverfront paths.
 
+## Test ride 13 (Hawthorne out, Steel back)
+
+Run with approximate coordinates. Waypoints were set on the west-side waterfront, the Steel Bridge's west end, and the Rose Quarter. Both profiles returned 5.5 miles.
+
+- Both profiles crossed the Steel Bridge twice: out to reach the west-side waypoint, and back. Neither used the Hawthorne Bridge, which is the intended outbound crossing.
+- Waypoints on one side of the river do not force which bridge is used. The engine picks the shortest crossing.
+- Lesson: Bridge stops (a named bridge and direction) are required for this ride, and they must be ordered. This is the main reason the stop types exist.
+- The Steel Bridge crossing appears unnamed in the engine's directions, so bridge use cannot be checked by street name alone.
+
 ## Not yet tested
 
 - Elevation, Flat style, climb budget.
