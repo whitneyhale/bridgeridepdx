@@ -1,0 +1,60 @@
+{
+ "generated_from": "content/bridges/*.md",
+ "descriptions": {
+  "blumenauer": {
+   "title": "Earl Blumenauer Bridge",
+   "summary": "A wide car-free bridge over I-84 at NE 7th, linking the Central Eastside and the Lloyd District.",
+   "status": "draft",
+   "author": "Whitney Hale",
+   "last_reviewed": "2026-10-23",
+   "sources": [
+    "https://www.kpff.com/project/congressman-earl-blumenauer-bicycle-and-pedestrian-bridge-kpff/",
+    "https://www.portland.gov/transportation/news/2022/8/12/blumenauer-bridge-open-public"
+   ],
+   "sections": {
+    "Riding it": "24 ft wide and 475 ft long, for bikes and people walking only. It crosses I-84 and the Union Pacific tracks on a tied-arch span. It is a good overpass, so the app prefers it over other ways across I-84.",
+    "Getting on and off": "South end: NE 7th Avenue in the Central Eastside Industrial District.\n\nNorth end: NE 7th Avenue in the Lloyd District.",
+    "Good to know": "Part of the Green Loop, the planned car-free loop around the central city.",
+    "History": "Opened July 31, 2022. Named for Congressman Earl Blumenauer."
+   },
+   "markdown": "## Riding it\n\n24 ft wide and 475 ft long, for bikes and people walking only. It crosses I-84 and the Union Pacific tracks on a tied-arch span. It is a good overpass, so the app prefers it over other ways across I-84.\n\n## Getting on and off\n\nSouth end: NE 7th Avenue in the Central Eastside Industrial District.\n\nNorth end: NE 7th Avenue in the Lloyd District.\n\n## Good to know\n\nPart of the Green Loop, the planned car-free loop around the central city.\n\n## History\n\nOpened July 31, 2022. Named for Congressman Earl Blumenauer."
+  },
+  "hawthorne": {
+   "title": "Hawthorne Bridge",
+   "summary": "Oregon's busiest bike and transit bridge. Ride the south side going east, the north side going west.",
+   "status": "draft",
+   "author": "Whitney Hale",
+   "last_reviewed": "2026-10-23",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Hawthorne_Bridge",
+    "https://multco.us/bridges/willamette-river-bridges",
+    "https://multco.us/bridges/news/reminder-hawthorne-bridge-closes-7-pm-tonight"
+   ],
+   "sections": {
+    "Riding it": "Bikes use the wide sidewalks on both sides, about 10 ft each. Going east, use the south side. Going west, use the north side. Expect a lot of other riders and people walking at commute times.",
+    "Getting on and off": "West end: SW Naito Parkway and 1st Avenue, joining SW Madison and Main. The Willamette Greenway Trail along Waterfront Park is right there.\n\nEast end: SE Hawthorne Boulevard and SE Madison, near Grand Avenue and MLK. The paths connect down to the Eastbank Esplanade.",
+    "Good to know": "It is a lift bridge, so a river lift can stop you while the span is raised. Multnomah County sometimes closes one side for repairs. When that happens the open side may carry both directions. Check closures before a timed ride.",
+    "History": "Opened in 1910. It is Portland's oldest highway bridge. The sidewalks were widened to 10 ft in 1998 and 1999, and joined to the Eastbank Esplanade in 2001. Painted green with red trim since that renovation."
+   },
+   "markdown": "## Riding it\n\nBikes use the wide sidewalks on both sides, about 10 ft each. Going east, use the south side. Going west, use the north side. Expect a lot of other riders and people walking at commute times.\n\n## Getting on and off\n\nWest end: SW Naito Parkway and 1st Avenue, joining SW Madison and Main. The Willamette Greenway Trail along Waterfront Park is right there.\n\nEast end: SE Hawthorne Boulevard and SE Madison, near Grand Avenue and MLK. The paths connect down to the Eastbank Esplanade.\n\n## Good to know\n\nIt is a lift bridge, so a river lift can stop you while the span is raised. Multnomah County sometimes closes one side for repairs. When that happens the open side may carry both directions. Check closures before a timed ride.\n\n## History\n\nOpened in 1910. It is Portland's oldest highway bridge. The sidewalks were widened to 10 ft in 1998 and 1999, and joined to the Eastbank Esplanade in 2001. Painted green with red trim since that renovation."
+  },
+  "tilikum": {
+   "title": "Tilikum Crossing, Bridge of the People",
+   "summary": "No private cars. Wide paths on both sides between South Waterfront and OMSI.",
+   "status": "draft",
+   "author": "Whitney Hale",
+   "last_reviewed": "2026-10-23",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Tilikum_Crossing",
+    "https://www.portland.gov/transportation/news/2019/4/11/traffic-advisory-tilikum-crossing-pedestrian-and-bicycle-traffic"
+   ],
+   "sections": {
+    "Riding it": "Paths 14 ft wide on both sides, shared with people walking. Map data shows the south path for eastbound riders and the north path for westbound. MAX, buses, and the streetcar run in the middle. No private cars or trucks.",
+    "Getting on and off": "West end: South Waterfront, by the OHSU/South Waterfront MAX station and S Bond Avenue. The Willamette Greenway Trail runs along the river here.\n\nEast end: the Central Eastside, near OMSI and the OMSI MAX station, just north of SE Caruthers. The Eastbank Esplanade is close.",
+    "Good to know": "Watch for rails where the paths meet the streets at each end. If one path is closed for work, both directions share the other one.",
+    "History": "Opened in 2015 for the MAX Orange Line. \"Tilikum\" is a Chinook Jargon word meaning people, tribe, or family. Before it was named, people called it the Portland-Milwaukie Light Rail Bridge or Caruthers Crossing."
+   },
+   "markdown": "## Riding it\n\nPaths 14 ft wide on both sides, shared with people walking. Map data shows the south path for eastbound riders and the north path for westbound. MAX, buses, and the streetcar run in the middle. No private cars or trucks.\n\n## Getting on and off\n\nWest end: South Waterfront, by the OHSU/South Waterfront MAX station and S Bond Avenue. The Willamette Greenway Trail runs along the river here.\n\nEast end: the Central Eastside, near OMSI and the OMSI MAX station, just north of SE Caruthers. The Eastbank Esplanade is close.\n\n## Good to know\n\nWatch for rails where the paths meet the streets at each end. If one path is closed for work, both directions share the other one.\n\n## History\n\nOpened in 2015 for the MAX Orange Line. \"Tilikum\" is a Chinook Jargon word meaning people, tribe, or family. Before it was named, people called it the Portland-Milwaukie Light Rail Bridge or Caruthers Crossing."
+  }
+ }
+}

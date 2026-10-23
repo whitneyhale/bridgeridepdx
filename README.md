@@ -29,6 +29,7 @@ Starter scaffold. See [docs/requirements.md](docs/requirements.md) for scope and
 - `docs/spike-results.md` - first routing engine test results
 - `routing/` - local routing engine setup (GraphHopper). On Windows, double-click `routing/start.bat`, then open http://localhost:8989/maps/
 - `data/` - bridges (Willamette, Columbia, Blumenauer) with two GPS points, categories, lane sides, and relative positions; overpasses; name-matching tests; street corridors. See `data/README.md`
+- `content/` - readable bridge descriptions, one Markdown file per bridge. See `content/README.md`
 - `tools/` - scripts that extract, validate, and build the bridge and overpass data, check lane sides, write the bridge sections of `docs/routing-rules.md`, and match typed bridge names
 - `web/index.html` - starter map page (Leaflet + OpenStreetMap)
 
