@@ -1,0 +1,15 @@
+{
+  "note": "Coordinates are null until sourced from OpenStreetMap. Aliases are starter values; add misspellings and colors as they come up.",
+  "bridges": [
+    { "id": "steel", "name": "Steel Bridge", "aliases": ["steel", "the steel"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "burnside", "name": "Burnside Bridge", "aliases": ["burnside", "burn side"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "morrison", "name": "Morrison Bridge", "aliases": ["morrison", "morison"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "hawthorne", "name": "Hawthorne Bridge", "aliases": ["hawthorne", "hawthorn"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "tilikum", "name": "Tilikum Crossing", "aliases": ["tilikum", "tillicum", "bridge of the people"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "broadway", "name": "Broadway Bridge", "aliases": ["broadway"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "fremont", "name": "Fremont Bridge", "aliases": ["fremont"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "st-johns", "name": "St. Johns Bridge", "aliases": ["st johns", "saint johns", "st. johns"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "sellwood", "name": "Sellwood Bridge", "aliases": ["sellwood"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
+    { "id": "ross-island", "name": "Ross Island Bridge", "aliases": ["ross island"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null }
+  ]
+}
