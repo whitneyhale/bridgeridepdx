@@ -1,0 +1,6 @@
+routing/*.jar
+routing/*.pbf
+routing/*.part
+routing/graph-cache/
+routing/gh.log
+*.sqlite

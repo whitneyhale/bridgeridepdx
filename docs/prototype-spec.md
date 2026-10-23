@@ -17,6 +17,7 @@ A local app that runs on a PC. Plan a ride on a map, name it, save it, edit it, 
 5. Name the route, add notes and tags, save it.
 6. Open, rename, duplicate, edit, or delete saved routes.
 7. Export to GPX (for a bike computer or phone). Import GPX.
+8. Keep a list of rides you have completed (see "Ride log").
 
 ## Stop types
 
@@ -96,6 +97,21 @@ Each route shows an elevation profile and a breakdown: percent on greenway, path
 - A bridge stop becomes two forced points: the approach and the exit, in the chosen direction.
 - Bridges closed to bikes (for example, the Marquam) are not offered.
 
+## Ride log
+
+A list of rides you have completed, for example the Banks-Vernonia Trail.
+
+- **Mark a saved route as ridden**: pick a date. A route can be ridden more than once, and each ride gets its own entry.
+- **Add a past ride with no route**: name, date, optional distance, notes, tags. Optionally attach a GPX file. Nothing needs to be routed, so rides outside Portland work fine.
+- **Planned vs. completed**: a saved route is Planned until marked ridden. Two lists, one switch.
+- **Ride list**: newest first, filter by tag, search by name. Totals at the top: number of rides and total distance.
+- **Where I've been**: one map layer showing every completed ride that has a path.
+- **Link to a route**: a log entry can point to a saved route if one exists.
+
+Fields per entry: name, date, distance, notes, tags, linked route (optional), GPX (optional).
+
+The Portland map used in the prototype does not cover rides like Banks-Vernonia. Logging works without it. Routing there later needs a larger map (Oregon).
+
 ## Route data stored
 
 For each saved route:
@@ -136,6 +152,7 @@ Browser (map + sidebar)  <->  Local app (Python)  <->  Routing engine (GraphHopp
 5. **Cyclist styles**: greenway first, balanced, low stress, flat, plus the settings above.
 6. **Road, Bridge, Avoid rules, Pass by**: the constrained stops. Pass by goes last because it depends on the rest working.
 7. **Round trip and alternatives**.
+8. **Ride log**: mark ridden, add past rides, totals, map layer.
 
 ## Done means
 

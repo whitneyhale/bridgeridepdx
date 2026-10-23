@@ -1,0 +1,21 @@
+graphhopper:
+  datareader.file: Portland.osm.pbf
+  graph.location: graph-cache
+  import.osm.ignored_highways: motorway
+  profiles:
+    - name: bike
+      custom_model_files: [bike.json]
+    - name: greenway_first
+      custom_model_files: [bike.json, greenway_first.json]
+  profiles_ch: []
+  graph.encoded_values: bike_priority, bike_access, roundabout, bike_average_speed, bike_road_access, foot_road_access, mtb_rating, hike_rating, country, road_class, max_speed, bike_network, surface, get_off_bike
+  routing.snap_preventions_default: tunnel, ferry
+server:
+  application_connectors:
+    - type: http
+      port: 8989
+      bind_host: localhost
+  admin_connectors:
+    - type: http
+      port: 8990
+      bind_host: localhost

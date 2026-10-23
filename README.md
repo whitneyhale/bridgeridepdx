@@ -23,6 +23,8 @@ Starter scaffold. See [docs/requirements.md](docs/requirements.md) for scope and
 
 - `docs/requirements.md` - goals, priorities, safety rules, test targets
 - `docs/prototype-spec.md` - PC prototype: features, cyclist routing styles, architecture, build order
+- `docs/spike-results.md` - first routing engine test results
+- `routing/` - local routing engine setup (GraphHopper). On Windows, double-click `routing/start.bat`, then open http://localhost:8989/maps/
 - `data/bridges.json` - bridges, aliases, and directional crossings
 - `web/index.html` - starter map page (Leaflet + OpenStreetMap)
 
