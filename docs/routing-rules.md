@@ -350,7 +350,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
-| 0.2.1 | 2026-10-23 | Pending (see Changelog) | Ross Island and Tilikum transit checked on TriMet. |
+| 0.2.1 | 2026-10-23 | a1efbac | Ross Island and Tilikum transit checked on TriMet. |
 | 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
 | 0.1.0 | 2026-10-23 | 4fc7a87 | First version. Collects every routing rule decided so far. |
 
@@ -369,7 +369,7 @@ Newest first. One entry per change. Copy the template below for each new entry.
 - What changed (plain language): no current bus found on the Ross Island Bridge. TriMet lines 9 and 19 cross on Tilikum.
 - Why: Whitney asked to check TriMet's maps instead of guessing.
 - Developer notes: `bridge_names.json` transit for ross-island and tilikum; `bridges.json` and section 9 regenerated.
-- GitHub version: commit pending.
+- GitHub version: a1efbac
 - Status after change: Open (C-TRAN still unconfirmed)
 - Test rides affected: none
 - Replaces: none
