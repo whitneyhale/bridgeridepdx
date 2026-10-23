@@ -1,0 +1,48 @@
+{
+ "note": "Colors decided or proposed for the Wayfinding look (design-system-prompt.md, 2026-10-23). Input to tools/check_palette.py. The checker reports; it never changes a color. Dark mode values live in palette.json, which is not in the repo yet.",
+ "colors": {
+  "ink": {"hex": "#15211D", "status": "decided", "role": "text, dark surfaces"},
+  "ground": {"hex": "#F3F5F2", "status": "decided", "role": "app background"},
+  "white": {"hex": "#FFFFFF", "status": "used in drafts", "role": "cards, sheets"},
+  "muted": {"hex": "#4A5A54", "status": "used in drafts", "role": "secondary text"},
+  "greenway": {"hex": "#1B6B45", "status": "decided", "role": "greenways, paths, selected states"},
+  "river": {"hex": "#1F5F8B", "status": "decided", "role": "route line, primary actions, links"},
+  "signal": {"hex": "#B4480F", "status": "decided", "role": "warnings only"},
+  "forest": {"hex": "#0F3D2B", "status": "proposed", "role": "dark green accent"},
+  "rose": {"hex": "#9B1B30", "status": "proposed", "role": "brand accent, rose mark"},
+  "columbia": {"hex": "#1769B8", "status": "proposed", "role": "Columbia River band"},
+  "map-land": {"hex": "#E8EDE9", "status": "used in drafts", "role": "map land"},
+  "map-water": {"hex": "#BFD7E6", "status": "used in drafts", "role": "map water"}
+ },
+ "contrast": [
+  ["ink", "ground", 4.5, "body text"],
+  ["ink", "white", 4.5, "text on cards"],
+  ["muted", "ground", 4.5, "secondary text"],
+  ["muted", "white", 4.5, "secondary text on cards"],
+  ["white", "river", 4.5, "button label on river blue"],
+  ["white", "greenway", 4.5, "label on greenway green"],
+  ["white", "signal", 4.5, "label on warning orange"],
+  ["white", "rose", 4.5, "label on rose"],
+  ["white", "forest", 4.5, "label on forest"],
+  ["white", "columbia", 4.5, "label on Columbia blue"],
+  ["white", "ink", 4.5, "text on dark banner"],
+  ["river", "white", 4.5, "link text"],
+  ["greenway", "white", 4.5, "greenway labels"],
+  ["signal", "white", 4.5, "warning text"],
+  ["rose", "white", 4.5, "rose text"],
+  ["river", "map-land", 3, "route line on land"],
+  ["river", "map-water", 3, "route line over the river (bridges)"],
+  ["greenway", "map-land", 3, "greenway line on land"],
+  ["signal", "map-land", 3, "warning icon on the map"],
+  ["columbia", "map-land", 3, "Columbia band edge"]
+ ],
+ "must_differ": [
+  ["river", "greenway", "the route vs a greenway"],
+  ["river", "map-water", "the route on a bridge vs the river"],
+  ["rose", "signal", "rose accent vs warning orange (design question 5)"],
+  ["greenway", "signal", "greenway vs warning"],
+  ["forest", "ink", "forest vs ink"],
+  ["columbia", "river", "Columbia blue vs Willamette blue"],
+  ["forest", "greenway", "forest vs greenway"]
+ ]
+}

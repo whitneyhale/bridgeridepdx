@@ -1,43 +1,52 @@
 # Bridge Ride PDX
 
-A free cycling route planner for Portland, built around the Willamette River bridges.
+A free cycling route planner for Portland, built around the river bridges: greenways first, bridges as directional crossings, custom routes, GPS riding, and a ride log. Owner: Whitney Hale.
 
-## What it does
+## Status (2026-10-23)
 
-- Routes across the Willamette using Portland's bridges, with greenways prioritized.
-- Custom routes you create and save, with no paywall.
-- Route preference settings (greenway vs. direct, hills, traffic comfort).
-- Turn-by-turn directions.
-- Live GPS tracking.
-- Route sharing.
+- Built and checked: routing engine on a Portland map, bridge data for 14 crossings, name matching, overpasses, rules, screen drafts, a web map that shows bridges and GPS.
+- Not built: recording, route following, turn prompts, saving, ride log.
+- Next: slice S1, record a ride only, tested on the bike. See `docs/remaining-work.md`.
 
-## Core idea
+## Start here
 
-A bridge is a directional crossing, not a point. "Burnside eastbound" and "Burnside westbound" are different crossings. Colloquial names, misspellings, and bridge colors should all resolve to the right bridge.
+| File | What |
+|---|---|
+| `docs/project-prompt.md` | Briefing for any AI or developer: status, unique parts, bugs, gotchas, data, inputs and outputs |
+| `docs/requirements.md` | All requirements on one page |
+| `docs/remaining-work.md` | Bike-testable slices, in order |
+| `docs/routing-rules.md` | Every routing rule, with change log and one section per bridge |
+| `docs/ux-spec.md` | How the app looks and behaves (Wayfinding look) |
+| `docs/design/` | Screen drafts, design-system prompt, palette check |
+| `docs/test-rides.md` | Whitney's test rides |
+| `docs/prototype-spec.md`, `docs/app-plan.md` | PC prototype and Android plan detail |
+| `docs/spike-results.md` | Routing engine test results |
 
-## Status
+## Folders
 
-Starter scaffold. See [docs/requirements.md](docs/requirements.md) for scope and priorities.
+- `data/` - bridges, overpasses, corridors, bridge geometry, descriptions. See `data/README.md`.
+- `content/bridges/` - readable bridge descriptions, one Markdown file per bridge.
+- `routing/` - GraphHopper setup. On Windows, double-click `routing/start.bat`, then open http://localhost:8989/maps/.
+- `tools/` - Python scripts that build and check the data. Each file says how to run it.
+- `web/` - the map page.
 
-## Layout
+## Run the map page
 
-- `docs/requirements.md` - goals, priorities, safety rules, test targets
-- `docs/prototype-spec.md` - PC prototype: features, cyclist routing styles, architecture, build order
-- `docs/app-plan.md` - Android app plan: screens, stories, rules, structure, tests, research notes
-- `docs/routing-rules.md` - WIP routing rules: objective, rulings, developer details, change log and change template. The shared reference.
-- `docs/design/` - first screen drafts (Map, Plan, Ride, Bridge sheet, Library, Settings, First launch, PC Plan)
-- `docs/test-rides.md` - pass/fail test rides for routing realism
-- `docs/spike-results.md` - first routing engine test results
-- `routing/` - local routing engine setup (GraphHopper). On Windows, double-click `routing/start.bat`, then open http://localhost:8989/maps/
-- `data/` - bridges (Willamette, Columbia, Blumenauer) with two GPS points, categories, lane sides, and relative positions; overpasses; name-matching tests; street corridors. See `data/README.md`
-- `content/` - readable bridge descriptions, one Markdown file per bridge. See `content/README.md`
-- `tools/` - scripts that extract, validate, and build the bridge and overpass data, check lane sides, write the bridge sections of `docs/routing-rules.md`, and match typed bridge names
-- `web/index.html` - starter map page (Leaflet + OpenStreetMap)
-
-## Run locally
+From the repo root:
 
 ```
 python3 -m http.server 8000
 ```
 
-Run it from the repo root. Open http://localhost:8000/web/ on your computer. To test on a phone on the same Wi-Fi, open `http://<your-computer-ip>:8000/web/`. Phone GPS needs HTTPS or localhost, so for on-phone GPS testing use a deployed copy.
+Open http://localhost:8000/web/. Phone GPS needs HTTPS, so phone tests use GitHub Pages: https://whitneyhale.github.io/bridgeridepdx/web/ (once the repo is public and Pages is on). Use Chrome on the phone.
+
+## Checks
+
+```
+python tools/match_bridge.py      # bridge names, 40 cases
+python tools/check_palette.py     # Wayfinding colors, contrast and color blindness
+python tools/validate_bridges.py  # bridge crossings, engine must be running
+python tools/check_lane_side.py   # lane side per direction, engine must be running
+```
+
+Map data (c) OpenStreetMap contributors, ODbL.

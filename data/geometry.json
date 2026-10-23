@@ -1,0 +1,695 @@
+{
+ "note": "What each bridge looks like, for drawing or AI image generation. 'from_sources' lists facts the cited pages state. 'confirm_with_photo' lists details the pages do not state; do not draw them as fact until checked. Colors marked verified are stated by a cited page or by data/bridge_names.json. Rule D-07: write in own words, no pasted text.",
+ "icon_style": {
+  "viewBox": "0 0 96 48",
+  "rules": [
+   "Deck is one horizontal line at y=34, round caps, 4 px stroke.",
+   "Draw only the parts that make the bridge recognizable: towers, arch, truss peaks, cables.",
+   "At most 2 colors per icon: the bridge color and the water or ink color.",
+   "Cartoon-simple: rounded joins, no thin lines, readable at 24 px tall.",
+   "No text, no people, no cars."
+  ]
+ },
+ "bridges": {
+  "st-johns": {
+   "name": "St. Johns Bridge",
+   "river": "Willamette",
+   "structure": "Steel suspension bridge, Gothic style.",
+   "from_sources": [
+    "Two towers, each about 400 ft tall, with Gothic arch openings.",
+    "Center span 1,207 ft, total length 2,067 ft, 205 ft clearance below.",
+    "Painted green (announced 1931).",
+    "Aviation clearance lights on the towers."
+   ],
+   "color": {
+    "value": "green",
+    "verified": true
+   },
+   "geometry": "Two tall slender towers with pointed Gothic arch openings, one on each bank. Two main cables drape in a long curve between the tower tops and slope down to the banks. A thin flat deck hangs below the cables. The towers are the tallest thing in the picture.",
+   "icon_rules": "Two tall pointed-arch towers, one drooping curve between them, one deck line. Green.",
+   "confirm_with_photo": [
+    "Exact green shade",
+    "How many arch openings per tower"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a green steel suspension bridge with two tall Gothic pointed-arch towers and drooping main cables over a river, side view, simple shapes, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/St._Johns_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "Two tall slender towers with pointed Gothic arch openings, one on each bank. Two main cables drape in a long curve between the tower tops and slope down to the banks. A thin flat deck hangs below the cables. The towers are the tallest thing in the picture.",
+    "icon_rules": "Two tall pointed-arch towers, one drooping curve between them, one deck line. Green."
+   },
+   "layer_2": {
+    "parts": [
+     "Two Gothic towers, each a tall pointed arch with a smaller pointed portal arch inside near the deck",
+     "Thin spire or pinnacle at each tower top",
+     "Main cable draped tower to tower, side cables sloping to the banks",
+     "Many thin vertical suspenders under the main cable",
+     "Flat slim deck"
+    ],
+    "proportions": "Tower height about one third of the main span (400 ft towers, 1,207 ft span, per Wikipedia). Towers are narrow: width about one fifth of height.",
+    "details": [
+     "Draw the inner portal arch as a smaller copy of the tower arch.",
+     "Suspenders are the finest lines in the icon; keep them 1 px at 96 px wide, drop them below 48 px."
+    ],
+    "confidence": "Tower count, height, and span from sources. Portal arch and spires seen in the reference art; confirm with a photo."
+   }
+  },
+  "fremont": {
+   "name": "Fremont Bridge",
+   "river": "Willamette",
+   "structure": "Steel tied-arch bridge with two stacked decks (freeway).",
+   "from_sources": [
+    "Two stacked decks, each with four lanes.",
+    "Total length 2,154 ft, longest span 1,255 ft, height 381 ft.",
+    "The arch rib rises above the deck over the 902 ft center span; the deck is tied to the arch.",
+    "American and Oregon flags on poles at the arch crests."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false,
+    "repo_value": "pale green"
+   },
+   "geometry": "One long, low steel arch rises from the deck at both ends and peaks above the middle span. The deck sits below the arch and hangs from it. Two decks are stacked, so the bridge looks thick at the deck line. Two flags fly at the top of the arch.",
+   "icon_rules": "One wide shallow arch over a thick double deck line. Two tiny flags at the top. Pale green.",
+   "confirm_with_photo": [
+    "Color",
+    "Number of arch ribs",
+    "How the hangers look"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a long steel tied-arch freeway bridge with one wide shallow arch above a thick double deck, two small flags at the arch top, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Fremont_Bridge_(Portland,_Oregon)"
+   ],
+   "layer_1": {
+    "geometry": "One long, low steel arch rises from the deck at both ends and peaks above the middle span. The deck sits below the arch and hangs from it. Two decks are stacked, so the bridge looks thick at the deck line. Two flags fly at the top of the arch.",
+    "icon_rules": "One wide shallow arch over a thick double deck line. Two tiny flags at the top. Pale green."
+   },
+   "layer_2": {
+    "parts": [
+     "One large arch rib, tapering toward both ends",
+     "Vertical hangers from the rib to the deck",
+     "Stacked double deck",
+     "Flared legs where the arch meets the piers",
+     "Two flags on poles at the arch crest"
+    ],
+    "proportions": "Height about 0.3 of the longest span (381 ft over 1,255 ft). Arch is wide and low, not tall.",
+    "details": [
+     "The arch is thickest at the middle and flares at the ends in the reference art.",
+     "Hangers get shorter toward the crest."
+    ],
+    "confidence": "Height, span, flags from sources. Arch taper and hanger spacing from reference art; confirm."
+   }
+  },
+  "broadway": {
+   "name": "Broadway Bridge",
+   "river": "Willamette",
+   "structure": "Truss bridge with a double-leaf Rall-type bascule lift span.",
+   "from_sources": [
+    "Total length 1,742 ft, width 70 ft.",
+    "Fixed span 297 ft, bascule span 278 ft.",
+    "Originally black, repainted red (international orange, 'Golden Gate' red) in 1963.",
+    "Two 11 ft sidewalks, four vehicle lanes, streetcar tracks reinstalled 2010 to 2012."
+   ],
+   "color": {
+    "value": "red (international orange)",
+    "verified": true
+   },
+   "geometry": "A long bridge of steel trusses painted bright red-orange. The middle span is a lift span that splits in two leaves. The trusses form a repeating triangle pattern above the deck. Streetcar overhead wires run along it.",
+   "icon_rules": "Row of triangle truss peaks with a split in the middle. Red.",
+   "confirm_with_photo": [
+    "Truss outline (height and shape)",
+    "Where the counterweights sit"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a red-orange steel truss bridge with a lift span in the middle that splits into two leaves, repeating triangle trusses, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Broadway_Bridge_(Portland,_Oregon)"
+   ],
+   "layer_1": {
+    "geometry": "A long bridge of steel trusses painted bright red-orange. The middle span is a lift span that splits in two leaves. The trusses form a repeating triangle pattern above the deck. Streetcar overhead wires run along it.",
+    "icon_rules": "Row of triangle truss peaks with a split in the middle. Red."
+   },
+   "layer_2": {
+    "parts": [
+     "Steel truss with two rounded hump-shaped top chords (camelback look)",
+     "Triangle lattice between top chord and deck",
+     "Bascule joint in the middle where the humps meet",
+     "Concrete piers under the truss"
+    ],
+    "proportions": "Long and low: length about 25 times truss height. Humps rise about twice the height of the end panels.",
+    "details": [
+     "Humps peak over each half of the span and dip at the center joint.",
+     "Streetcar wires are optional, drop them at small sizes."
+    ],
+    "confidence": "Length, spans, color from sources. Hump shape from reference art; confirm."
+   }
+  },
+  "steel": {
+   "name": "Steel Bridge",
+   "river": "Willamette",
+   "structure": "Double-deck through-truss vertical-lift bridge.",
+   "from_sources": [
+    "Two independent lift spans; the lower deck can rise into the upper deck.",
+    "Lift span 211 ft long, width 71 ft, lift cables about 270 ft high.",
+    "Upper deck: car lanes, MAX tracks, narrow sidewalks. Lower deck: rail and a walkway.",
+    "Bike and pedestrian walkway about 220 ft long and 8 ft wide, cantilevered on the south side of the lower deck.",
+    "Machinery house on top of the upper lift truss; operator room hangs beneath the lift span."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false,
+    "repo_value": "black"
+   },
+   "geometry": "A steel through-truss with two tall lift towers, one at each end of the lift span. A boxy machinery house sits on top of the lift truss. Two decks are stacked: a wide upper deck and a lower deck that is partly hung from the trusses. A narrow walkway sticks out on the south side of the lower deck.",
+   "icon_rules": "Two square lift towers joined at the top by a truss, two deck lines (upper and lower). Dark gray.",
+   "confirm_with_photo": [
+    "Color",
+    "Tower shape and height",
+    "Truss pattern"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a steel through-truss vertical-lift bridge with two square lift towers, a boxy machinery house on top, and two stacked decks, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Steel_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "A steel through-truss with two tall lift towers, one at each end of the lift span. A boxy machinery house sits on top of the lift truss. Two decks are stacked: a wide upper deck and a lower deck that is partly hung from the trusses. A narrow walkway sticks out on the south side of the lower deck.",
+    "icon_rules": "Two square lift towers joined at the top by a truss, two deck lines (upper and lower). Dark gray."
+   },
+   "layer_2": {
+    "parts": [
+     "Two tall lift towers with X bracing",
+     "Lift truss between the towers with a small machinery house on top",
+     "Two decks: upper deck and a lower deck that lifts independently",
+     "Cable lines from the lift truss over the towers",
+     "Cantilevered walkway on the south side of the lower deck"
+    ],
+    "proportions": "Lift span 211 ft. Towers rise well above the upper deck, roughly the height of the lift span.",
+    "details": [
+     "Draw the upper deck line higher than the lower deck line with a visible gap.",
+     "Walkway is a thin ledge below the lower deck, south side."
+    ],
+    "confidence": "Decks, lift span, walkway, machinery house from sources. Tower height and bracing from reference art; confirm."
+   }
+  },
+  "burnside": {
+   "name": "Burnside Bridge",
+   "river": "Willamette",
+   "structure": "Double-leaf Strauss-type bascule bridge with concrete deck.",
+   "from_sources": [
+    "Two piers house counterweights totaling 1,700 short tons.",
+    "Italian Renaissance style towers with decorative metal railings.",
+    "Bascule span about 252 ft, width about 74 ft, clearance 64 ft when closed.",
+    "One of six lanes removed in 1995 for bicycle lanes.",
+    "Skatepark under the east end. A replacement bridge is planned (construction from 2026)."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "A low, heavy bridge. Two square decorative towers with railings stand at the lift span, housing the counterweights. The deck is thick concrete and flat. The lift span splits in the middle into two leaves.",
+   "icon_rules": "Two short square towers with a small cap, flat thick deck, a tiny split in the middle.",
+   "confirm_with_photo": [
+    "Color",
+    "Tower top shape and decoration",
+    "Truss or girder look of the side spans"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a low double-leaf bascule bridge with two short square Italian Renaissance style towers at the middle span, thick flat concrete deck, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Burnside_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "A low, heavy bridge. Two square decorative towers with railings stand at the lift span, housing the counterweights. The deck is thick concrete and flat. The lift span splits in the middle into two leaves.",
+    "icon_rules": "Two short square towers with a small cap, flat thick deck, a tiny split in the middle."
+   },
+   "layer_2": {
+    "parts": [
+     "Two boxy towers at the lift span, each with a small cupola or lantern on top",
+     "Concrete arch curve under the middle span",
+     "Low truss spans on both sides",
+     "Thick flat deck"
+    ],
+    "proportions": "Towers about as tall as the clearance gap, short compared with Hawthorne or Steel. Total height about 0.15 of length.",
+    "details": [
+     "Cupola is a small box with a pointed or flat roof.",
+     "Center arch is the most recognizable shape."
+    ],
+    "confidence": "Towers and counterweights from sources. Cupolas and arch from reference art; confirm."
+   }
+  },
+  "morrison": {
+   "name": "Morrison Bridge",
+   "river": "Willamette",
+   "structure": "Chicago-type double-leaf bascule bridge.",
+   "from_sources": [
+    "Two steel deck truss side spans about 238 ft each and a bascule span about 285 ft.",
+    "90 ft wide with six traffic lanes.",
+    "Two concrete counterweights, 950 tons each, lower to raise the leaves.",
+    "LED architectural lights on the river piers.",
+    "Shared-use path on the south side."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "A wide, flat bridge with steel deck trusses under the roadway on both sides of a central lift span. The lift span is two leaves that meet in the middle. The river piers carry lights. There are no tall towers.",
+   "icon_rules": "Flat deck line with a split in the middle and two chunky piers. No towers.",
+   "confirm_with_photo": [
+    "Color",
+    "Visible truss depth",
+    "Pier shape"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a wide flat bascule bridge with a split lift span in the middle, two chunky river piers with small lights, no tall towers, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://multco.us/bridges/morrison-bridge"
+   ],
+   "layer_1": {
+    "geometry": "A wide, flat bridge with steel deck trusses under the roadway on both sides of a central lift span. The lift span is two leaves that meet in the middle. The river piers carry lights. There are no tall towers.",
+    "icon_rules": "Flat deck line with a split in the middle and two chunky piers. No towers."
+   },
+   "layer_2": {
+    "parts": [
+     "Two tender towers with tall lamp poles on top",
+     "Arched underside across the lift span",
+     "Steel truss approach spans on both sides",
+     "Chunky river piers"
+    ],
+    "proportions": "Low and wide. Tower plus lamp pole about 0.2 of the central opening width.",
+    "details": [
+     "Lamp poles are thin with round lamp heads, two per tower in the reference art.",
+     "Piers carry changing LED color lights (per Multnomah County)."
+    ],
+    "confidence": "Spans, counterweights, LED lights from sources. Lamp poles and arch from reference art; confirm."
+   }
+  },
+  "hawthorne": {
+   "name": "Hawthorne Bridge",
+   "river": "Willamette",
+   "structure": "Vertical-lift truss bridge, oldest operating vertical lift in the U.S. (per county page).",
+   "from_sources": [
+    "Two towers rise 165 ft above the deck.",
+    "Lift span about 477 ft long, raises up to 110 ft.",
+    "Two counterweights, 450 tons each, supported by the towers.",
+    "Sidewalks widened from 6 ft to 10 ft; open steel grating deck.",
+    "Painted green with red trim since the renovation (content/bridges/hawthorne.md)."
+   ],
+   "color": {
+    "value": "green with red trim",
+    "verified": true
+   },
+   "geometry": "Two square steel towers stand on the river piers and hold up the lift span between them. Truss spans run out to both banks. Green steel with red trim. The wide sidewalks hang outside the trusses and are where riders go.",
+   "icon_rules": "Two square towers joined by a top beam, one deck line, truss peaks on both sides. Green with a red accent.",
+   "confirm_with_photo": [
+    "Truss outline height",
+    "Where the red trim sits"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a green steel vertical-lift bridge with two square towers on the river piers, a lift span between them, truss spans to both banks, small red trim accents, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://multco.us/bridges/hawthorne-bridge",
+    "content/bridges/hawthorne.md"
+   ],
+   "layer_1": {
+    "geometry": "Two square steel towers stand on the river piers and hold up the lift span between them. Truss spans run out to both banks. Green steel with red trim. The wide sidewalks hang outside the trusses and are where riders go.",
+    "icon_rules": "Two square towers joined by a top beam, one deck line, truss peaks on both sides. Green with a red accent."
+   },
+   "layer_2": {
+    "parts": [
+     "Two tall towers with slanted truss tops and counterweight boxes",
+     "Lift span with a small control house on top",
+     "Arched truss spans on both sides of the lift span",
+     "Green steel with red trim",
+     "Wide sidewalks outside the trusses"
+    ],
+    "proportions": "Towers rise 165 ft above deck against a 477 ft lift span: about 0.35. Side spans are long and gently arched.",
+    "details": [
+     "Tower tops lean in toward the lift span in the reference art.",
+     "Red trim on tower caps and top beam only."
+    ],
+    "confidence": "Tower height, lift, counterweights, colors from sources. Lean and arched side spans from reference art; confirm."
+   }
+  },
+  "marquam": {
+   "name": "Marquam Bridge",
+   "river": "Willamette",
+   "structure": "Double-deck steel truss cantilever freeway bridge.",
+   "from_sources": [
+    "Upper deck carries northbound traffic, lower deck southbound.",
+    "Total length 1,043 ft, main span 440 ft, two side spans 301 ft.",
+    "Lower deck 130 ft above the river; width 57 ft; four lanes each way.",
+    "A ramp stub on the lower deck at the east end."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false,
+    "repo_value": "gray"
+   },
+   "geometry": "A boxy double-deck freeway bridge. Steel trusses are visible between the two decks. The truss is deeper over the piers and shallower in the middle. Closed to bikes.",
+   "icon_rules": "Two thick stacked deck lines joined by short vertical ticks. Gray. Draw it dimmed in the app because bikes are not allowed.",
+   "confirm_with_photo": [
+    "Color",
+    "Truss pattern and the shape over the piers"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a gray double-deck steel truss cantilever freeway bridge with two stacked decks and visible trusses between them, over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Marquam_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "A boxy double-deck freeway bridge. Steel trusses are visible between the two decks. The truss is deeper over the piers and shallower in the middle. Closed to bikes.",
+    "icon_rules": "Two thick stacked deck lines joined by short vertical ticks. Gray. Draw it dimmed in the app because bikes are not allowed."
+   },
+   "layer_2": {
+    "parts": [
+     "Two stacked decks",
+     "Truss band running above the upper deck",
+     "Evenly spaced concrete piers",
+     "Ramp stub on the east end of the lower deck"
+    ],
+    "proportions": "Very long and flat. Truss band about 0.06 of length tall.",
+    "details": [
+     "Piers are plain rectangles, evenly spaced.",
+     "Draw dimmed in the app: bikes are not allowed."
+    ],
+    "confidence": "Decks, length, ramp stub from sources. Truss band above the deck from reference art; confirm."
+   }
+  },
+  "tilikum": {
+   "name": "Tilikum Crossing",
+   "river": "Willamette",
+   "structure": "Cable-stayed bridge for transit, bikes, and pedestrians (no private cars).",
+   "from_sources": [
+    "Two pentagonal towers, each 180 ft tall, solid and slender.",
+    "Five spans, 1,720 ft long, longest span 780 ft.",
+    "Cables run continuously over saddles at the tower tops.",
+    "31 ft center transitway; 14 ft bike and pedestrian paths on both sides.",
+    "LED lighting on cables, towers, and deck underside; colors follow river conditions."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "Two slender five-sided towers stand in the river. Straight cables fan from each tower top down to the deck in two rows, one toward each side. The deck is thin and flat with a bike and walking path on each edge.",
+   "icon_rules": "Two thin towers with straight fanned lines to the deck. Light cool color.",
+   "confirm_with_photo": [
+    "Color",
+    "Tower outline (pentagon orientation)",
+    "Cable count to draw"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a modern cable-stayed bridge with two slender five-sided towers standing in a river and straight fan-shaped cables down to a thin flat deck, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Tilikum_Crossing"
+   ],
+   "layer_1": {
+    "geometry": "Two slender five-sided towers stand in the river. Straight cables fan from each tower top down to the deck in two rows, one toward each side. The deck is thin and flat with a bike and walking path on each edge.",
+    "icon_rules": "Two thin towers with straight fanned lines to the deck. Light cool color."
+   },
+   "layer_2": {
+    "parts": [
+     "Two slender five-sided towers",
+     "Straight cable fans, each side of each tower",
+     "Thin flat deck with transit in the center and paths on both edges",
+     "Pier bases in the water"
+    ],
+    "proportions": "Towers 180 ft against a 780 ft main span: about 0.23. Cables spread wide, about 3 times tower height.",
+    "details": [
+     "Cables fan from near the tower top, not a single point.",
+     "Towers are the tallest, cleanest verticals of any bridge here."
+    ],
+    "confidence": "Tower shape, height, spans from sources. Fan layout from reference art; confirm."
+   }
+  },
+  "ross-island": {
+   "name": "Ross Island Bridge",
+   "river": "Willamette",
+   "structure": "Steel cantilever deck truss that looks like a deck arch.",
+   "from_sources": [
+    "Total length 3,729 ft, longest span 535 ft, clearance 120 ft.",
+    "Originally black, green in 1955 to 1956, blue (phthalo) in 1965; 2014 to 2019 project restored the blue.",
+    "Walkway on the north side; south sidewalk removed in 1958."
+   ],
+   "color": {
+    "value": "blue (phthalo blue)",
+    "verified": true
+   },
+   "geometry": "A long, high bridge whose structure is under the deck. The underside curves like a shallow arch, deepest at the piers and thin at the middle. Painted blue.",
+   "icon_rules": "Deck line on top, a shallow curved underside arch below it. Blue.",
+   "confirm_with_photo": [
+    "How deep the truss looks at the piers",
+    "Approach viaduct look"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a long blue steel deck truss bridge with a shallow curved arch-like structure under the deck, high above a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Ross_Island_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "A long, high bridge whose structure is under the deck. The underside curves like a shallow arch, deepest at the piers and thin at the middle. Painted blue.",
+    "icon_rules": "Deck line on top, a shallow curved underside arch below it. Blue."
+   },
+   "layer_2": {
+    "parts": [
+     "Long deck on top",
+     "Deep arch-shaped truss under the deck, thickest over the piers",
+     "Lattice between arch and deck",
+     "Tall approach spans at each end"
+    ],
+    "proportions": "Very long: 3,729 ft. Under-deck structure about 0.12 of main span deep (535 ft span).",
+    "details": [
+     "Blue (phthalo). In the reference art the arch springs from heavy piers.",
+     "Lattice is dense near the piers and open at the crown."
+    ],
+    "confidence": "Length, color, span from sources. Arch depth from reference art; confirm."
+   }
+  },
+  "sellwood": {
+   "name": "Sellwood Bridge",
+   "river": "Willamette",
+   "structure": "Steel deck arch bridge (2016).",
+   "from_sources": [
+    "Three arches, two piers in the water.",
+    "Total length 1,976 ft, width 64 ft, longest span 465 ft.",
+    "Two traffic lanes, bike lanes both directions, sidewalks both sides."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false,
+    "repo_value": "brown"
+   },
+   "geometry": "Three wide arches under the deck, springing from the two river piers and the banks. The deck is flat on top. Simple, clean, modern lines.",
+   "icon_rules": "Flat deck line with three round arches below. Warm brown.",
+   "confirm_with_photo": [
+    "Color",
+    "Arch rise (how tall each arch looks)"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a modern steel deck arch bridge with three wide arches under a flat deck over a river, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Sellwood_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "Three wide arches under the deck, springing from the two river piers and the banks. The deck is flat on top. Simple, clean, modern lines.",
+    "icon_rules": "Flat deck line with three round arches below. Warm brown."
+   },
+   "layer_2": {
+    "parts": [
+     "Flat deck with a railing",
+     "Three arches below the deck",
+     "Two river piers and two bank piers",
+     "Bike lanes and sidewalks on the deck"
+    ],
+    "proportions": "Arches span about 465 ft at the longest; rise about one third of span.",
+    "details": [
+     "Railing is a row of short posts above the deck at small scale.",
+     "Arches are plain: no lattice."
+    ],
+    "confidence": "Three arches, piers, length from sources. Rise and railing from reference art; confirm."
+   }
+  },
+  "interstate-5": {
+   "name": "Interstate Bridge",
+   "river": "Columbia",
+   "structure": "Two parallel steel vertical-lift Parker through-truss bridges.",
+   "from_sources": [
+    "Northbound span opened 1917, southbound span 1958; three lanes each.",
+    "Total length 3,538 ft, longest span 531 ft, overall height 242 ft.",
+    "Lift span 275 ft moves 136 ft up; towers 190 ft above the roadway.",
+    "The southbound span has a humpback profile for 72 ft of fixed clearance."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "Two bridges side by side. Each is a long steel truss with a polygon-topped truss outline. The lift span has a tall tower at each end. The southbound bridge has a raised hump in the middle. A very long, low bridge across a wide river.",
+   "icon_rules": "Two tall lift towers joined at the top, a hump on the deck beyond them, truss ticks. Cool gray-blue.",
+   "confirm_with_photo": [
+    "Color",
+    "Truss top outline",
+    "Tower top shape"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of two parallel steel vertical-lift truss bridges across a very wide river, tall lift towers at the middle span, one bridge with a raised hump, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Interstate_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "Two bridges side by side. Each is a long steel truss with a polygon-topped truss outline. The lift span has a tall tower at each end. The southbound bridge has a raised hump in the middle. A very long, low bridge across a wide river.",
+    "icon_rules": "Two tall lift towers joined at the top, a hump on the deck beyond them, truss ticks. Cool gray-blue."
+   },
+   "layer_2": {
+    "parts": [
+     "Two parallel bridges, one slightly lower in the picture",
+     "Lift towers at both ends of the lift span",
+     "Parker truss with a polygon top chord",
+     "A raised hump on the southbound bridge"
+    ],
+    "proportions": "Towers 190 ft above the roadway over a 275 ft lift span. Overall height 242 ft, length 3,538 ft.",
+    "details": [
+     "Draw the near bridge with the hump, the far bridge flat.",
+     "Truss tops step up in straight segments, not curves."
+    ],
+    "confidence": "Two spans, towers, lift, hump from sources. Truss outline from reference knowledge; confirm."
+   }
+  },
+  "interstate-205": {
+   "name": "Glenn L. Jackson Memorial Bridge",
+   "river": "Columbia",
+   "structure": "Twin concrete segmental box girder bridges (I-205).",
+   "from_sources": [
+    "Twin structures, four lanes each direction.",
+    "9 ft path between the two structures, down the center.",
+    "Longest span 600 ft, clearance 144 ft at low water.",
+    "Built one segment at a time."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "Two parallel concrete bridges with a path between them. Thick concrete box girders, deeper at the piers and slimmer in the middle. Very long and low with tall piers. No towers or cables.",
+   "icon_rules": "Long flat deck line on tall thin piers with a curved underside, no towers. Concrete gray.",
+   "confirm_with_photo": [
+    "Color",
+    "Pier shape",
+    "Girder depth change"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of two parallel concrete box girder bridges on tall piers across a wide river, thick girders deeper at the piers, a narrow path between them, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Glenn_L._Jackson_Memorial_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "Two parallel concrete bridges with a path between them. Thick concrete box girders, deeper at the piers and slimmer in the middle. Very long and low with tall piers. No towers or cables.",
+    "icon_rules": "Long flat deck line on tall thin piers with a curved underside, no towers. Concrete gray."
+   },
+   "layer_2": {
+    "parts": [
+     "Two parallel concrete box girder bridges",
+     "Tall thin piers",
+     "Girders deeper at the piers, slimmer at mid-span",
+     "9 ft path between the two structures"
+    ],
+    "proportions": "Longest span 600 ft. Girder depth at pier about twice the depth at mid-span.",
+    "details": [
+     "Show the center gap between the two decks as a thin line.",
+     "No towers, no cables."
+    ],
+    "confidence": "Twin girders, path, span from sources. Depth change is typical of segmental bridges; confirm with a photo."
+   }
+  },
+  "blumenauer": {
+   "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+   "river": "none (crosses I-84)",
+   "structure": "Tied-arch bicycle and pedestrian bridge.",
+   "from_sources": [
+    "Length 475 ft, width 24 ft.",
+    "Crosses Interstate 84 in Portland.",
+    "Connects the Lloyd District and Kerns."
+   ],
+   "color": {
+    "value": "not stated",
+    "verified": false
+   },
+   "geometry": "A narrow, light arch over a freeway. The path hangs from or is tied to the arch. Much smaller and thinner than the river bridges.",
+   "icon_rules": "One arch over a thin deck, a tiny bike silhouette optional. Dark green.",
+   "confirm_with_photo": [
+    "Color",
+    "Arch shape and hangers",
+    "Lighting"
+   ],
+   "ai_prompt": "Flat vector illustration, sign-like, of a slim tied-arch bicycle and pedestrian bridge over a freeway, one arch above a narrow path, side view, limited palette, no text, no people, no cars, no logos.",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Blumenauer_Bridge"
+   ],
+   "layer_1": {
+    "geometry": "A narrow, light arch over a freeway. The path hangs from or is tied to the arch. Much smaller and thinner than the river bridges.",
+    "icon_rules": "One arch over a thin deck, a tiny bike silhouette optional. Dark green."
+   },
+   "layer_2": {
+    "parts": [
+     "One slim arch",
+     "Hangers from the arch to a narrow deck",
+     "Path rises slightly at both ends over the freeway"
+    ],
+    "proportions": "475 ft long, 24 ft wide. Arch rise about one sixth of length.",
+    "details": [
+     "Smallest and lightest icon in the set.",
+     "Optional: tiny bike dot on the deck."
+    ],
+    "confidence": "Length, width, arch type from sources. Arch rise is a drawing choice; confirm with a photo."
+   }
+  }
+ },
+ "layers": {
+  "1": "First pass: silhouette and icon rules (96 x 48).",
+  "2": "Second pass: named parts, proportions, details (192 x 96). Reference art used only to read shapes and spacing; nothing copied. Anything the cited pages do not state is marked in confidence."
+ },
+ "river_view": {
+  "view": "From the south, looking north, centered on the Willamette. West is left, east is right. The nearest bridge is lowest in the picture.",
+  "order_north_to_south": [
+   {
+    "id": "st-johns",
+    "river_mile": 5.8
+   },
+   {
+    "id": "fremont",
+    "river_mile": 11.1
+   },
+   {
+    "id": "broadway",
+    "river_mile": 11.7
+   },
+   {
+    "id": "steel",
+    "river_mile": 12.1
+   },
+   {
+    "id": "burnside",
+    "river_mile": 12.4
+   },
+   {
+    "id": "morrison",
+    "river_mile": 12.8
+   },
+   {
+    "id": "hawthorne",
+    "river_mile": 13.1
+   },
+   {
+    "id": "marquam",
+    "river_mile": 13.5
+   },
+   {
+    "id": "tilikum",
+    "river_mile": 13.8
+   },
+   {
+    "id": "ross-island",
+    "river_mile": 14.0
+   },
+   {
+    "id": "sellwood",
+    "river_mile": 16.5
+   }
+  ],
+  "spacing_note": "River miles are not evenly spaced (St. Johns and Sellwood are far from the downtown group). The view uses even steps so every icon stays readable; show real distance in the data, not the picture.",
+  "perspective": "Far bridges are narrower and shorter; the river narrows toward the top. Columbia is a wider, bluer band across the top.",
+  "not_in_view": [
+   "Interstate Bridge and Glenn Jackson run north-south over the Columbia, so they are not seen side-on from here.",
+   "Blumenauer crosses I-84, not a river.",
+   "Burlington Northern rail bridge and Gibbs Street pedestrian bridge appear in the reference art but are not in data/bridges.json."
+  ]
+ }
+}

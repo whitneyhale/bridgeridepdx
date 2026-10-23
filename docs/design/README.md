@@ -16,3 +16,17 @@ Look: "Wayfinding", after bike and transit route signs. Barlow Semi Condensed fo
 | `PCPlan.dc.html` | PC prototype plan page | prototype-spec.md |
 
 Placeholders in square brackets ([time], [%], [date]) are values the app does not compute yet.
+
+The rider marker is a small bike in a disc with a heading wedge (Main and Ride), per Whitney 2026-10-23.
+
+## Other files
+
+| File | What |
+|---|---|
+| `design-system-prompt.md` | Prompt for building the design system; holds the "Already decided" list (copied from the claude.ai project) |
+| `screen-descriptions.md` | What each draft shows and two layout problems seen in renders (copied from the claude.ai project) |
+| `colors-decided.json` | Wayfinding colors fed to `tools/check_palette.py` |
+| `palette-report.md` | Contrast and color-blind results; failures are questions, not changes |
+| `canvas.json` | Board layout for the design canvas |
+
+`data/geometry.json` holds what each bridge looks like, for icons and illustrations.

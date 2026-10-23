@@ -12,6 +12,8 @@ Reference data for Bridge Ride PDX. Rules that use this data are in [docs/routin
 | `overpasses.json` | No (generated) | Pedestrian and mixed use overpasses with the "overpass" label, preference, effort, what they cross. |
 | `overpass_overrides.json` | Yes | Hand facts for individual overpasses (Blumenauer: preferred). |
 | `corridors.json` | Yes | Named street corridors with ratings. Eastbank Esplanade first. Ratings are proposed, not confirmed. |
+| `geometry.json` | Yes | What each bridge looks like, for icons and illustrations (from the claude.ai project). |
+| `descriptions.json` | No (generated) | Bridge descriptions compiled from `content/bridges/*.md` by `tools/build_descriptions.py`. |
 
 ## Bridge positions
 

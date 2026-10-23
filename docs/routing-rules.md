@@ -6,7 +6,7 @@ Working document and shared reference. Read it as a rider (the Ruling column) or
 |---|---|
 | Owner | Whitney Hale |
 | Created | 2026-10-23 |
-| Document version | 0.2.1 (WIP) |
+| Document version | 0.3.0 (WIP) |
 | Repository | https://github.com/whitneyhale/bridgeridepdx (branch main) |
 | Last updated | 2026-10-23 |
 
@@ -146,7 +146,9 @@ The rider's rule: some streets are better than others, and "better" has more tha
 | N-05 | When off route, reroute from the current position in the same style. The saved route stays unchanged. | New route is a session route. Offer to save it. | Decided |
 | N-06 | Ride tracking keeps running when the phone locks. | Android foreground service of type location. Ask for permission at Start ride. Resume the exact route after lock. | Decided |
 | N-07 | Samsung battery settings can stop tracking. Guide the rider through them. | Checklist: battery not optimized for the app, not on sleeping apps, start in the foreground before locking. | Decided |
-| N-08 | Decision gate: ride 30 minutes in the web app with the screen locked for 10. If track gaps exceed 10 seconds, build the Ride screen natively in Kotlin. | One test, one pass or fail. | Decided |
+| N-08 | Decision gate: ride 30 minutes in the web app with the screen locked for 10. If track gaps exceed 10 seconds, build the Ride screen natively in Kotlin. | One test, one pass or fail. Slice S1 in `docs/remaining-work.md` runs it. | Decided |
+| N-09 | The rider is shown as a small bike, not an arrow. | Disc with a white bicycle glyph and a heading wedge; turns warning orange when GPS is estimated. `docs/ux-spec.md`. | Decided |
+| N-10 | Phone tests run in Chrome on Android over HTTPS. | Browser GPS needs a secure origin (Chrome); localhost is exempt. GitHub Pages from the public repo. DuckDuckGo browser untested. | Decided |
 
 ### 2.8 Data, sharing, and privacy
 
@@ -350,6 +352,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
+| 0.3.0 | 2026-10-23 | Pending (see Changelog) | Ride 6 confirmed, bike rider marker, phone test browser and hosting. |
 | 0.2.1 | 2026-10-23 | a1efbac | Ross Island and Tilikum transit checked on TriMet. |
 | 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
 | 0.1.0 | 2026-10-23 | 4fc7a87 | First version. Collects every routing rule decided so far. |
@@ -361,6 +364,18 @@ The Git reference is the commit hash, tag, or pull request number where that ver
 ## 6. Changelog
 
 Newest first. One entry per change. Copy the template below for each new entry.
+
+### 2026-10-23, doc version 0.3.0
+
+- Reporter: Whitney Hale
+- Rules touched: N-08 updated; N-09, N-10 added. Open question 1 answered.
+- What changed (plain language): ride 6 is now Esplanade south, Hawthorne westbound, Willamette Greenway Trail south, Sellwood eastbound, Springwater north toward OMSI, Blumenauer northbound, home. The rider shows as a bike. Phone tests use Chrome on a public GitHub Pages site.
+- Why: Whitney's answers on 2026-10-23.
+- Developer notes: `docs/test-rides.md` ride 6. The ride 6 spike result in `docs/spike-results.md` was for an assumed direction and needs a rerun with three Bridge stops.
+- GitHub version: commit pending.
+- Status after change: Decided
+- Test rides affected: 6
+- Replaces: none
 
 ### 2026-10-23, doc version 0.2.1
 
@@ -438,7 +453,7 @@ Example of a filled entry:
 
 ## 8. Open questions for Whitney
 
-1. Which direction do you ride the Sellwood loop (ride 6)?
+1. Answered 2026-10-23: ride 6 goes south on the Esplanade, west over the Hawthorne, south on the Willamette Greenway Trail, east over the Sellwood, north on the Springwater, and home over the Blumenauer.
 2. Are the Esplanade ratings in H-07 right? Which numbers would you change?
 3. Does the north-south preference (H-08) apply to every style or only some (H-09)?
 4. Are there other east-side north-south routes to prefer (H-10)?
