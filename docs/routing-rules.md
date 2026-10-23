@@ -349,7 +349,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
-| 0.2.0 | 2026-10-23 | Pending (see Changelog) | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
+| 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
 | 0.1.0 | 2026-10-23 | 4fc7a87 | First version. Collects every routing rule decided so far. |
 
 The Git reference is the commit hash, tag, or pull request number where that version landed on main. Use a short hash (7 characters).
@@ -367,7 +367,7 @@ Newest first. One entry per change. Copy the template below for each new entry.
 - What changed (plain language): added the I-5 and I-205 bike crossings to Vancouver, the Blumenauer Bridge (preferred), overpasses (low preference, labeled), which side of each bridge to ride for each direction, how the app finds where you are, how it keeps your route through GPS gaps, how it handles closures, bridge categories (mixed use, transit and pedestrian, pedestrian only, car only, freeway with path, pedestrian overpass), and a section for every bridge.
 - Why: Whitney's requests on 2026-10-23.
 - Developer notes: new tools `extract_lanes.py`, `extract_feeders.py`, `extract_overpasses.py`, `build_overpasses.py`, `build_bridge_doc.py`, `check_lane_side.py`. New data `overpasses.json`, `overpass_overrides.json`, `routing/overpass_model.json`. `bridges.json` schema now has `axis`, `ends`, `approaches`, `position`, `lanes`, `crossings.<dir>.lane`, `nearby_bike_routes`. Matcher 40 of 40. Validation 21 of 22. Lane check: Hawthorne westbound fails (E-07).
-- GitHub version: commit pending. Replace with the short hash in the next commit.
+- GitHub version: dd8b955
 - Status after change: see each rule.
 - Test rides affected: 13 (Hawthorne out, Steel back).
 - Replaces: none
