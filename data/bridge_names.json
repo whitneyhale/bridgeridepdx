@@ -1,82 +1,657 @@
 {
-  "note": "Hand-edited. aliases = names riders use. misspellings = starter guesses, not collected from real use; add real ones as they appear. colors come from photo captions on Wikipedia's bridge list, not paint specs. Positions are generated into bridges.json by tools/build_bridges.py.",
-  "bridges": {
-    "st-johns": {
-      "name": "St. Johns Bridge", "year": 1931, "type": "suspension",
-      "aliases": ["st johns", "saint johns", "st. johns", "the st johns", "st johns bridge"],
-      "misspellings": ["st john's", "saint john's", "stjohns", "st jons", "saint jons"],
-      "colors": ["green"], "carries": "US 30 Bypass",
-      "bike_access": "yes", "county_code": null
-    },
-    "fremont": {
-      "name": "Fremont Bridge", "year": 1973, "type": "tied arch",
-      "aliases": ["fremont", "the fremont", "fremont bridge"],
-      "misspellings": ["freemont", "fremount", "frement", "fremont brdg"],
-      "colors": ["pale green"], "carries": "I-405 / US 30",
-      "bike_access": "no", "bike_note": "Freeway. Bicycles and pedestrians prohibited (OpenStreetMap: motorway, bicycle=no).", "county_code": null
-    },
-    "broadway": {
-      "name": "Broadway Bridge", "year": 1913, "type": "truss, bascule",
-      "aliases": ["broadway", "the broadway", "broadway bridge"],
-      "misspellings": ["brodway", "broad way", "broadwy", "broadway brdg"],
-      "colors": ["red"], "carries": "Broadway, streetcar",
-      "bike_access": "yes", "county_code": "06757"
-    },
-    "steel": {
-      "name": "Steel Bridge", "year": 1912, "type": "through truss, double vertical lift",
-      "aliases": ["steel", "the steel", "steel bridge"],
-      "misspellings": ["steal", "the steal", "stele", "steel brdg"],
-      "colors": ["black"], "carries": "Rail, MAX; lower deck road and bike/pedestrian paths",
-      "bike_access": "yes", "bike_note": "Use the lower deck paths.", "county_code": null
-    },
-    "burnside": {
-      "name": "Burnside Bridge", "year": 1926, "type": "bascule",
-      "aliases": ["burnside", "the burnside", "burnside bridge", "burn side"],
-      "misspellings": ["burnsid", "burnsides", "bernside", "burnside brdg"],
-      "colors": [], "carries": "Burnside Street",
-      "bike_access": "yes", "county_code": "00511"
-    },
-    "morrison": {
-      "name": "Morrison Bridge", "year": 1958, "type": "bascule",
-      "aliases": ["morrison", "the morrison", "morrison bridge"],
-      "misspellings": ["morison", "morrisson", "morrision", "morrison brdg"],
-      "colors": [], "carries": "Morrison Street",
-      "bike_access": "yes", "county_code": "02758"
-    },
-    "hawthorne": {
-      "name": "Hawthorne Bridge", "year": 1910, "type": "truss, vertical lift",
-      "aliases": ["hawthorne", "the hawthorne", "hawthorne bridge"],
-      "misspellings": ["hawthorn", "hawthorn bridge", "hawthrone", "hawtorne", "hawthorne brdg"],
-      "colors": ["green"], "carries": "Hawthorne Boulevard",
-      "bike_access": "yes", "county_code": "02757"
-    },
-    "marquam": {
-      "name": "Marquam Bridge", "year": 1966, "type": "cantilever truss",
-      "aliases": ["marquam", "the marquam", "marquam bridge", "i-5 bridge", "i5 bridge"],
-      "misspellings": ["markum", "marcum", "marquem", "marquam brdg"],
-      "colors": ["gray"], "carries": "I-5",
-      "bike_access": "no", "bike_note": "Freeway. Bicycles prohibited (OpenStreetMap: motorway).", "county_code": null
-    },
-    "tilikum": {
-      "name": "Tilikum Crossing", "year": 2015, "type": "cable-stayed",
-      "aliases": ["tilikum", "tilikum crossing", "the tilikum", "bridge of the people"],
-      "misspellings": ["tillicum", "tillikum", "tilakum", "tilikim", "tilicum", "tillicum crossing"],
-      "colors": [], "carries": "MAX Orange Line, buses, streetcar, bike and pedestrian path; no cars",
-      "bike_access": "yes", "bike_note": "Alias 'Bridge of the People' is from memory, not yet verified against a source.", "county_code": null
-    },
-    "ross-island": {
-      "name": "Ross Island Bridge", "year": 1926, "type": "cantilever deck truss",
-      "aliases": ["ross island", "the ross island", "ross island bridge", "ross"],
-      "misspellings": ["ross isle", "rossisland", "ross iland", "ross island brdg"],
-      "colors": [], "carries": "US 26 / Powell Boulevard",
-      "bike_access": "limited", "bike_note": "OpenStreetMap marks one way as bicycle discouraged. The routing engine avoids the bridge. Verify with a rider before offering it.", "county_code": null
-    },
-    "sellwood": {
-      "name": "Sellwood Bridge", "year": 2016, "type": "deck arch",
-      "aliases": ["sellwood", "the sellwood", "sellwood bridge"],
-      "misspellings": ["selwood", "sellwod", "sellwoood", "sellwood brdg"],
-      "colors": ["brown"], "carries": "Tacoma Street",
-      "bike_access": "yes", "county_code": "21493"
-    }
+ "note": "Hand-edited. aliases = names riders use. misspellings = starter guesses, not collected from real use. Order and river miles: Wikipedia list of Willamette crossings. Ends, carries, colors marked colors_verified=true: Wikipedia bridge pages. Colors with colors_verified=false come from photo captions. Positions are generated into bridges.json by tools/build_bridges.py.",
+ "bridges": {
+  "st-johns": {
+   "name": "St. Johns Bridge",
+   "year": 1931,
+   "type": "suspension",
+   "aliases": [
+    "st johns",
+    "saint johns",
+    "st. johns",
+    "the st johns",
+    "st johns bridge"
+   ],
+   "misspellings": [
+    "st john's",
+    "saint john's",
+    "stjohns",
+    "st jons",
+    "saint jons"
+   ],
+   "colors": [
+    "green"
+   ],
+   "carries": "US 30 Bypass",
+   "bike_access": "yes",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 5.8,
+   "streets": [
+    "US 30 Bypass",
+    "N Philadelphia Ave",
+    "NW Bridge Ave"
+   ],
+   "ends": {
+    "west": "Linnton, Northwest Portland",
+    "east": "St. Johns and Cathedral Park, North Portland"
+   },
+   "category": "mixed_use",
+   "colors_verified": false,
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Sidewalks on both sides, bicycles allowed (OpenStreetMap)",
+   "transit": "TriMet 16 (Portland Monthly, 2026)"
+  },
+  "fremont": {
+   "name": "Fremont Bridge",
+   "year": 1973,
+   "type": "tied arch",
+   "aliases": [
+    "fremont",
+    "the fremont",
+    "fremont bridge"
+   ],
+   "misspellings": [
+    "freemont",
+    "fremount",
+    "frement",
+    "fremont brdg"
+   ],
+   "colors": [
+    "pale green"
+   ],
+   "carries": "I-405 / US 30",
+   "bike_access": "no",
+   "bike_note": "Freeway. Bicycles and pedestrians prohibited (OpenStreetMap: motorway, bicycle=no).",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 11.1,
+   "streets": [
+    "I-405",
+    "US 30"
+   ],
+   "ends": {
+    "west": "Northwest Portland (freeway)",
+    "east": "North Portland at I-5 (freeway)"
+   },
+   "category": "car_only",
+   "colors_verified": false,
+   "modes": [
+    "cars"
+   ],
+   "bike_facility": "None. I-405 is closed to bikes and pedestrians in its entirety (OAR 734-020-0045)",
+   "transit": null
+  },
+  "broadway": {
+   "name": "Broadway Bridge",
+   "year": 1913,
+   "type": "truss, bascule",
+   "aliases": [
+    "broadway",
+    "the broadway",
+    "broadway bridge",
+    "the red bridge"
+   ],
+   "misspellings": [
+    "brodway",
+    "broad way",
+    "broadwy",
+    "broadway brdg"
+   ],
+   "colors": [
+    "red"
+   ],
+   "carries": "Broadway, streetcar",
+   "bike_access": "yes",
+   "county_code": "06757",
+   "river": "Willamette",
+   "river_mile": 11.7,
+   "streets": [
+    "NW Broadway",
+    "NW Lovejoy St ramp",
+    "N Broadway",
+    "N Interstate Ave"
+   ],
+   "ends": {
+    "west": "Pearl District and Old Town via NW Broadway and the Lovejoy ramp",
+    "east": "Lloyd District, Rose Quarter"
+   },
+   "category": "mixed_use",
+   "colors_verified": true,
+   "modes": [
+    "cars",
+    "streetcar",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Two 11 ft sidewalks plus bike paths (Wikipedia, OpenStreetMap)",
+   "transit": "Portland Streetcar A and B Loops (Wikipedia)"
+  },
+  "steel": {
+   "name": "Steel Bridge",
+   "year": 1912,
+   "type": "through truss, double vertical lift",
+   "aliases": [
+    "steel",
+    "the steel",
+    "steel bridge"
+   ],
+   "misspellings": [
+    "steal",
+    "the steal",
+    "stele",
+    "steel brdg"
+   ],
+   "colors": [
+    "black"
+   ],
+   "carries": "Upper deck: road and MAX. Lower deck: Union Pacific rail and the bike and pedestrian walkway",
+   "bike_access": "yes",
+   "bike_note": "Use the lower deck walkway (south side, built 2001 with the Eastbank Esplanade). Upper deck has narrow sidewalks.",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 12.1,
+   "streets": [
+    "NW Naito Pkwy",
+    "N Interstate Ave",
+    "NE Oregon St",
+    "Eastbank Esplanade"
+   ],
+   "ends": {
+    "west": "Old Town Chinatown",
+    "east": "Rose Quarter and Lloyd District"
+   },
+   "category": "mixed_use",
+   "colors_verified": false,
+   "modes": [
+    "cars",
+    "MAX",
+    "bus",
+    "freight rail",
+    "passenger rail",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Lower deck walkway, separated from traffic (Wikipedia). Narrow sidewalks on the upper deck",
+   "transit": "MAX; TriMet 4, 8, 16, 35, 44, 77 (TriMet Rose Lanes release)"
+  },
+  "burnside": {
+   "name": "Burnside Bridge",
+   "year": 1926,
+   "type": "bascule",
+   "aliases": [
+    "burnside",
+    "the burnside",
+    "burnside bridge",
+    "burn side"
+   ],
+   "misspellings": [
+    "burnsid",
+    "burnsides",
+    "bernside",
+    "burnside brdg"
+   ],
+   "colors": [],
+   "carries": "Burnside Street",
+   "bike_access": "yes",
+   "county_code": "00511",
+   "river": "Willamette",
+   "river_mile": 12.4,
+   "streets": [
+    "W Burnside St",
+    "E Burnside St"
+   ],
+   "ends": {
+    "west": "Old Town, Saturday Market under the west end",
+    "east": "Central Eastside, Burnside Skatepark under the east end; stairs to the Eastbank Esplanade"
+   },
+   "category": "mixed_use",
+   "bike_note": "Bike lanes since 1995. Earthquake Ready Burnside Bridge replacement: construction set to begin 2026, opening by 2031 (Wikipedia). Expect closures.",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Bike lanes since 1995 (Wikipedia)",
+   "transit": "TriMet 12, 19, 20 (TriMet Rose Lanes release)"
+  },
+  "morrison": {
+   "name": "Morrison Bridge",
+   "year": 1958,
+   "type": "bascule",
+   "aliases": [
+    "morrison",
+    "the morrison",
+    "morrison bridge"
+   ],
+   "misspellings": [
+    "morison",
+    "morrisson",
+    "morrision",
+    "morrison brdg"
+   ],
+   "colors": [],
+   "carries": "Morrison Street",
+   "bike_access": "yes",
+   "county_code": "02758",
+   "river": "Willamette",
+   "river_mile": 12.8,
+   "streets": [
+    "SW Morrison St",
+    "SW Alder St",
+    "SE Morrison St",
+    "SE Belmont St"
+   ],
+   "ends": {
+    "west": "Downtown",
+    "east": "Central Eastside"
+   },
+   "category": "mixed_use",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Barrier-separated path on the south side, 2009 (Wikipedia)",
+   "transit": "TriMet 15 (TriMet Rose Lanes release)"
+  },
+  "hawthorne": {
+   "name": "Hawthorne Bridge",
+   "year": 1910,
+   "type": "truss, vertical lift",
+   "aliases": [
+    "hawthorne",
+    "the hawthorne",
+    "hawthorne bridge"
+   ],
+   "misspellings": [
+    "hawthorn",
+    "hawthorn bridge",
+    "hawthrone",
+    "hawtorne",
+    "hawthorne brdg"
+   ],
+   "colors": [
+    "green"
+   ],
+   "carries": "Hawthorne Boulevard",
+   "bike_access": "yes",
+   "county_code": "02757",
+   "river": "Willamette",
+   "river_mile": 13.1,
+   "streets": [
+    "SW Madison St",
+    "SW Main St",
+    "SE Hawthorne Blvd",
+    "SE Madison St"
+   ],
+   "ends": {
+    "west": "Downtown at SW Naito Pkwy and 1st Ave",
+    "east": "Central Eastside at SE Grand Ave and MLK Blvd"
+   },
+   "category": "mixed_use",
+   "bike_note": "Busiest bicycle and transit bridge in the state (Multnomah County). Eastbound bikes use the south side, westbound the north side.",
+   "colors_verified": true,
+   "colors_note": "green with red trim since 1999 (Wikipedia)",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "10 ft sidewalks on both sides used by bikes; eastbound south, westbound north (Wikipedia, Multnomah County)",
+   "transit": "TriMet 2, 6, 10, 14, 30 (TriMet Rose Lanes release)"
+  },
+  "marquam": {
+   "name": "Marquam Bridge",
+   "year": 1966,
+   "type": "cantilever truss",
+   "aliases": [
+    "marquam",
+    "the marquam",
+    "marquam bridge",
+    "i-5 marquam"
+   ],
+   "misspellings": [
+    "markum",
+    "marcum",
+    "marquem",
+    "marquam brdg"
+   ],
+   "colors": [
+    "gray"
+   ],
+   "carries": "I-5",
+   "bike_access": "no",
+   "bike_note": "Freeway. Bicycles prohibited (OpenStreetMap: motorway).",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 13.5,
+   "streets": [
+    "I-5"
+   ],
+   "ends": {
+    "west": "South of downtown (freeway)",
+    "east": "Inner Southeast industrial area near the I-84 interchange (freeway)"
+   },
+   "category": "car_only",
+   "colors_verified": false,
+   "modes": [
+    "cars"
+   ],
+   "bike_facility": "None. I-5 north of the Beaverton-Tigard interchange is closed to bikes and pedestrians (OAR 734-020-0045)",
+   "transit": null
+  },
+  "tilikum": {
+   "name": "Tilikum Crossing",
+   "year": 2015,
+   "type": "cable-stayed",
+   "aliases": [
+    "tilikum",
+    "tilikum crossing",
+    "the tilikum",
+    "bridge of the people",
+    "portland-milwaukie light rail bridge",
+    "caruthers crossing"
+   ],
+   "misspellings": [
+    "tillicum",
+    "tillikum",
+    "tilakum",
+    "tilikim",
+    "tilicum",
+    "tillicum crossing"
+   ],
+   "colors": [],
+   "carries": "MAX Orange Line, buses, streetcar, bike and pedestrian path; no cars",
+   "bike_access": "yes",
+   "bike_note": "No private cars. 14 ft bike and pedestrian paths on both sides. 'Bridge of the People' is the official full name (Wikipedia); 'Caruthers Crossing' and 'Portland-Milwaukie Light Rail Bridge' were pre-naming names.",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 13.8,
+   "streets": [
+    "SW Moody Ave",
+    "S Bond Ave",
+    "SE Caruthers St",
+    "SE Sherman St",
+    "SE 2nd Pl"
+   ],
+   "ends": {
+    "west": "South Waterfront, OHSU/South Waterfront MAX station",
+    "east": "Central Eastside near OMSI, OMSI MAX station"
+   },
+   "category": "transit_and_pedestrian",
+   "modes": [
+    "MAX",
+    "bus",
+    "streetcar",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "14 ft paths on both sides (Wikipedia). No private cars",
+   "transit": "MAX Orange Line, TriMet buses, Portland Streetcar (Wikipedia)"
+  },
+  "ross-island": {
+   "name": "Ross Island Bridge",
+   "year": 1926,
+   "type": "cantilever deck truss",
+   "aliases": [
+    "ross island",
+    "the ross island",
+    "ross island bridge",
+    "ross"
+   ],
+   "misspellings": [
+    "ross isle",
+    "rossisland",
+    "ross iland",
+    "ross island brdg"
+   ],
+   "colors": [
+    "blue"
+   ],
+   "carries": "US 26 / Powell Boulevard",
+   "bike_access": "limited",
+   "bike_note": "No bike facilities listed (Wikipedia). One walkway on the north side with no barrier from the westbound lane. Engine avoids it. Not offered until a rider confirms it (B-07).",
+   "county_code": null,
+   "river": "Willamette",
+   "river_mile": 14.0,
+   "streets": [
+    "US 26",
+    "SW Naito Pkwy",
+    "SE Powell Blvd"
+   ],
+   "ends": {
+    "west": "Naito Pkwy interchange, SW Kelly Ave and Porter St (walkway)",
+    "east": "SE Powell Blvd"
+   },
+   "category": "mixed_use",
+   "colors_verified": true,
+   "modes": [
+    "cars",
+    "pedestrians"
+   ],
+   "bike_facility": "One north-side walkway with no barrier from the westbound lane. No bike facilities listed (Wikipedia)",
+   "transit": "unknown"
+  },
+  "sellwood": {
+   "name": "Sellwood Bridge",
+   "year": 2016,
+   "type": "deck arch",
+   "aliases": [
+    "sellwood",
+    "the sellwood",
+    "sellwood bridge"
+   ],
+   "misspellings": [
+    "selwood",
+    "sellwod",
+    "sellwoood",
+    "sellwood brdg"
+   ],
+   "colors": [
+    "brown"
+   ],
+   "carries": "Tacoma Street",
+   "bike_access": "yes",
+   "county_code": "21493",
+   "river": "Willamette",
+   "river_mile": 16.5,
+   "streets": [
+    "SE Tacoma St",
+    "SW Macadam Ave (OR 43)"
+   ],
+   "ends": {
+    "west": "OR 43 / Macadam Ave, Willamette Greenway Trail",
+    "east": "Sellwood and Westmoreland at SE Tacoma St; Springwater Trail nearby"
+   },
+   "category": "mixed_use",
+   "colors_verified": false,
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Bike lanes in both directions and sidewalks on both sides (Wikipedia)",
+   "transit": "TriMet 99 since December 2016 (TriMet)"
+  },
+  "interstate-5": {
+   "name": "Interstate Bridge",
+   "year": 1917,
+   "type": "steel truss, vertical lift",
+   "aliases": [
+    "interstate bridge",
+    "i-5 bridge",
+    "i5 bridge",
+    "i-5 crossing",
+    "columbia river interstate bridge",
+    "portland-vancouver interstate bridge",
+    "vancouver-portland bridge",
+    "the interstate bridge"
+   ],
+   "misspellings": [
+    "intersate bridge",
+    "interstat bridge",
+    "interstate brige",
+    "i 5 bridge",
+    "i5bridge"
+   ],
+   "colors": [],
+   "carries": "I-5; shared paths on both sides",
+   "bike_access": "yes",
+   "bike_note": "Bike and pedestrian paths on both sides (OpenStreetMap: path, bicycle=designated). Riders describe them as narrow; width not verified. Lift span opens about 250 times a year (Interstate Bridge Replacement program). Replacement bridge approved; existing bridge stays in use during construction.",
+   "county_code": null,
+   "river": "Columbia",
+   "river_mile": null,
+   "category": "freeway_with_path",
+   "streets": [
+    "N Hayden Island Dr",
+    "I-5 Bicycle Alternative",
+    "SE Columbia Way",
+    "Columbia Riverfront Renaissance Trail"
+   ],
+   "ends": {
+    "south": "Hayden Island, Portland (reach it from Marine Drive and Delta Park over the North Portland Harbor path)",
+    "north": "Downtown Vancouver, WA, at the Columbia River waterfront"
+   },
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Paths on both sides, separate from the freeway lanes (OpenStreetMap). Width not verified",
+   "transit": "C-TRAN, likely route 60 to Delta Park (inferred, not confirmed)"
+  },
+  "interstate-205": {
+   "name": "Glenn L. Jackson Memorial Bridge",
+   "year": 1982,
+   "type": "segmental concrete box girder",
+   "aliases": [
+    "glenn jackson bridge",
+    "glenn l. jackson memorial bridge",
+    "glenn jackson",
+    "i-205 bridge",
+    "i205 bridge",
+    "i-205 crossing",
+    "the 205 bridge"
+   ],
+   "misspellings": [
+    "glen jackson",
+    "glen jackson bridge",
+    "glenn jacksen",
+    "i 205 bridge",
+    "jackson bridge"
+   ],
+   "colors": [],
+   "carries": "I-205; two-way bike and pedestrian path in the center",
+   "bike_access": "yes",
+   "bike_note": "9 ft two-way path between the two freeway structures (Wikipedia), behind a low concrete wall and railings (BikePortland). No access to Government Island. Part of the I-205 Multi-Use Path.",
+   "county_code": null,
+   "river": "Columbia",
+   "river_mile": null,
+   "category": "freeway_with_path",
+   "streets": [
+    "I-205 Multi-Use Path",
+    "NE Marine Dr",
+    "NE Airport Way",
+    "SE Evergreen Hwy (WA)"
+   ],
+   "ends": {
+    "south": "Near NE Airport Way and Marine Drive, Portland; Marine Drive Trail and 40 Mile Loop",
+    "north": "East Vancouver, WA, near SE Evergreen Hwy; Veterans Memorial Greenway"
+   },
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "9 ft two-way path in the center behind a low wall and railings (Wikipedia, BikePortland)",
+   "transit": "C-TRAN, likely route 65 to Parkrose (inferred, not confirmed)"
+  },
+  "blumenauer": {
+   "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+   "year": 2022,
+   "type": "tied arch",
+   "aliases": [
+    "blumenauer bridge",
+    "earl blumenauer bridge",
+    "blumenauer bike bridge",
+    "blumenauer bicycle and pedestrian bridge",
+    "congressman blumenauer bridge",
+    "ne 7th bike bridge",
+    "i-84 bike bridge"
+   ],
+   "misspellings": [
+    "bluemanuer",
+    "bluemanuer bridge",
+    "blumenhauer",
+    "bloomenauer",
+    "blumenaur",
+    "blumenower",
+    "blumenour",
+    "blumnauer"
+   ],
+   "colors": [],
+   "carries": "Bikes and pedestrians only, 24 ft wide, 475 ft long",
+   "bike_access": "yes",
+   "bike_note": "Car-free link over I-84 and the Union Pacific Railroad at NE 7th Ave. Opened July 31, 2022. Northeast link of the Green Loop. Preferred (Whitney): prioritize it.",
+   "county_code": null,
+   "river": null,
+   "river_mile": null,
+   "category": "pedestrian_overpass",
+   "preference": "preferred",
+   "streets": [
+    "NE 7th Ave",
+    "NE Lloyd Blvd",
+    "NE Irving St"
+   ],
+   "ends": {
+    "south": "Central Eastside Industrial District",
+    "north": "Lloyd District"
+   },
+   "modes": [
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "24 ft car-free bike and pedestrian bridge (KPFF)",
+   "transit": null
   }
+ },
+ "sources": [
+  "https://en.wikipedia.org/wiki/List_of_crossings_of_the_Willamette_River",
+  "https://openoregon.pressbooks.pub/portlandpeopleandplaces/chapter/a-city-of-bridges/",
+  "https://multco.us/bridges/news/reminder-hawthorne-bridge-closes-7-pm-tonight",
+  "https://en.wikipedia.org/wiki/Interstate_Bridge",
+  "https://en.wikipedia.org/wiki/Glenn_L._Jackson_Memorial_Bridge",
+  "https://interstatebridge.org/faq",
+  "https://bikeportland.org/2021/04/08/the-bike-lane-in-the-middle-of-a-portland-freeway-329837",
+  "https://www.kpff.com/project/congressman-earl-blumenauer-bicycle-and-pedestrian-bridge-kpff/",
+  "https://www.portland.gov/transportation/news/2022/8/12/blumenauer-bridge-open-public",
+  "https://masstransitmag.com/bus/infrastructure/press-release/21235620/trimet-red-means-go-for-trimet-buses-new-rose-lanes-improve-bridge-access-speed-up-buses-save-riders-time",
+  "https://oregon.public.law/rules/oar_734-020-0045",
+  "https://www.masstransitmag.com/home/press-release/12281442/trimet-trimet-bus-service-returns-to-sellwood-bridge-in-december-after-12-years-away",
+  "https://www.pdxmonthly.com/travel-and-outdoors/2026/02/transit-trip-forest-park-leif-erikson-trail-st-johns-trimet",
+  "https://en.wikipedia.org/wiki/List_of_bridges_in_Portland,_Oregon",
+  "https://en.wikipedia.org/wiki/C-Tran_(Washington)"
+ ],
+ "categories": {
+  "mixed_use": "Mixed use bridge: cars, bikes, and pedestrians share the bridge, on separate lanes, paths, or sidewalks. May also carry buses, streetcar, or rail.",
+  "transit_and_pedestrian": "Transit and pedestrian bridge: TriMet (MAX, bus, streetcar), bikes, and pedestrians. No private cars.",
+  "pedestrian_only": "Pedestrian only bridge: bikes and pedestrians only, no motor vehicles.",
+  "car_only": "Car only bridge: freeway, closed to bikes and pedestrians. Never offered.",
+  "freeway_with_path": "Freeway bridge with a separate bike and pedestrian path.",
+  "pedestrian_overpass": "Pedestrian overpass: a bike and pedestrian bridge over a road, freeway, or railway.",
+  "mixed_use_overpass": "Mixed use overpass: a road overpass with a bike lane.",
+  "rail_only": "Rail only bridge: trains only. Never offered."
+ }
 }

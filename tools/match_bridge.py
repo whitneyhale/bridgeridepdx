@@ -8,7 +8,7 @@ import json, os, re, difflib
 HERE = os.path.dirname(os.path.abspath(__file__))
 STOP = {"the", "bridge", "bridges", "crossing", "br", "brdg", "brg", "over", "river", "willamette"}
 FUZZY_MIN = 0.78
-COLOR_WORDS = {"red", "green", "pale", "black", "gray", "grey", "brown"}
+COLOR_WORDS = {"red", "green", "pale", "black", "gray", "grey", "brown", "blue"}
 
 
 def norm(text):

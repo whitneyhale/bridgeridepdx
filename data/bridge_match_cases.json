@@ -1,34 +1,243 @@
 {
-  "note": "Test cases for tools/match_bridge.py. Add real mistakes riders make. expect = list of bridge ids; more than one means the app should ask.",
-  "cases": [
-    { "query": "Hawthorne Bridge", "expect": ["hawthorne"] },
-    { "query": "the hawthorne", "expect": ["hawthorne"] },
-    { "query": "hawthorn", "expect": ["hawthorne"] },
-    { "query": "hawthone bridge", "expect": ["hawthorne"] },
-    { "query": "Morrisonn Bridge", "expect": ["morrison"] },
-    { "query": "morrison", "expect": ["morrison"] },
-    { "query": "burn side", "expect": ["burnside"] },
-    { "query": "Burnsde", "expect": ["burnside"] },
-    { "query": "the steel", "expect": ["steel"] },
-    { "query": "steal bridge", "expect": ["steel"] },
-    { "query": "Broadway Bridge", "expect": ["broadway"] },
-    { "query": "red bridge", "expect": ["broadway"] },
-    { "query": "freemont bridge", "expect": ["fremont"] },
-    { "query": "Fremont", "expect": ["fremont"] },
-    { "query": "st johns", "expect": ["st-johns"] },
-    { "query": "Saint Johns Bridge", "expect": ["st-johns"] },
-    { "query": "st. john's", "expect": ["st-johns"] },
-    { "query": "sellwood", "expect": ["sellwood"] },
-    { "query": "selwod bridge", "expect": ["sellwood"] },
-    { "query": "ross iland", "expect": ["ross-island"] },
-    { "query": "Tilikum Crossing", "expect": ["tilikum"] },
-    { "query": "tillicum", "expect": ["tilikum"] },
-    { "query": "tilakum crossing", "expect": ["tilikum"] },
-    { "query": "bridge of the people", "expect": ["tilikum"] },
-    { "query": "marquam", "expect": ["marquam"] },
-    { "query": "i-5 bridge", "expect": ["marquam"] },
-    { "query": "green bridge", "expect": ["fremont", "hawthorne", "st-johns"] },
-    { "query": "purple bridge", "expect": [] },
-    { "query": "bananas", "expect": [] }
-  ]
+ "note": "Test cases for tools/match_bridge.py. Add real mistakes riders make. expect = list of bridge ids; more than one means the app should ask.",
+ "cases": [
+  {
+   "query": "Hawthorne Bridge",
+   "expect": [
+    "hawthorne"
+   ]
+  },
+  {
+   "query": "the hawthorne",
+   "expect": [
+    "hawthorne"
+   ]
+  },
+  {
+   "query": "hawthorn",
+   "expect": [
+    "hawthorne"
+   ]
+  },
+  {
+   "query": "hawthone bridge",
+   "expect": [
+    "hawthorne"
+   ]
+  },
+  {
+   "query": "Morrisonn Bridge",
+   "expect": [
+    "morrison"
+   ]
+  },
+  {
+   "query": "morrison",
+   "expect": [
+    "morrison"
+   ]
+  },
+  {
+   "query": "burn side",
+   "expect": [
+    "burnside"
+   ]
+  },
+  {
+   "query": "Burnsde",
+   "expect": [
+    "burnside"
+   ]
+  },
+  {
+   "query": "the steel",
+   "expect": [
+    "steel"
+   ]
+  },
+  {
+   "query": "steal bridge",
+   "expect": [
+    "steel"
+   ]
+  },
+  {
+   "query": "Broadway Bridge",
+   "expect": [
+    "broadway"
+   ]
+  },
+  {
+   "query": "red bridge",
+   "expect": [
+    "broadway"
+   ]
+  },
+  {
+   "query": "freemont bridge",
+   "expect": [
+    "fremont"
+   ]
+  },
+  {
+   "query": "Fremont",
+   "expect": [
+    "fremont"
+   ]
+  },
+  {
+   "query": "st johns",
+   "expect": [
+    "st-johns"
+   ]
+  },
+  {
+   "query": "Saint Johns Bridge",
+   "expect": [
+    "st-johns"
+   ]
+  },
+  {
+   "query": "st. john's",
+   "expect": [
+    "st-johns"
+   ]
+  },
+  {
+   "query": "sellwood",
+   "expect": [
+    "sellwood"
+   ]
+  },
+  {
+   "query": "selwod bridge",
+   "expect": [
+    "sellwood"
+   ]
+  },
+  {
+   "query": "ross iland",
+   "expect": [
+    "ross-island"
+   ]
+  },
+  {
+   "query": "Tilikum Crossing",
+   "expect": [
+    "tilikum"
+   ]
+  },
+  {
+   "query": "tillicum",
+   "expect": [
+    "tilikum"
+   ]
+  },
+  {
+   "query": "tilakum crossing",
+   "expect": [
+    "tilikum"
+   ]
+  },
+  {
+   "query": "bridge of the people",
+   "expect": [
+    "tilikum"
+   ]
+  },
+  {
+   "query": "marquam",
+   "expect": [
+    "marquam"
+   ]
+  },
+  {
+   "query": "green bridge",
+   "expect": [
+    "fremont",
+    "hawthorne",
+    "st-johns"
+   ]
+  },
+  {
+   "query": "purple bridge",
+   "expect": []
+  },
+  {
+   "query": "bananas",
+   "expect": []
+  },
+  {
+   "query": "i-5 bridge",
+   "expect": [
+    "interstate-5"
+   ]
+  },
+  {
+   "query": "interstate bridge",
+   "expect": [
+    "interstate-5"
+   ]
+  },
+  {
+   "query": "intersate bridge",
+   "expect": [
+    "interstate-5"
+   ]
+  },
+  {
+   "query": "glenn jackson",
+   "expect": [
+    "interstate-205"
+   ]
+  },
+  {
+   "query": "glen jackson bridge",
+   "expect": [
+    "interstate-205"
+   ]
+  },
+  {
+   "query": "i-205 bridge",
+   "expect": [
+    "interstate-205"
+   ]
+  },
+  {
+   "query": "blumenauer bridge",
+   "expect": [
+    "blumenauer"
+   ]
+  },
+  {
+   "query": "bluemanuer",
+   "expect": [
+    "blumenauer"
+   ]
+  },
+  {
+   "query": "blumenhauer bridge",
+   "expect": [
+    "blumenauer"
+   ]
+  },
+  {
+   "query": "blue bridge",
+   "expect": [
+    "ross-island"
+   ]
+  },
+  {
+   "query": "marquam",
+   "expect": [
+    "marquam"
+   ]
+  },
+  {
+   "query": "caruthers crossing",
+   "expect": [
+    "tilikum"
+   ]
+  }
+ ]
 }

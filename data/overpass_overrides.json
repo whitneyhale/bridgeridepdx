@@ -1,0 +1,31 @@
+{
+  "note": "Hand-edited facts about individual overpasses, keyed by OSM way id (as text). Merged into data/overpasses.json by tools/build_overpasses.py. Rule O-01 to O-08 in docs/routing-rules.md.",
+  "defaults": {
+    "preference": "low",
+    "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked."
+  },
+  "overrides": {
+    "1123764541": {
+      "id": "blumenauer",
+      "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+      "aliases": ["blumenauer bridge", "earl blumenauer bridge", "blumenauer bike bridge", "blumenauer bicycle and pedestrian bridge", "congressman blumenauer bridge", "i-84 bike bridge", "ne 7th bike bridge"],
+      "misspellings": ["bluemanuer", "bluemanuer bridge", "blumenhauer", "bloomenauer", "blumenaur", "blumenower", "blumenour", "blumnauer"],
+      "also_ways": [1393983921],
+      "preference": "preferred",
+      "preference_reason": "Whitney: it is just good and can be prioritized. Car-free, wide, direct link across I-84.",
+      "crosses_text": "Interstate 84 and the Union Pacific Railroad",
+      "street": "NE 7th Avenue",
+      "south_end": "Central Eastside Industrial District",
+      "north_end": "Lloyd District",
+      "length_ft": 475,
+      "width_ft": 24,
+      "structure": "tied arch",
+      "opened": "2022-07-31",
+      "part_of": "Green Loop (northeast link across I-84)",
+      "sources": [
+        "https://www.kpff.com/project/congressman-earl-blumenauer-bicycle-and-pedestrian-bridge-kpff/",
+        "https://www.portland.gov/transportation/news/2022/8/12/blumenauer-bridge-open-public"
+      ]
+    }
+  }
+}

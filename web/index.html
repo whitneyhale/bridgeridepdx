@@ -41,10 +41,9 @@
     // Bridges closed to bikes are drawn but labeled as such.
     fetch('../data/bridges.json').then(r => r.json()).then(d => {
       d.bridges.forEach(b => {
-        const e = b.crossings.eastbound;
         const note = b.bike_access === 'no' ? ' (closed to bikes)' : '';
-        [['west side', e.from], ['east side', e.to]].forEach(([side, p]) =>
-          L.marker(p).addTo(map).bindPopup(b.name + ', ' + side + note));
+        Object.entries(b.approaches).forEach(([side, p]) =>
+          L.marker(p).addTo(map).bindPopup(b.name + ', ' + side + ' side. ' + b.category_label + note));
       });
     }).catch(() => {});
   </script>

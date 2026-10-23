@@ -1,11 +1,62 @@
 {
  "generated": "2026-10-23",
- "convention": "eastbound = from the west approach to the east approach. Points are [lat, lon], placed about 60 m outside each bridge end so the router can snap to the street or path.",
+ "convention": "Points are [lat, lon], about 60 m outside each bridge end so they snap to a street or path. East-west bridges have eastbound (west to east) and westbound crossings. North-south bridges (Columbia, Blumenauer) have northbound and southbound. lane.side is the side of the bridge a rider uses for that direction: keep right (rule E-01).",
+ "order": "Willamette north to south, then Columbia west to east, then other crossings.",
+ "categories": {
+  "mixed_use": "Mixed use bridge: cars, bikes, and pedestrians share the bridge, on separate lanes, paths, or sidewalks. May also carry buses, streetcar, or rail.",
+  "transit_and_pedestrian": "Transit and pedestrian bridge: TriMet (MAX, bus, streetcar), bikes, and pedestrians. No private cars.",
+  "pedestrian_only": "Pedestrian only bridge: bikes and pedestrians only, no motor vehicles.",
+  "car_only": "Car only bridge: freeway, closed to bikes and pedestrians. Never offered.",
+  "freeway_with_path": "Freeway bridge with a separate bike and pedestrian path.",
+  "pedestrian_overpass": "Pedestrian overpass: a bike and pedestrian bridge over a road, freeway, or railway.",
+  "mixed_use_overpass": "Mixed use overpass: a road overpass with a bike lane.",
+  "rail_only": "Rail only bridge: trains only. Never offered."
+ },
  "attribution": "Positions derived from OpenStreetMap (c) OpenStreetMap contributors, ODbL.",
  "bridges": [
   {
    "id": "st-johns",
    "name": "St. Johns Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Sidewalks on both sides, bicycles allowed (OpenStreetMap)",
+   "transit": "TriMet 16 (Portland Monthly, 2026)",
+   "river": "Willamette",
+   "river_mile": 5.8,
+   "position": {
+    "sequence": "Willamette bridge 1 of 11, counted north (downstream) to south (upstream)",
+    "south_neighbor": {
+     "id": "fremont",
+     "name": "Fremont Bridge",
+     "river_miles": 5.3
+    },
+    "nearest": [
+     {
+      "id": "interstate-5",
+      "name": "Interstate Bridge",
+      "km": 7.6,
+      "direction": "NE"
+     },
+     {
+      "id": "fremont",
+      "name": "Fremont Bridge",
+      "km": 8.2,
+      "direction": "SE"
+     },
+     {
+      "id": "broadway",
+      "name": "Broadway Bridge",
+      "km": 9.1,
+      "direction": "SE"
+     }
+    ]
+   },
    "aliases": [
     "st johns",
     "saint johns",
@@ -23,20 +74,45 @@
    "colors": [
     "green"
    ],
+   "colors_verified": false,
+   "colors_note": null,
    "year": 1931,
    "type": "suspension",
    "carries": "US 30 Bypass",
+   "streets": [
+    "US 30 Bypass",
+    "N Philadelphia Ave",
+    "NW Bridge Ave"
+   ],
+   "ends_described": {
+    "west": "Linnton, Northwest Portland",
+    "east": "St. Johns and Cathedral Park, North Portland"
+   },
    "county_bridge_code": null,
    "bike_access": "yes",
    "bike_note": null,
-   "west_end": [
-    45.583246,
-    -122.768646
-   ],
-   "east_end": [
-    45.588712,
-    -122.756997
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.583246,
+     -122.768646
+    ],
+    "east": [
+     45.588712,
+     -122.756997
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.582945,
+     -122.769287
+    ],
+    "east": [
+     45.589012,
+     -122.756356
+    ]
+   },
    "span_m": 1091,
    "crossings": {
     "eastbound": {
@@ -50,7 +126,14 @@
       -122.756356
      ],
      "validated": true,
-     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge"
+     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "one-way",
+      "osm_ways": [
+       124252583
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -63,8 +146,104 @@
       -122.769287
      ],
      "validated": true,
-     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge"
+     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "one-way",
+      "osm_ways": [
+       115910434
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "westbound",
+     "length_m": 1093,
+     "osm_ways": [
+      115910434
+     ],
+     "kinds": [
+      "footway"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 14,
+     "osm_ways": [
+      128247154
+     ],
+     "kinds": [
+      "footway"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "eastbound",
+     "length_m": 1094,
+     "osm_ways": [
+      124252583
+     ],
+     "kinds": [
+      "footway"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "east": [
+     {
+      "name": "Saint Johns Bridge",
+      "kind": "path",
+      "distance_m": 3,
+      "direction": "SE"
+     },
+     {
+      "name": "Cathedral Park Trail",
+      "kind": "path",
+      "distance_m": 175,
+      "direction": "W"
+     },
+     {
+      "name": "BES Water Pollution Control Lab Trail",
+      "kind": "path",
+      "distance_m": 408,
+      "direction": "SW"
+     },
+     {
+      "name": "North Portland Greenway Trail",
+      "kind": "path",
+      "distance_m": 411,
+      "direction": "SW"
+     },
+     {
+      "name": "BES Water Quality Control Lab Trail",
+      "kind": "path",
+      "distance_m": 479,
+      "direction": "SW"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "route",
+      "distance_m": 71,
+      "direction": "SW"
+     }
+    ],
+    "west": [
+     {
+      "name": "Saint Johns Bridge",
+      "kind": "path",
+      "distance_m": 60,
+      "direction": "E"
+     },
+     {
+      "name": "Northwest Leif Erikson Drive",
+      "kind": "path",
+      "distance_m": 371,
+      "direction": "SW"
+     }
+    ]
    },
    "osm_way_ids": [
     115910434,
@@ -78,6 +257,48 @@
   {
    "id": "fremont",
    "name": "Fremont Bridge",
+   "category": "car_only",
+   "category_label": "Car only bridge",
+   "modes": [
+    "cars"
+   ],
+   "bike_facility": "None. I-405 is closed to bikes and pedestrians in its entirety (OAR 734-020-0045)",
+   "transit": null,
+   "river": "Willamette",
+   "river_mile": 11.1,
+   "position": {
+    "sequence": "Willamette bridge 2 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "st-johns",
+     "name": "St. Johns Bridge",
+     "river_miles": 5.3
+    },
+    "south_neighbor": {
+     "id": "broadway",
+     "name": "Broadway Bridge",
+     "river_miles": 0.6
+    },
+    "nearest": [
+     {
+      "id": "broadway",
+      "name": "Broadway Bridge",
+      "km": 1.0,
+      "direction": "SE"
+     },
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 1.6,
+      "direction": "SE"
+     },
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 2.1,
+      "direction": "SE"
+     }
+    ]
+   },
    "aliases": [
     "fremont",
     "the fremont",
@@ -92,20 +313,44 @@
    "colors": [
     "pale green"
    ],
+   "colors_verified": false,
+   "colors_note": null,
    "year": 1973,
    "type": "tied arch",
    "carries": "I-405 / US 30",
+   "streets": [
+    "I-405",
+    "US 30"
+   ],
+   "ends_described": {
+    "west": "Northwest Portland (freeway)",
+    "east": "North Portland at I-5 (freeway)"
+   },
    "county_bridge_code": null,
    "bike_access": "no",
    "bike_note": "Freeway. Bicycles and pedestrians prohibited (OpenStreetMap: motorway, bicycle=no).",
-   "west_end": [
-    45.535474,
-    -122.686067
-   ],
-   "east_end": [
-    45.541859,
-    -122.678201
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.535474,
+     -122.686067
+    ],
+    "east": [
+     45.541859,
+     -122.678201
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.535064,
+     -122.686571
+    ],
+    "east": [
+     45.542268,
+     -122.677697
+    ]
+   },
    "span_m": 938,
    "crossings": {
     "eastbound": {
@@ -117,7 +362,11 @@
      "to": [
       45.542268,
       -122.677697
-     ]
+     ],
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     },
     "westbound": {
      "offered": false,
@@ -128,8 +377,73 @@
      "to": [
       45.535064,
       -122.686571
-     ]
+     ],
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     }
+   },
+   "lanes": [],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 235,
+      "direction": "NE"
+     },
+     {
+      "name": "Northwest Portland Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 258,
+      "direction": "N"
+     },
+     {
+      "name": "Northwest Pettygrove Street",
+      "kind": "route",
+      "distance_m": 242,
+      "direction": "S"
+     },
+     {
+      "name": "Pettygrove Neighborhood Greenway",
+      "kind": "route",
+      "distance_m": 242,
+      "direction": "S"
+     },
+     {
+      "name": "18th Avenue Bike Boulevard",
+      "kind": "route",
+      "distance_m": 245,
+      "direction": "W"
+     },
+     {
+      "name": "Northwest 18th Avenue",
+      "kind": "route",
+      "distance_m": 245,
+      "direction": "W"
+     }
+    ],
+    "east": [
+     {
+      "name": "North Greeley Multi-Use Path",
+      "kind": "path",
+      "distance_m": 326,
+      "direction": "N"
+     },
+     {
+      "name": "North Interstate Avenue",
+      "kind": "route",
+      "distance_m": 33,
+      "direction": "E"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "route",
+      "distance_m": 33,
+      "direction": "E"
+     }
+    ]
    },
    "osm_way_ids": [
     5509112,
@@ -144,10 +458,56 @@
   {
    "id": "broadway",
    "name": "Broadway Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "streetcar",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Two 11 ft sidewalks plus bike paths (Wikipedia, OpenStreetMap)",
+   "transit": "Portland Streetcar A and B Loops (Wikipedia)",
+   "river": "Willamette",
+   "river_mile": 11.7,
+   "position": {
+    "sequence": "Willamette bridge 3 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "fremont",
+     "name": "Fremont Bridge",
+     "river_miles": 0.6
+    },
+    "south_neighbor": {
+     "id": "steel",
+     "name": "Steel Bridge",
+     "river_miles": 0.4
+    },
+    "nearest": [
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 0.6,
+      "direction": "SE"
+     },
+     {
+      "id": "fremont",
+      "name": "Fremont Bridge",
+      "km": 1.0,
+      "direction": "NW"
+     },
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 1.1,
+      "direction": "SE"
+     }
+    ]
+   },
    "aliases": [
     "broadway",
     "the broadway",
-    "broadway bridge"
+    "broadway bridge",
+    "the red bridge"
    ],
    "misspellings": [
     "brodway",
@@ -158,20 +518,46 @@
    "colors": [
     "red"
    ],
+   "colors_verified": true,
+   "colors_note": null,
    "year": 1913,
    "type": "truss, bascule",
    "carries": "Broadway, streetcar",
+   "streets": [
+    "NW Broadway",
+    "NW Lovejoy St ramp",
+    "N Broadway",
+    "N Interstate Ave"
+   ],
+   "ends_described": {
+    "west": "Pearl District and Old Town via NW Broadway and the Lovejoy ramp",
+    "east": "Lloyd District, Rose Quarter"
+   },
    "county_bridge_code": "06757",
    "bike_access": "yes",
    "bike_note": null,
-   "west_end": [
-    45.52997,
-    -122.677633
-   ],
-   "east_end": [
-    45.533025,
-    -122.671745
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.52997,
+     -122.677633
+    ],
+    "east": [
+     45.533025,
+     -122.671745
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.529649,
+     -122.678253
+    ],
+    "east": [
+     45.533346,
+     -122.671125
+    ]
+   },
    "span_m": 571,
    "crossings": {
     "eastbound": {
@@ -185,7 +571,16 @@
       -122.671125
      ],
      "validated": true,
-     "validation": "route 711 m vs 691 m straight (x1.03), 615 m on the bridge"
+     "validation": "route 711 m vs 691 m straight (x1.03), 615 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "one-way",
+      "osm_ways": [
+       69334747,
+       153506705,
+       422121253
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -198,8 +593,142 @@
       -122.678253
      ],
      "validated": true,
-     "validation": "route 715 m vs 691 m straight (x1.04), 606 m on the bridge"
+     "validation": "route 715 m vs 691 m straight (x1.04), 606 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "one-way",
+      "osm_ways": [
+       69334754,
+       126306263,
+       153506698,
+       422121241,
+       422121245
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "eastbound",
+     "length_m": 185,
+     "osm_ways": [
+      126306261,
+      422121256
+     ],
+     "kinds": [
+      "cycleway",
+      "path"
+     ]
+    },
+    {
+     "side": "north",
+     "direction": "westbound",
+     "length_m": 582,
+     "osm_ways": [
+      69334754,
+      126306263,
+      153506698,
+      422121241,
+      422121245
+     ],
+     "kinds": [
+      "cycleway",
+      "path"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "eastbound",
+     "length_m": 395,
+     "osm_ways": [
+      69334747,
+      153506705,
+      422121253
+     ],
+     "kinds": [
+      "cycleway",
+      "path"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "east": [
+     {
+      "name": "North Wheeler Avenue",
+      "kind": "path",
+      "distance_m": 247,
+      "direction": "NE"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 408,
+      "direction": "SW"
+     },
+     {
+      "name": "North Interstate Avenue",
+      "kind": "route",
+      "distance_m": 65,
+      "direction": "SW"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "route",
+      "distance_m": 65,
+      "direction": "SW"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "route",
+      "distance_m": 272,
+      "direction": "E"
+     },
+     {
+      "name": "North Wheeler Avenue",
+      "kind": "route",
+      "distance_m": 272,
+      "direction": "E"
+     }
+    ],
+    "west": [
+     {
+      "name": "Northwest Lovejoy Street",
+      "kind": "path",
+      "distance_m": 45,
+      "direction": "NE"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 197,
+      "direction": "NE"
+     },
+     {
+      "name": "Marshall Neighborhood Greenway",
+      "kind": "path",
+      "distance_m": 278,
+      "direction": "NW"
+     },
+     {
+      "name": "Northwest Marshall Street",
+      "kind": "path",
+      "distance_m": 278,
+      "direction": "NW"
+     },
+     {
+      "name": "Tanner Springs Park Trail",
+      "kind": "path",
+      "distance_m": 299,
+      "direction": "NW"
+     },
+     {
+      "name": "Northwest 10th Avenue",
+      "kind": "path",
+      "distance_m": 303,
+      "direction": "SW"
+     }
+    ]
    },
    "osm_way_ids": [
     69334747,
@@ -229,6 +758,54 @@
   {
    "id": "steel",
    "name": "Steel Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "MAX",
+    "bus",
+    "freight rail",
+    "passenger rail",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Lower deck walkway, separated from traffic (Wikipedia). Narrow sidewalks on the upper deck",
+   "transit": "MAX; TriMet 4, 8, 16, 35, 44, 77 (TriMet Rose Lanes release)",
+   "river": "Willamette",
+   "river_mile": 12.1,
+   "position": {
+    "sequence": "Willamette bridge 4 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "broadway",
+     "name": "Broadway Bridge",
+     "river_miles": 0.4
+    },
+    "south_neighbor": {
+     "id": "burnside",
+     "name": "Burnside Bridge",
+     "river_miles": 0.3
+    },
+    "nearest": [
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 0.5,
+      "direction": "S"
+     },
+     {
+      "id": "broadway",
+      "name": "Broadway Bridge",
+      "km": 0.6,
+      "direction": "NW"
+     },
+     {
+      "id": "blumenauer",
+      "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+      "km": 0.9,
+      "direction": "E"
+     }
+    ]
+   },
    "aliases": [
     "steel",
     "the steel",
@@ -243,20 +820,46 @@
    "colors": [
     "black"
    ],
+   "colors_verified": false,
+   "colors_note": null,
    "year": 1912,
    "type": "through truss, double vertical lift",
-   "carries": "Rail, MAX; lower deck road and bike/pedestrian paths",
+   "carries": "Upper deck: road and MAX. Lower deck: Union Pacific rail and the bike and pedestrian walkway",
+   "streets": [
+    "NW Naito Pkwy",
+    "N Interstate Ave",
+    "NE Oregon St",
+    "Eastbank Esplanade"
+   ],
+   "ends_described": {
+    "west": "Old Town Chinatown",
+    "east": "Rose Quarter and Lloyd District"
+   },
    "county_bridge_code": null,
    "bike_access": "yes",
-   "bike_note": "Use the lower deck paths.",
-   "west_end": [
-    45.526903,
-    -122.672369
-   ],
-   "east_end": [
-    45.528545,
-    -122.66681
-   ],
+   "bike_note": "Use the lower deck walkway (south side, built 2001 with the Eastbank Esplanade). Upper deck has narrow sidewalks.",
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.526903,
+     -122.672369
+    ],
+    "east": [
+     45.528545,
+     -122.66681
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.526693,
+     -122.673079
+    ],
+    "east": [
+     45.528755,
+     -122.6661
+    ]
+   },
    "span_m": 470,
    "crossings": {
     "eastbound": {
@@ -270,7 +873,16 @@
       -122.6661
      ],
      "validated": true,
-     "validation": "route 952 m vs 590 m straight (x1.61), 479 m on the bridge"
+     "validation": "route 952 m vs 590 m straight (x1.61), 479 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "two-way",
+      "osm_ways": [
+       154070500,
+       348027805,
+       348027806
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -283,8 +895,110 @@
       -122.673079
      ],
      "validated": false,
-     "validation": "route 1523 m vs 590 m straight (x2.58), 474 m on the bridge"
+     "validation": "route 1523 m vs 590 m straight (x2.58), 474 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "two-way",
+      "osm_ways": [
+       154070500,
+       348027805,
+       348027806
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 271,
+     "osm_ways": [
+      154070500,
+      348027805,
+      348027806
+     ],
+     "kinds": [
+      "path"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "east": [
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 27,
+      "direction": "SE"
+     },
+     {
+      "name": "Vera Katz Eastbank Esplanade",
+      "kind": "path",
+      "distance_m": 27,
+      "direction": "SE"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 27,
+      "direction": "SE"
+     },
+     {
+      "name": "Northeast Lloyd Boulevard",
+      "kind": "path",
+      "distance_m": 47,
+      "direction": "S"
+     },
+     {
+      "name": "North Williams Avenue",
+      "kind": "path",
+      "distance_m": 71,
+      "direction": "N"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 73,
+      "direction": "S"
+     }
+    ],
+    "west": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 106,
+      "direction": "NE"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 159,
+      "direction": "E"
+     },
+     {
+      "name": "Northwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 159,
+      "direction": "E"
+     },
+     {
+      "name": "Northwest Couch Street",
+      "kind": "path",
+      "distance_m": 366,
+      "direction": "SE"
+     },
+     {
+      "name": "Broadway Bridge",
+      "kind": "path",
+      "distance_m": 392,
+      "direction": "NW"
+     },
+     {
+      "name": "Northwest Broadway",
+      "kind": "path",
+      "distance_m": 398,
+      "direction": "NW"
+     }
+    ]
    },
    "osm_way_ids": [
     30288924,
@@ -313,6 +1027,51 @@
   {
    "id": "burnside",
    "name": "Burnside Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Bike lanes since 1995 (Wikipedia)",
+   "transit": "TriMet 12, 19, 20 (TriMet Rose Lanes release)",
+   "river": "Willamette",
+   "river_mile": 12.4,
+   "position": {
+    "sequence": "Willamette bridge 5 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "steel",
+     "name": "Steel Bridge",
+     "river_miles": 0.3
+    },
+    "south_neighbor": {
+     "id": "morrison",
+     "name": "Morrison Bridge",
+     "river_miles": 0.4
+    },
+    "nearest": [
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 0.5,
+      "direction": "N"
+     },
+     {
+      "id": "morrison",
+      "name": "Morrison Bridge",
+      "km": 0.6,
+      "direction": "S"
+     },
+     {
+      "id": "blumenauer",
+      "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+      "km": 0.8,
+      "direction": "NE"
+     }
+    ]
+   },
    "aliases": [
     "burnside",
     "the burnside",
@@ -326,20 +1085,44 @@
     "burnside brdg"
    ],
    "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
    "year": 1926,
    "type": "bascule",
    "carries": "Burnside Street",
+   "streets": [
+    "W Burnside St",
+    "E Burnside St"
+   ],
+   "ends_described": {
+    "west": "Old Town, Saturday Market under the west end",
+    "east": "Central Eastside, Burnside Skatepark under the east end; stairs to the Eastbank Esplanade"
+   },
    "county_bridge_code": "00511",
    "bike_access": "yes",
-   "bike_note": null,
-   "west_end": [
-    45.523266,
-    -122.671585
-   ],
-   "east_end": [
-    45.523086,
-    -122.662565
-   ],
+   "bike_note": "Bike lanes since 1995. Earthquake Ready Burnside Bridge replacement: construction set to begin 2026, opening by 2031 (Wikipedia). Expect closures.",
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.523266,
+     -122.671585
+    ],
+    "east": [
+     45.523086,
+     -122.662565
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.523281,
+     -122.672354
+    ],
+    "east": [
+     45.52307,
+     -122.661796
+    ]
+   },
    "span_m": 703,
    "crossings": {
     "eastbound": {
@@ -353,7 +1136,22 @@
       -122.661796
      ],
      "validated": true,
-     "validation": "route 863 m vs 823 m straight (x1.05), 733 m on the bridge"
+     "validation": "route 863 m vs 823 m straight (x1.05), 733 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "roadway bike lane, keep right",
+      "osm_ways": [
+       117996189,
+       117996190,
+       117996192,
+       245133024,
+       245133025,
+       425464044,
+       436490767,
+       689033341,
+       689033344
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -366,8 +1164,123 @@
       -122.672354
      ],
      "validated": true,
-     "validation": "route 844 m vs 823 m straight (x1.03), 732 m on the bridge"
+     "validation": "route 844 m vs 823 m straight (x1.03), 732 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "roadway bike lane, keep right",
+      "osm_ways": [
+       117996189,
+       117996190,
+       117996192,
+       245133024,
+       245133025,
+       425464044,
+       436490767,
+       689033341,
+       689033344
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 681,
+     "osm_ways": [
+      117996189,
+      117996190,
+      117996192,
+      245133024,
+      245133025,
+      425464044,
+      436490767,
+      689033341,
+      689033344
+     ],
+     "kinds": [
+      "primary",
+      "primary+lane"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Southwest Ankeny Street",
+      "kind": "path",
+      "distance_m": 82,
+      "direction": "S"
+     },
+     {
+      "name": "Southwest 4th Avenue",
+      "kind": "path",
+      "distance_m": 162,
+      "direction": "W"
+     },
+     {
+      "name": "Northwest Couch Street",
+      "kind": "path",
+      "distance_m": 167,
+      "direction": "E"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 169,
+      "direction": "E"
+     },
+     {
+      "name": "Northwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 169,
+      "direction": "E"
+     },
+     {
+      "name": "Southwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 170,
+      "direction": "E"
+     }
+    ],
+    "east": [
+     {
+      "name": "Northeast Martin Luther King Junior Boulevard",
+      "kind": "path",
+      "distance_m": 61,
+      "direction": "N"
+     },
+     {
+      "name": "Northeast Couch Street",
+      "kind": "path",
+      "distance_m": 74,
+      "direction": "N"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 345,
+      "direction": "W"
+     },
+     {
+      "name": "Vera Katz Eastbank Esplanade",
+      "kind": "path",
+      "distance_m": 345,
+      "direction": "W"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 345,
+      "direction": "W"
+     },
+     {
+      "name": "7th Avenue Bike Boulevard",
+      "kind": "path",
+      "distance_m": 387,
+      "direction": "NE"
+     }
+    ]
    },
    "osm_way_ids": [
     117739100,
@@ -396,6 +1309,51 @@
   {
    "id": "morrison",
    "name": "Morrison Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Barrier-separated path on the south side, 2009 (Wikipedia)",
+   "transit": "TriMet 15 (TriMet Rose Lanes release)",
+   "river": "Willamette",
+   "river_mile": 12.8,
+   "position": {
+    "sequence": "Willamette bridge 6 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "burnside",
+     "name": "Burnside Bridge",
+     "river_miles": 0.4
+    },
+    "south_neighbor": {
+     "id": "hawthorne",
+     "name": "Hawthorne Bridge",
+     "river_miles": 0.3
+    },
+    "nearest": [
+     {
+      "id": "hawthorne",
+      "name": "Hawthorne Bridge",
+      "km": 0.5,
+      "direction": "S"
+     },
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 0.6,
+      "direction": "N"
+     },
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 1.1,
+      "direction": "N"
+     }
+    ]
+   },
    "aliases": [
     "morrison",
     "the morrison",
@@ -408,20 +1366,46 @@
     "morrison brdg"
    ],
    "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
    "year": 1958,
    "type": "bascule",
    "carries": "Morrison Street",
+   "streets": [
+    "SW Morrison St",
+    "SW Alder St",
+    "SE Morrison St",
+    "SE Belmont St"
+   ],
+   "ends_described": {
+    "west": "Downtown",
+    "east": "Central Eastside"
+   },
    "county_bridge_code": "02758",
    "bike_access": "yes",
    "bike_note": null,
-   "west_end": [
-    45.518534,
-    -122.673457
-   ],
-   "east_end": [
-    45.517447,
-    -122.66533
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.518534,
+     -122.673457
+    ],
+    "east": [
+     45.517447,
+     -122.66533
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.518635,
+     -122.674213
+    ],
+    "east": [
+     45.517346,
+     -122.664574
+    ]
+   },
    "span_m": 645,
    "crossings": {
     "eastbound": {
@@ -435,7 +1419,20 @@
       -122.664574
      ],
      "validated": true,
-     "validation": "route 1071 m vs 765 m straight (x1.4), 672 m on the bridge"
+     "validation": "route 1071 m vs 765 m straight (x1.4), 672 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "two-way",
+      "osm_ways": [
+       115811860,
+       189781331,
+       681301885,
+       681301889,
+       681301892,
+       689032756,
+       689032757
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -448,8 +1445,131 @@
       -122.674213
      ],
      "validated": true,
-     "validation": "route 1252 m vs 765 m straight (x1.64), 626 m on the bridge"
+     "validation": "route 1252 m vs 765 m straight (x1.64), 626 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "two-way",
+      "osm_ways": [
+       115811860,
+       189781331,
+       681301885,
+       681301889,
+       681301892,
+       689032756,
+       689032757
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "eastbound",
+     "length_m": 74,
+     "osm_ways": [
+      45701294,
+      115811862
+     ],
+     "kinds": [
+      "cycleway",
+      "primary+lane"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 580,
+     "osm_ways": [
+      115811860,
+      189781331,
+      681301885,
+      681301889,
+      681301892,
+      689032756,
+      689032757
+     ],
+     "kinds": [
+      "path"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 102,
+      "direction": "SE"
+     },
+     {
+      "name": "Southwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 156,
+      "direction": "SE"
+     },
+     {
+      "name": "Southwest Yamhill Street",
+      "kind": "path",
+      "distance_m": 159,
+      "direction": "SW"
+     },
+     {
+      "name": "Southwest 4th Avenue",
+      "kind": "path",
+      "distance_m": 173,
+      "direction": "W"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 175,
+      "direction": "E"
+     },
+     {
+      "name": "Southwest Pine Street",
+      "kind": "path",
+      "distance_m": 350,
+      "direction": "NE"
+     }
+    ],
+    "east": [
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 215,
+      "direction": "W"
+     },
+     {
+      "name": "Vera Katz Eastbank Esplanade",
+      "kind": "path",
+      "distance_m": 215,
+      "direction": "W"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 215,
+      "direction": "W"
+     },
+     {
+      "name": "Southeast Salmon Street",
+      "kind": "path",
+      "distance_m": 397,
+      "direction": "SW"
+     },
+     {
+      "name": "Salmon-Taylor Bike Boulevard",
+      "kind": "path",
+      "distance_m": 397,
+      "direction": "SW"
+     },
+     {
+      "name": "Southeast Main Street",
+      "kind": "path",
+      "distance_m": 465,
+      "direction": "SW"
+     }
+    ]
    },
    "osm_way_ids": [
     45701294,
@@ -469,6 +1589,51 @@
   {
    "id": "hawthorne",
    "name": "Hawthorne Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "10 ft sidewalks on both sides used by bikes; eastbound south, westbound north (Wikipedia, Multnomah County)",
+   "transit": "TriMet 2, 6, 10, 14, 30 (TriMet Rose Lanes release)",
+   "river": "Willamette",
+   "river_mile": 13.1,
+   "position": {
+    "sequence": "Willamette bridge 7 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "morrison",
+     "name": "Morrison Bridge",
+     "river_miles": 0.3
+    },
+    "south_neighbor": {
+     "id": "marquam",
+     "name": "Marquam Bridge",
+     "river_miles": 0.4
+    },
+    "nearest": [
+     {
+      "id": "morrison",
+      "name": "Morrison Bridge",
+      "km": 0.5,
+      "direction": "N"
+     },
+     {
+      "id": "tilikum",
+      "name": "Tilikum Crossing",
+      "km": 0.9,
+      "direction": "S"
+     },
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 1.1,
+      "direction": "N"
+     }
+    ]
+   },
    "aliases": [
     "hawthorne",
     "the hawthorne",
@@ -484,20 +1649,46 @@
    "colors": [
     "green"
    ],
+   "colors_verified": true,
+   "colors_note": "green with red trim since 1999 (Wikipedia)",
    "year": 1910,
    "type": "truss, vertical lift",
    "carries": "Hawthorne Boulevard",
+   "streets": [
+    "SW Madison St",
+    "SW Main St",
+    "SE Hawthorne Blvd",
+    "SE Madison St"
+   ],
+   "ends_described": {
+    "west": "Downtown at SW Naito Pkwy and 1st Ave",
+    "east": "Central Eastside at SE Grand Ave and MLK Blvd"
+   },
    "county_bridge_code": "02757",
    "bike_access": "yes",
-   "bike_note": null,
-   "west_end": [
-    45.514108,
-    -122.6746
-   ],
-   "east_end": [
-    45.51226,
-    -122.661374
-   ],
+   "bike_note": "Busiest bicycle and transit bridge in the state (Multnomah County). Eastbound bikes use the south side, westbound the north side.",
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.514108,
+     -122.6746
+    ],
+    "east": [
+     45.51226,
+     -122.661374
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.514213,
+     -122.675355
+    ],
+    "east": [
+     45.512154,
+     -122.66062
+    ]
+   },
    "span_m": 1051,
    "crossings": {
     "eastbound": {
@@ -511,7 +1702,27 @@
       -122.66062
      ],
      "validated": true,
-     "validation": "route 1216 m vs 1171 m straight (x1.04), 1152 m on the bridge"
+     "validation": "route 1216 m vs 1171 m straight (x1.04), 1152 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "one-way",
+      "osm_ways": [
+       117446006,
+       117446013,
+       143113684,
+       681301896,
+       681301897,
+       689032191,
+       689032193,
+       954875673,
+       1180367455,
+       1509938874,
+       1509938875,
+       1509938876,
+       1509938877,
+       1509938878
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -524,8 +1735,175 @@
       -122.675355
      ],
      "validated": true,
-     "validation": "route 1515 m vs 1171 m straight (x1.29), 1104 m on the bridge"
+     "validation": "route 1515 m vs 1171 m straight (x1.29), 1104 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "one-way",
+      "osm_ways": [
+       30260114,
+       30260211,
+       94236910,
+       117445983,
+       150590784,
+       220072685,
+       246542709,
+       689032192
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "westbound",
+     "length_m": 519,
+     "osm_ways": [
+      30260114,
+      30260211,
+      94236910,
+      117445983,
+      150590784,
+      220072685,
+      246542709,
+      689032192
+     ],
+     "kinds": [
+      "cycleway",
+      "path",
+      "primary+lane"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 45,
+     "osm_ways": [
+      30260258,
+      53189252
+     ],
+     "kinds": [
+      "path"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "eastbound",
+     "length_m": 1074,
+     "osm_ways": [
+      117446006,
+      117446013,
+      143113684,
+      681301896,
+      681301897,
+      689032191,
+      689032193,
+      954875673,
+      1180367455,
+      1509938874,
+      1509938875,
+      1509938876,
+      1509938877,
+      1509938878
+     ],
+     "kinds": [
+      "cycleway",
+      "path",
+      "primary+lane"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "westbound",
+     "length_m": 622,
+     "osm_ways": [
+      117446023,
+      150590781,
+      681301893,
+      681301900,
+      689032190
+     ],
+     "kinds": [
+      "path"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "east": [
+     {
+      "name": "Salmon-Taylor Bike Boulevard",
+      "kind": "path",
+      "distance_m": 285,
+      "direction": "NE"
+     },
+     {
+      "name": "Southeast Clay Street",
+      "kind": "path",
+      "distance_m": 414,
+      "direction": "W"
+     },
+     {
+      "name": "Clay Street Bike Boulevard",
+      "kind": "path",
+      "distance_m": 414,
+      "direction": "W"
+     },
+     {
+      "name": "Southeast Clay Street",
+      "kind": "route",
+      "distance_m": 70,
+      "direction": "S"
+     },
+     {
+      "name": "Clay Street Bike Boulevard",
+      "kind": "route",
+      "distance_m": 70,
+      "direction": "S"
+     },
+     {
+      "name": "7th Avenue Bike Boulevard",
+      "kind": "route",
+      "distance_m": 148,
+      "direction": "E"
+     }
+    ],
+    "west": [
+     {
+      "name": "Southwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 84,
+      "direction": "SE"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 84,
+      "direction": "SE"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 100,
+      "direction": "SE"
+     },
+     {
+      "name": "United States Highway 26 (Oregon Bicycle alternative)",
+      "kind": "path",
+      "distance_m": 100,
+      "direction": "SE"
+     },
+     {
+      "name": "Northwest Naito Parkway",
+      "kind": "path",
+      "distance_m": 104,
+      "direction": "SE"
+     },
+     {
+      "name": "Southwest Main Street",
+      "kind": "path",
+      "distance_m": 108,
+      "direction": "N"
+     }
+    ]
    },
    "osm_way_ids": [
     5509543,
@@ -599,12 +1977,53 @@
   {
    "id": "marquam",
    "name": "Marquam Bridge",
+   "category": "car_only",
+   "category_label": "Car only bridge",
+   "modes": [
+    "cars"
+   ],
+   "bike_facility": "None. I-5 north of the Beaverton-Tigard interchange is closed to bikes and pedestrians (OAR 734-020-0045)",
+   "transit": null,
+   "river": "Willamette",
+   "river_mile": 13.5,
+   "position": {
+    "sequence": "Willamette bridge 8 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "hawthorne",
+     "name": "Hawthorne Bridge",
+     "river_miles": 0.4
+    },
+    "south_neighbor": {
+     "id": "tilikum",
+     "name": "Tilikum Crossing",
+     "river_miles": 0.3
+    },
+    "nearest": [
+     {
+      "id": "hawthorne",
+      "name": "Hawthorne Bridge",
+      "km": 1.9,
+      "direction": "E"
+     },
+     {
+      "id": "tilikum",
+      "name": "Tilikum Crossing",
+      "km": 1.9,
+      "direction": "E"
+     },
+     {
+      "id": "ross-island",
+      "name": "Ross Island Bridge",
+      "km": 2.0,
+      "direction": "SE"
+     }
+    ]
+   },
    "aliases": [
     "marquam",
     "the marquam",
     "marquam bridge",
-    "i-5 bridge",
-    "i5 bridge"
+    "i-5 marquam"
    ],
    "misspellings": [
     "markum",
@@ -615,20 +2034,43 @@
    "colors": [
     "gray"
    ],
+   "colors_verified": false,
+   "colors_note": null,
    "year": 1966,
    "type": "cantilever truss",
    "carries": "I-5",
+   "streets": [
+    "I-5"
+   ],
+   "ends_described": {
+    "west": "South of downtown (freeway)",
+    "east": "Inner Southeast industrial area near the I-84 interchange (freeway)"
+   },
    "county_bridge_code": null,
    "bike_access": "no",
    "bike_note": "Freeway. Bicycles prohibited (OpenStreetMap: motorway).",
-   "west_end": [
-    45.505649,
-    -122.715325
-   ],
-   "east_end": [
-    45.510418,
-    -122.666657
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.505649,
+     -122.715325
+    ],
+    "east": [
+     45.510418,
+     -122.666657
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.505574,
+     -122.716087
+    ],
+    "east": [
+     45.510493,
+     -122.665895
+    ]
+   },
    "span_m": null,
    "crossings": {
     "eastbound": {
@@ -640,7 +2082,11 @@
      "to": [
       45.510493,
       -122.665895
-     ]
+     ],
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     },
     "westbound": {
      "offered": false,
@@ -651,8 +2097,79 @@
      "to": [
       45.505574,
       -122.716087
-     ]
+     ],
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     }
+   },
+   "lanes": [],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Southwest Patton Road",
+      "kind": "path",
+      "distance_m": 395,
+      "direction": "SE"
+     },
+     {
+      "name": "United States Highway 26 (Oregon Bicycle alternative)",
+      "kind": "route",
+      "distance_m": 92,
+      "direction": "N"
+     },
+     {
+      "name": "Southwest Knights Boulevard",
+      "kind": "route",
+      "distance_m": 277,
+      "direction": "NW"
+     },
+     {
+      "name": "Southwest Canyon Court",
+      "kind": "route",
+      "distance_m": 308,
+      "direction": "NW"
+     }
+    ],
+    "east": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 112,
+      "direction": "W"
+     },
+     {
+      "name": "United States Highway 26 (Oregon Bicycle alternative)",
+      "kind": "path",
+      "distance_m": 112,
+      "direction": "W"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 112,
+      "direction": "W"
+     },
+     {
+      "name": "Vera Katz Eastbank Esplanade",
+      "kind": "path",
+      "distance_m": 112,
+      "direction": "W"
+     },
+     {
+      "name": "Southeast Clay Street",
+      "kind": "path",
+      "distance_m": 114,
+      "direction": "N"
+     },
+     {
+      "name": "Clay Street Bike Boulevard",
+      "kind": "path",
+      "distance_m": 114,
+      "direction": "N"
+     }
+    ]
    },
    "osm_way_ids": [
     5520326,
@@ -678,11 +2195,59 @@
   {
    "id": "tilikum",
    "name": "Tilikum Crossing",
+   "category": "transit_and_pedestrian",
+   "category_label": "Transit and pedestrian bridge",
+   "modes": [
+    "MAX",
+    "bus",
+    "streetcar",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "14 ft paths on both sides (Wikipedia). No private cars",
+   "transit": "MAX Orange Line, TriMet buses, Portland Streetcar (Wikipedia)",
+   "river": "Willamette",
+   "river_mile": 13.8,
+   "position": {
+    "sequence": "Willamette bridge 9 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "marquam",
+     "name": "Marquam Bridge",
+     "river_miles": 0.3
+    },
+    "south_neighbor": {
+     "id": "ross-island",
+     "name": "Ross Island Bridge",
+     "river_miles": 0.2
+    },
+    "nearest": [
+     {
+      "id": "ross-island",
+      "name": "Ross Island Bridge",
+      "km": 0.4,
+      "direction": "S"
+     },
+     {
+      "id": "hawthorne",
+      "name": "Hawthorne Bridge",
+      "km": 0.9,
+      "direction": "N"
+     },
+     {
+      "id": "morrison",
+      "name": "Morrison Bridge",
+      "km": 1.5,
+      "direction": "N"
+     }
+    ]
+   },
    "aliases": [
     "tilikum",
     "tilikum crossing",
     "the tilikum",
-    "bridge of the people"
+    "bridge of the people",
+    "portland-milwaukie light rail bridge",
+    "caruthers crossing"
    ],
    "misspellings": [
     "tillicum",
@@ -693,20 +2258,47 @@
     "tillicum crossing"
    ],
    "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
    "year": 2015,
    "type": "cable-stayed",
    "carries": "MAX Orange Line, buses, streetcar, bike and pedestrian path; no cars",
+   "streets": [
+    "SW Moody Ave",
+    "S Bond Ave",
+    "SE Caruthers St",
+    "SE Sherman St",
+    "SE 2nd Pl"
+   ],
+   "ends_described": {
+    "west": "South Waterfront, OHSU/South Waterfront MAX station",
+    "east": "Central Eastside near OMSI, OMSI MAX station"
+   },
    "county_bridge_code": null,
    "bike_access": "yes",
-   "bike_note": "Alias 'Bridge of the People' is from memory, not yet verified against a source.",
-   "west_end": [
-    45.503358,
-    -122.669637
-   ],
-   "east_end": [
-    45.506419,
-    -122.664565
-   ],
+   "bike_note": "No private cars. 14 ft bike and pedestrian paths on both sides. 'Bridge of the People' is the official full name (Wikipedia); 'Caruthers Crossing' and 'Portland-Milwaukie Light Rail Bridge' were pre-naming names.",
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.503358,
+     -122.669637
+    ],
+    "east": [
+     45.506419,
+     -122.664565
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.503005,
+     -122.670222
+    ],
+    "east": [
+     45.506771,
+     -122.663981
+    ]
+   },
    "span_m": 522,
    "crossings": {
     "eastbound": {
@@ -720,7 +2312,14 @@
       -122.663981
      ],
      "validated": true,
-     "validation": "route 759 m vs 642 m straight (x1.18), 556 m on the bridge"
+     "validation": "route 759 m vs 642 m straight (x1.18), 556 m on the bridge",
+     "lane": {
+      "side": "south",
+      "type": "one-way",
+      "osm_ways": [
+       334030020
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -733,8 +2332,117 @@
       -122.670222
      ],
      "validated": true,
-     "validation": "route 811 m vs 642 m straight (x1.26), 565 m on the bridge"
+     "validation": "route 811 m vs 642 m straight (x1.26), 565 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "one-way",
+      "osm_ways": [
+       389738959
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "westbound",
+     "length_m": 525,
+     "osm_ways": [
+      389738959
+     ],
+     "kinds": [
+      "cycleway"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "eastbound",
+     "length_m": 525,
+     "osm_ways": [
+      334030020
+     ],
+     "kinds": [
+      "cycleway"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "east": [
+     {
+      "name": "Southeast 2nd Place",
+      "kind": "path",
+      "distance_m": 36,
+      "direction": "E"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 72,
+      "direction": "SW"
+     },
+     {
+      "name": "Vera Katz Eastbank Esplanade",
+      "kind": "path",
+      "distance_m": 72,
+      "direction": "SW"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 72,
+      "direction": "SW"
+     },
+     {
+      "name": "United States Highway 26 (Oregon Bicycle alternative)",
+      "kind": "path",
+      "distance_m": 72,
+      "direction": "SW"
+     },
+     {
+      "name": "Southeast Stephens Street",
+      "kind": "path",
+      "distance_m": 315,
+      "direction": "NW"
+     }
+    ],
+    "west": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 28,
+      "direction": "W"
+     },
+     {
+      "name": "South Bond Avenue",
+      "kind": "path",
+      "distance_m": 28,
+      "direction": "W"
+     },
+     {
+      "name": "Moody Avenue Trail",
+      "kind": "path",
+      "distance_m": 182,
+      "direction": "SW"
+     },
+     {
+      "name": "South Moody Avenue",
+      "kind": "path",
+      "distance_m": 355,
+      "direction": "NW"
+     },
+     {
+      "name": "South Waterfront Park Trail",
+      "kind": "path",
+      "distance_m": 368,
+      "direction": "N"
+     },
+     {
+      "name": "Harbor Path",
+      "kind": "path",
+      "distance_m": 381,
+      "direction": "NW"
+     }
+    ]
    },
    "osm_way_ids": [
     334030020,
@@ -744,6 +2452,49 @@
   {
    "id": "ross-island",
    "name": "Ross Island Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "pedestrians"
+   ],
+   "bike_facility": "One north-side walkway with no barrier from the westbound lane. No bike facilities listed (Wikipedia)",
+   "transit": "unknown",
+   "river": "Willamette",
+   "river_mile": 14.0,
+   "position": {
+    "sequence": "Willamette bridge 10 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "tilikum",
+     "name": "Tilikum Crossing",
+     "river_miles": 0.2
+    },
+    "south_neighbor": {
+     "id": "sellwood",
+     "name": "Sellwood Bridge",
+     "river_miles": 2.5
+    },
+    "nearest": [
+     {
+      "id": "tilikum",
+      "name": "Tilikum Crossing",
+      "km": 0.4,
+      "direction": "N"
+     },
+     {
+      "id": "hawthorne",
+      "name": "Hawthorne Bridge",
+      "km": 1.3,
+      "direction": "N"
+     },
+     {
+      "id": "morrison",
+      "name": "Morrison Bridge",
+      "km": 1.9,
+      "direction": "N"
+     }
+    ]
+   },
    "aliases": [
     "ross island",
     "the ross island",
@@ -756,25 +2507,52 @@
     "ross iland",
     "ross island brdg"
    ],
-   "colors": [],
+   "colors": [
+    "blue"
+   ],
+   "colors_verified": true,
+   "colors_note": null,
    "year": 1926,
    "type": "cantilever deck truss",
    "carries": "US 26 / Powell Boulevard",
+   "streets": [
+    "US 26",
+    "SW Naito Pkwy",
+    "SE Powell Blvd"
+   ],
+   "ends_described": {
+    "west": "Naito Pkwy interchange, SW Kelly Ave and Porter St (walkway)",
+    "east": "SE Powell Blvd"
+   },
    "county_bridge_code": null,
    "bike_access": "limited",
-   "bike_note": "OpenStreetMap marks one way as bicycle discouraged. The routing engine avoids the bridge. Verify with a rider before offering it.",
-   "west_end": [
-    45.500663,
-    -122.674811
-   ],
-   "east_end": [
-    45.501552,
-    -122.660367
-   ],
+   "bike_note": "No bike facilities listed (Wikipedia). One walkway on the north side with no barrier from the westbound lane. Engine avoids it. Not offered until a rider confirms it (B-07).",
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.500663,
+     -122.674811
+    ],
+    "east": [
+     45.501552,
+     -122.660367
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.500616,
+     -122.675577
+    ],
+    "east": [
+     45.501599,
+     -122.659601
+    ]
+   },
    "span_m": 1130,
    "crossings": {
     "eastbound": {
-     "offered": true,
+     "offered": false,
      "from": [
       45.500616,
       -122.675577
@@ -784,10 +2562,14 @@
       -122.659601
      ],
      "validated": false,
-     "validation": "route 3152 m vs 1250 m straight (x2.52), 0 m on the bridge"
+     "validation": "route 3152 m vs 1250 m straight (x2.52), 0 m on the bridge",
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     },
     "westbound": {
-     "offered": true,
+     "offered": false,
      "from": [
       45.501599,
       -122.659601
@@ -797,8 +2579,91 @@
       -122.675577
      ],
      "validated": false,
-     "validation": "route 2881 m vs 1250 m straight (x2.3), 0 m on the bridge"
+     "validation": "route 2881 m vs 1250 m straight (x2.3), 0 m on the bridge",
+     "lane": {
+      "side": null,
+      "type": "unknown"
+     }
     }
+   },
+   "lanes": [],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Southwest Hooker Street Pedestrian Bridge",
+      "kind": "path",
+      "distance_m": 196,
+      "direction": "NW"
+     },
+     {
+      "name": "Moody Avenue Trail",
+      "kind": "path",
+      "distance_m": 294,
+      "direction": "E"
+     },
+     {
+      "name": "United States Congresswoman Darlene Hooley Pedestrian Bridge at Gibbs Street",
+      "kind": "path",
+      "distance_m": 303,
+      "direction": "SE"
+     },
+     {
+      "name": "South Gibbs Street",
+      "kind": "path",
+      "distance_m": 306,
+      "direction": "SE"
+     },
+     {
+      "name": "South Moody Avenue",
+      "kind": "path",
+      "distance_m": 329,
+      "direction": "SE"
+     },
+     {
+      "name": "South Bond Avenue",
+      "kind": "path",
+      "distance_m": 403,
+      "direction": "SE"
+     }
+    ],
+    "east": [
+     {
+      "name": "Southeast 6th Avenue",
+      "kind": "path",
+      "distance_m": 49,
+      "direction": "N"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 124,
+      "direction": "W"
+     },
+     {
+      "name": "Springwater on the Willamette",
+      "kind": "path",
+      "distance_m": 124,
+      "direction": "W"
+     },
+     {
+      "name": "Springwater Trail",
+      "kind": "path",
+      "distance_m": 124,
+      "direction": "W"
+     },
+     {
+      "name": "Southeast 7th Avenue",
+      "kind": "path",
+      "distance_m": 361,
+      "direction": "N"
+     },
+     {
+      "name": "United States Highway 26 (Oregon Bicycle alternative)",
+      "kind": "path",
+      "distance_m": 404,
+      "direction": "N"
+     }
+    ]
    },
    "osm_way_ids": [
     123374695,
@@ -814,6 +2679,46 @@
   {
    "id": "sellwood",
    "name": "Sellwood Bridge",
+   "category": "mixed_use",
+   "category_label": "Mixed use bridge",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Bike lanes in both directions and sidewalks on both sides (Wikipedia)",
+   "transit": "TriMet 99 since December 2016 (TriMet)",
+   "river": "Willamette",
+   "river_mile": 16.5,
+   "position": {
+    "sequence": "Willamette bridge 11 of 11, counted north (downstream) to south (upstream)",
+    "north_neighbor": {
+     "id": "ross-island",
+     "name": "Ross Island Bridge",
+     "river_miles": 2.5
+    },
+    "nearest": [
+     {
+      "id": "ross-island",
+      "name": "Ross Island Bridge",
+      "km": 4.1,
+      "direction": "N"
+     },
+     {
+      "id": "tilikum",
+      "name": "Tilikum Crossing",
+      "km": 4.5,
+      "direction": "N"
+     },
+     {
+      "id": "marquam",
+      "name": "Marquam Bridge",
+      "km": 5.2,
+      "direction": "NW"
+     }
+    ]
+   },
    "aliases": [
     "sellwood",
     "the sellwood",
@@ -828,20 +2733,44 @@
    "colors": [
     "brown"
    ],
+   "colors_verified": false,
+   "colors_note": null,
    "year": 2016,
    "type": "deck arch",
    "carries": "Tacoma Street",
+   "streets": [
+    "SE Tacoma St",
+    "SW Macadam Ave (OR 43)"
+   ],
+   "ends_described": {
+    "west": "OR 43 / Macadam Ave, Willamette Greenway Trail",
+    "east": "Sellwood and Westmoreland at SE Tacoma St; Springwater Trail nearby"
+   },
    "county_bridge_code": "21493",
    "bike_access": "yes",
    "bike_note": null,
-   "west_end": [
-    45.464278,
-    -122.668985
-   ],
-   "east_end": [
-    45.464206,
-    -122.66109
-   ],
+   "preference": "normal",
+   "axis": "ew",
+   "ends": {
+    "west": [
+     45.464278,
+     -122.668985
+    ],
+    "east": [
+     45.464206,
+     -122.66109
+    ]
+   },
+   "approaches": {
+    "west": [
+     45.464285,
+     -122.669753
+    ],
+    "east": [
+     45.464199,
+     -122.660321
+    ]
+   },
    "span_m": 616,
    "crossings": {
     "eastbound": {
@@ -855,7 +2784,19 @@
       -122.660321
      ],
      "validated": true,
-     "validation": "route 1072 m vs 736 m straight (x1.46), 639 m on the bridge"
+     "validation": "route 1072 m vs 736 m straight (x1.46), 639 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "two-way",
+      "osm_ways": [
+       595610339,
+       757982783,
+       923041198,
+       1102598708,
+       1102598709,
+       1193875588
+      ]
+     }
     },
     "westbound": {
      "offered": true,
@@ -868,8 +2809,116 @@
       -122.669753
      ],
      "validated": true,
-     "validation": "route 1112 m vs 736 m straight (x1.51), 678 m on the bridge"
+     "validation": "route 1112 m vs 736 m straight (x1.51), 678 m on the bridge",
+     "lane": {
+      "side": "north",
+      "type": "two-way",
+      "osm_ways": [
+       595610339,
+       757982783,
+       923041198,
+       1102598708,
+       1102598709,
+       1193875588
+      ]
+     }
     }
+   },
+   "lanes": [
+    {
+     "side": "north",
+     "direction": "both",
+     "length_m": 1137,
+     "osm_ways": [
+      595610339,
+      757982783,
+      923041198,
+      1102598708,
+      1102598709,
+      1193875588
+     ],
+     "kinds": [
+      "cycleway",
+      "primary"
+     ]
+    },
+    {
+     "side": "south",
+     "direction": "both",
+     "length_m": 572,
+     "osm_ways": [
+      1193875579
+     ],
+     "kinds": [
+      "cycleway"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "west": [
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "path",
+      "distance_m": 62,
+      "direction": "E"
+     },
+     {
+      "name": "Willamette Greenway",
+      "kind": "path",
+      "distance_m": 101,
+      "direction": "E"
+     },
+     {
+      "name": "Powers Marine Park Trail",
+      "kind": "path",
+      "distance_m": 136,
+      "direction": "NE"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "route",
+      "distance_m": 46,
+      "direction": "E"
+     }
+    ],
+    "east": [
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 80,
+      "direction": "SW"
+     },
+     {
+      "name": "Springwater on the Willamette",
+      "kind": "path",
+      "distance_m": 80,
+      "direction": "SW"
+     },
+     {
+      "name": "Springwater Trail",
+      "kind": "path",
+      "distance_m": 80,
+      "direction": "SW"
+     },
+     {
+      "name": "Willamette Greenway Trail",
+      "kind": "route",
+      "distance_m": 20,
+      "direction": "NE"
+     },
+     {
+      "name": "Southeast Tacoma Street",
+      "kind": "route",
+      "distance_m": 20,
+      "direction": "NE"
+     },
+     {
+      "name": "Spokane Bike Boulevard",
+      "kind": "route",
+      "distance_m": 96,
+      "direction": "N"
+     }
+    ]
    },
    "osm_way_ids": [
     5515864,
@@ -882,6 +2931,728 @@
     1102598709,
     1193875579,
     1193875588
+   ]
+  },
+  {
+   "id": "interstate-5",
+   "name": "Interstate Bridge",
+   "category": "freeway_with_path",
+   "category_label": "Freeway bridge with a separate bike and pedestrian path.",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "Paths on both sides, separate from the freeway lanes (OpenStreetMap). Width not verified",
+   "transit": "C-TRAN, likely route 60 to Delta Park (inferred, not confirmed)",
+   "river": "Columbia",
+   "river_mile": null,
+   "position": {
+    "sequence": "Columbia River crossing 1 of 2, counted west (downstream) to east. Connects Portland, OR to Vancouver, WA",
+    "east_neighbor": {
+     "id": "interstate-205",
+     "name": "Glenn L. Jackson Memorial Bridge",
+     "km": 10.4
+    },
+    "nearest": [
+     {
+      "id": "st-johns",
+      "name": "St. Johns Bridge",
+      "km": 7.6,
+      "direction": "SW"
+     },
+     {
+      "id": "fremont",
+      "name": "Fremont Bridge",
+      "km": 8.7,
+      "direction": "S"
+     },
+     {
+      "id": "broadway",
+      "name": "Broadway Bridge",
+      "km": 9.5,
+      "direction": "S"
+     }
+    ]
+   },
+   "aliases": [
+    "interstate bridge",
+    "i-5 bridge",
+    "i5 bridge",
+    "i-5 crossing",
+    "columbia river interstate bridge",
+    "portland-vancouver interstate bridge",
+    "vancouver-portland bridge",
+    "the interstate bridge"
+   ],
+   "misspellings": [
+    "intersate bridge",
+    "interstat bridge",
+    "interstate brige",
+    "i 5 bridge",
+    "i5bridge"
+   ],
+   "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
+   "year": 1917,
+   "type": "steel truss, vertical lift",
+   "carries": "I-5; shared paths on both sides",
+   "streets": [
+    "N Hayden Island Dr",
+    "I-5 Bicycle Alternative",
+    "SE Columbia Way",
+    "Columbia Riverfront Renaissance Trail"
+   ],
+   "ends_described": {
+    "south": "Hayden Island, Portland (reach it from Marine Drive and Delta Park over the North Portland Harbor path)",
+    "north": "Downtown Vancouver, WA, at the Columbia River waterfront"
+   },
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": "Bike and pedestrian paths on both sides (OpenStreetMap: path, bicycle=designated). Riders describe them as narrow; width not verified. Lift span opens about 250 times a year (Interstate Bridge Replacement program). Replacement bridge approved; existing bridge stays in use during construction.",
+   "preference": "normal",
+   "axis": "ns",
+   "ends": {
+    "south": [
+     45.612682,
+     -122.678128
+    ],
+    "north": [
+     45.621779,
+     -122.673305
+    ]
+   },
+   "approaches": {
+    "south": [
+     45.612174,
+     -122.678397
+    ],
+    "north": [
+     45.622288,
+     -122.673036
+    ]
+   },
+   "span_m": 1079,
+   "crossings": {
+    "northbound": {
+     "offered": true,
+     "from": [
+      45.612174,
+      -122.678397
+     ],
+     "to": [
+      45.622288,
+      -122.673036
+     ],
+     "validated": true,
+     "validation": "route 1279 m vs 1199 m straight (x1.07), 623 m on the bridge",
+     "lane": {
+      "side": "west",
+      "type": "two-way",
+      "osm_ways": [
+       30373423,
+       30374329,
+       328907396,
+       345802111,
+       345802114
+      ]
+     }
+    },
+    "southbound": {
+     "offered": true,
+     "from": [
+      45.622288,
+      -122.673036
+     ],
+     "to": [
+      45.612174,
+      -122.678397
+     ],
+     "validated": true,
+     "validation": "route 1279 m vs 1199 m straight (x1.07), 623 m on the bridge",
+     "lane": {
+      "side": "west",
+      "type": "two-way",
+      "osm_ways": [
+       30373423,
+       30374329,
+       328907396,
+       345802111,
+       345802114
+      ]
+     }
+    }
+   },
+   "lanes": [
+    {
+     "side": "east",
+     "direction": "both",
+     "length_m": 432,
+     "osm_ways": [
+      328907395,
+      345802153,
+      345802165
+     ],
+     "kinds": [
+      "path"
+     ]
+    },
+    {
+     "side": "west",
+     "direction": "both",
+     "length_m": 1717,
+     "osm_ways": [
+      30373423,
+      30374329,
+      328907396,
+      345802111,
+      345802114
+     ],
+     "kinds": [
+      "path"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "south": [
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 7,
+      "direction": "NE"
+     },
+     {
+      "name": "North Hayden Island Drive",
+      "kind": "route",
+      "distance_m": 94,
+      "direction": "E"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "route",
+      "distance_m": 94,
+      "direction": "E"
+     },
+     {
+      "name": "North Tomahawk Island Drive",
+      "kind": "route",
+      "distance_m": 135,
+      "direction": "SE"
+     }
+    ],
+    "north": [
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "path",
+      "distance_m": 2,
+      "direction": "SE"
+     },
+     {
+      "name": "Columbia Riverfront Renaissance Trail",
+      "kind": "path",
+      "distance_m": 78,
+      "direction": "W"
+     },
+     {
+      "name": "Discovery Historic Loop",
+      "kind": "path",
+      "distance_m": 246,
+      "direction": "SE"
+     },
+     {
+      "name": "Tyne Place",
+      "kind": "path",
+      "distance_m": 453,
+      "direction": "W"
+     },
+     {
+      "name": "I-5 Bicycle Alternative",
+      "kind": "route",
+      "distance_m": 64,
+      "direction": "SE"
+     }
+    ]
+   },
+   "osm_way_ids": [
+    30373423,
+    30374329,
+    328907395,
+    328907396,
+    345802111,
+    345802114,
+    345802153,
+    345802165
+   ]
+  },
+  {
+   "id": "interstate-205",
+   "name": "Glenn L. Jackson Memorial Bridge",
+   "category": "freeway_with_path",
+   "category_label": "Freeway bridge with a separate bike and pedestrian path.",
+   "modes": [
+    "cars",
+    "bus",
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "9 ft two-way path in the center behind a low wall and railings (Wikipedia, BikePortland)",
+   "transit": "C-TRAN, likely route 65 to Parkrose (inferred, not confirmed)",
+   "river": "Columbia",
+   "river_mile": null,
+   "position": {
+    "sequence": "Columbia River crossing 2 of 2, counted west (downstream) to east. Connects Portland, OR to Vancouver, WA",
+    "west_neighbor": {
+     "id": "interstate-5",
+     "name": "Interstate Bridge",
+     "km": 10.4
+    },
+    "nearest": [
+     {
+      "id": "interstate-5",
+      "name": "Interstate Bridge",
+      "km": 10.4,
+      "direction": "W"
+     },
+     {
+      "id": "blumenauer",
+      "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+      "km": 10.9,
+      "direction": "SW"
+     },
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 11.5,
+      "direction": "SW"
+     }
+    ]
+   },
+   "aliases": [
+    "glenn jackson bridge",
+    "glenn l. jackson memorial bridge",
+    "glenn jackson",
+    "i-205 bridge",
+    "i205 bridge",
+    "i-205 crossing",
+    "the 205 bridge"
+   ],
+   "misspellings": [
+    "glen jackson",
+    "glen jackson bridge",
+    "glenn jacksen",
+    "i 205 bridge",
+    "jackson bridge"
+   ],
+   "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
+   "year": 1982,
+   "type": "segmental concrete box girder",
+   "carries": "I-205; two-way bike and pedestrian path in the center",
+   "streets": [
+    "I-205 Multi-Use Path",
+    "NE Marine Dr",
+    "NE Airport Way",
+    "SE Evergreen Hwy (WA)"
+   ],
+   "ends_described": {
+    "south": "Near NE Airport Way and Marine Drive, Portland; Marine Drive Trail and 40 Mile Loop",
+    "north": "East Vancouver, WA, near SE Evergreen Hwy; Veterans Memorial Greenway"
+   },
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": "9 ft two-way path between the two freeway structures (Wikipedia), behind a low concrete wall and railings (BikePortland). No access to Government Island. Part of the I-205 Multi-Use Path.",
+   "preference": "normal",
+   "axis": "ns",
+   "ends": {
+    "south": [
+     45.573399,
+     -122.547141
+    ],
+    "north": [
+     45.603135,
+     -122.551423
+    ]
+   },
+   "approaches": {
+    "south": [
+     45.572859,
+     -122.547064
+    ],
+    "north": [
+     45.603675,
+     -122.5515
+    ]
+   },
+   "span_m": 3323,
+   "crossings": {
+    "northbound": {
+     "offered": true,
+     "from": [
+      45.572859,
+      -122.547064
+     ],
+     "to": [
+      45.603675,
+      -122.5515
+     ],
+     "validated": true,
+     "validation": "route 3544 m vs 3444 m straight (x1.03), 3123 m on the bridge",
+     "lane": {
+      "side": "east",
+      "type": "two-way",
+      "osm_ways": [
+       334634081,
+       334634082
+      ]
+     }
+    },
+    "southbound": {
+     "offered": true,
+     "from": [
+      45.603675,
+      -122.5515
+     ],
+     "to": [
+      45.572859,
+      -122.547064
+     ],
+     "validated": true,
+     "validation": "route 3544 m vs 3444 m straight (x1.03), 3123 m on the bridge",
+     "lane": {
+      "side": "east",
+      "type": "two-way",
+      "osm_ways": [
+       334634081,
+       334634082
+      ]
+     }
+    }
+   },
+   "lanes": [
+    {
+     "side": "east",
+     "direction": "both",
+     "length_m": 3080,
+     "osm_ways": [
+      334634081,
+      334634082
+     ],
+     "kinds": [
+      "cycleway"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "north": [
+     {
+      "name": "I-205 Multi-Use Path",
+      "kind": "path",
+      "distance_m": 23,
+      "direction": "S"
+     },
+     {
+      "name": "Veteran's Memorial Greenway",
+      "kind": "path",
+      "distance_m": 23,
+      "direction": "S"
+     },
+     {
+      "name": "Lewis & Clark Discovery Greenway Trail",
+      "kind": "path",
+      "distance_m": 326,
+      "direction": "S"
+     },
+     {
+      "name": "Southeast 23rd Street",
+      "kind": "route",
+      "distance_m": 362,
+      "direction": "W"
+     },
+     {
+      "name": "Veteran's Memorial Greenway",
+      "kind": "route",
+      "distance_m": 362,
+      "direction": "W"
+     }
+    ],
+    "south": [
+     {
+      "name": "I-205 Multi-Use Path",
+      "kind": "path",
+      "distance_m": 38,
+      "direction": "NW"
+     },
+     {
+      "name": "Veteran's Memorial Greenway",
+      "kind": "path",
+      "distance_m": 38,
+      "direction": "NW"
+     },
+     {
+      "name": "40 Mile Loop",
+      "kind": "path",
+      "distance_m": 77,
+      "direction": "NE"
+     },
+     {
+      "name": "Marine Drive Trail",
+      "kind": "path",
+      "distance_m": 77,
+      "direction": "NE"
+     },
+     {
+      "name": "I 205 Corridor",
+      "kind": "path",
+      "distance_m": 260,
+      "direction": "S"
+     },
+     {
+      "name": "I-205 Bikepath Access",
+      "kind": "path",
+      "distance_m": 295,
+      "direction": "S"
+     }
+    ]
+   },
+   "osm_way_ids": [
+    334634081,
+    334634082
+   ]
+  },
+  {
+   "id": "blumenauer",
+   "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+   "category": "pedestrian_overpass",
+   "category_label": "Pedestrian overpass",
+   "modes": [
+    "bikes",
+    "pedestrians"
+   ],
+   "bike_facility": "24 ft car-free bike and pedestrian bridge (KPFF)",
+   "transit": null,
+   "river": null,
+   "river_mile": null,
+   "position": {
+    "sequence": "Not a river bridge",
+    "nearest": [
+     {
+      "id": "burnside",
+      "name": "Burnside Bridge",
+      "km": 0.8,
+      "direction": "SW"
+     },
+     {
+      "id": "steel",
+      "name": "Steel Bridge",
+      "km": 0.9,
+      "direction": "W"
+     },
+     {
+      "id": "morrison",
+      "name": "Morrison Bridge",
+      "km": 1.3,
+      "direction": "SW"
+     }
+    ]
+   },
+   "aliases": [
+    "blumenauer bridge",
+    "earl blumenauer bridge",
+    "blumenauer bike bridge",
+    "blumenauer bicycle and pedestrian bridge",
+    "congressman blumenauer bridge",
+    "ne 7th bike bridge",
+    "i-84 bike bridge"
+   ],
+   "misspellings": [
+    "bluemanuer",
+    "bluemanuer bridge",
+    "blumenhauer",
+    "bloomenauer",
+    "blumenaur",
+    "blumenower",
+    "blumenour",
+    "blumnauer"
+   ],
+   "colors": [],
+   "colors_verified": null,
+   "colors_note": null,
+   "year": 2022,
+   "type": "tied arch",
+   "carries": "Bikes and pedestrians only, 24 ft wide, 475 ft long",
+   "streets": [
+    "NE 7th Ave",
+    "NE Lloyd Blvd",
+    "NE Irving St"
+   ],
+   "ends_described": {
+    "south": "Central Eastside Industrial District",
+    "north": "Lloyd District"
+   },
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": "Car-free link over I-84 and the Union Pacific Railroad at NE 7th Ave. Opened July 31, 2022. Northeast link of the Green Loop. Preferred (Whitney): prioritize it.",
+   "preference": "preferred",
+   "axis": "ns",
+   "ends": {
+    "south": [
+     45.526088,
+     -122.658637
+    ],
+    "north": [
+     45.527279,
+     -122.658633
+    ]
+   },
+   "approaches": {
+    "south": [
+     45.525545,
+     -122.658638
+    ],
+    "north": [
+     45.527822,
+     -122.658632
+    ]
+   },
+   "span_m": 133,
+   "crossings": {
+    "northbound": {
+     "offered": true,
+     "from": [
+      45.525545,
+      -122.658638
+     ],
+     "to": [
+      45.527822,
+      -122.658632
+     ],
+     "validated": true,
+     "validation": "route 275 m vs 253 m straight (x1.09), 167 m on the bridge",
+     "lane": {
+      "side": "west",
+      "type": "two-way",
+      "osm_ways": [
+       1123764541
+      ]
+     }
+    },
+    "southbound": {
+     "offered": true,
+     "from": [
+      45.527822,
+      -122.658632
+     ],
+     "to": [
+      45.525545,
+      -122.658638
+     ],
+     "validated": true,
+     "validation": "route 267 m vs 253 m straight (x1.06), 167 m on the bridge",
+     "lane": {
+      "side": "west",
+      "type": "two-way",
+      "osm_ways": [
+       1123764541
+      ]
+     }
+    }
+   },
+   "lanes": [
+    {
+     "side": "west",
+     "direction": "both",
+     "length_m": 132,
+     "osm_ways": [
+      1123764541
+     ],
+     "kinds": [
+      "cycleway"
+     ]
+    }
+   ],
+   "nearby_bike_routes": {
+    "south": [
+     {
+      "name": "7th Avenue Bike Boulevard",
+      "kind": "path",
+      "distance_m": 25,
+      "direction": "N"
+     },
+     {
+      "name": "Blumenauer Bridge",
+      "kind": "path",
+      "distance_m": 192,
+      "direction": "N"
+     },
+     {
+      "name": "Northeast Martin Luther King Junior Boulevard",
+      "kind": "path",
+      "distance_m": 324,
+      "direction": "SW"
+     },
+     {
+      "name": "Northeast Couch Street",
+      "kind": "path",
+      "distance_m": 327,
+      "direction": "SW"
+     },
+     {
+      "name": "Lloyd District Trail",
+      "kind": "path",
+      "distance_m": 359,
+      "direction": "N"
+     },
+     {
+      "name": "Northeast Lloyd Boulevard",
+      "kind": "path",
+      "distance_m": 392,
+      "direction": "W"
+     }
+    ],
+    "north": [
+     {
+      "name": "7th Avenue Bike Boulevard",
+      "kind": "path",
+      "distance_m": 24,
+      "direction": "SE"
+     },
+     {
+      "name": "Blumenauer Bridge",
+      "kind": "path",
+      "distance_m": 55,
+      "direction": "S"
+     },
+     {
+      "name": "Lloyd District Trail",
+      "kind": "path",
+      "distance_m": 125,
+      "direction": "NE"
+     },
+     {
+      "name": "Northeast Lloyd Boulevard",
+      "kind": "path",
+      "distance_m": 401,
+      "direction": "W"
+     },
+     {
+      "name": "Northeast Multnomah Street",
+      "kind": "path",
+      "distance_m": 402,
+      "direction": "N"
+     },
+     {
+      "name": "Northeast 7th Avenue",
+      "kind": "route",
+      "distance_m": 2,
+      "direction": "S"
+     }
+    ]
+   },
+   "osm_way_ids": [
+    1123764541
    ]
   }
  ]

@@ -41,7 +41,7 @@ res = {}
 for bid, g in G.items():
     if bid in ("fremont", "marquam"): continue
     row = {}
-    for label, a, b in (("eastbound", g["west_approach"], g["east_approach"]), ("westbound", g["east_approach"], g["west_approach"])):
+    for label, a, b in ((k, c["from"], c["to"]) for k, c in g["crossings"].items()):
         dist, line, names = route(a, b)
         on, tot = on_bridge_fraction(line, g["pts"])
         straight = hav(a, b)

@@ -1,0 +1,3026 @@
+{
+ "generated": "2026-10-23",
+ "label": "overpass",
+ "rules": "docs/routing-rules.md, O-01 to O-08",
+ "attribution": "Positions derived from OpenStreetMap (c) OpenStreetMap contributors, ODbL.",
+ "coverage": "Portland area of the BBBike extract, lat 45.43 to 45.66 (includes Vancouver, WA). Foot, path, and cycle bridges over railways, MAX, streetcar, freeways, and major roads. River bridges are in bridges.json.",
+ "counts": {
+  "overpasses": 71,
+  "preferred": 1,
+  "near_rail": 28,
+  "skipped_river_bridge_parts": 22
+ },
+ "overpasses": [
+  {
+   "id": "op-51799329",
+   "label": "overpass",
+   "name": "Burnt Bridge Creek Trail",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    51799329
+   ],
+   "start": [
+    45.656375,
+    -122.664693
+   ],
+   "end": [
+    45.656572,
+    -122.663765
+   ],
+   "length_m": 76,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1421923891",
+   "label": "overpass",
+   "name": "Overpass over freeway, freeway SR 500",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1421923891
+   ],
+   "start": [
+    45.648131,
+    -122.618521
+   ],
+   "end": [
+    45.647706,
+    -122.618517
+   ],
+   "length_m": 47,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "SR 500"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1203539611",
+   "label": "overpass",
+   "name": "Overpass over railroad BNSF Seattle Subdivision",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1203539611
+   ],
+   "start": [
+    45.632975,
+    -122.685321
+   ],
+   "end": [
+    45.633888,
+    -122.687573
+   ],
+   "length_m": 203,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "BNSF Seattle Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-103062345",
+   "label": "overpass",
+   "name": "Discovery Historic Loop",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    103062345
+   ],
+   "start": [
+    45.621025,
+    -122.668175
+   ],
+   "end": [
+    45.621562,
+    -122.667359
+   ],
+   "length_m": 279,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30374166",
+   "label": "overpass",
+   "name": "Overpass over freeway, freeway OR 99E, major road North Jantzen Drive",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30374166
+   ],
+   "start": [
+    45.608938,
+    -122.680281
+   ],
+   "end": [
+    45.605489,
+    -122.682024
+   ],
+   "length_m": 405,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "OR 99E"
+    },
+    {
+     "kind": "major road",
+     "name": "North Jantzen Drive"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1313153528",
+   "label": "overpass",
+   "name": "North Lombard Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1313153528
+   ],
+   "start": [
+    45.606634,
+    -122.766363
+   ],
+   "end": [
+    45.606269,
+    -122.766147
+   ],
+   "length_m": 44,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "Union Pacific Railroad"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-267887602",
+   "label": "overpass",
+   "name": "Overpass over railroad Union Pacific Railroad",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    267887602
+   ],
+   "start": [
+    45.605253,
+    -122.757306
+   ],
+   "end": [
+    45.605615,
+    -122.757441
+   ],
+   "length_m": 41,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "Union Pacific Railroad"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-124422340",
+   "label": "overpass",
+   "name": "Overpass over major road North Columbia Boulevard",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    124422340
+   ],
+   "start": [
+    45.596456,
+    -122.735166
+   ],
+   "end": [
+    45.596137,
+    -122.735287
+   ],
+   "length_m": 103,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "North Columbia Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-119664684",
+   "label": "overpass",
+   "name": "North Lombard Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    119664684
+   ],
+   "start": [
+    45.577118,
+    -122.679046
+   ],
+   "end": [
+    45.577129,
+    -122.678208
+   ],
+   "length_m": 65,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-142429976",
+   "label": "overpass",
+   "name": "Overpass over freeway",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    142429976
+   ],
+   "start": [
+    45.576971,
+    -122.67962
+   ],
+   "end": [
+    45.576989,
+    -122.679218
+   ],
+   "length_m": 79,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-197608946",
+   "label": "overpass",
+   "name": "Overpass over major road, major road Northeast Airport Way",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    197608946
+   ],
+   "start": [
+    45.576402,
+    -122.561537
+   ],
+   "end": [
+    45.576982,
+    -122.560585
+   ],
+   "length_m": 98,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": ""
+    },
+    {
+     "kind": "major road",
+     "name": "Northeast Airport Way"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-32482511",
+   "label": "overpass",
+   "name": "Bryant-Holman Connector",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    32482511
+   ],
+   "start": [
+    45.573025,
+    -122.678258
+   ],
+   "end": [
+    45.57303,
+    -122.679157
+   ],
+   "length_m": 70,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-139194900",
+   "label": "overpass",
+   "name": "Waud Bluff Trail",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    139194900
+   ],
+   "start": [
+    45.571698,
+    -122.722534
+   ],
+   "end": [
+    45.571843,
+    -122.722824
+   ],
+   "length_m": 28,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "UP Saint Johns Industrial Lead"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": true,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-451774378",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    451774378
+   ],
+   "start": [
+    45.570902,
+    -122.548615
+   ],
+   "end": [
+    45.570767,
+    -122.5482
+   ],
+   "length_m": 36,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30220742",
+   "label": "overpass",
+   "name": "Overpass over freeway",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30220742
+   ],
+   "start": [
+    45.570716,
+    -122.547815
+   ],
+   "end": [
+    45.570548,
+    -122.548101
+   ],
+   "length_m": 29,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-451774376",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    451774376
+   ],
+   "start": [
+    45.570485,
+    -122.54824
+   ],
+   "end": [
+    45.570048,
+    -122.549147
+   ],
+   "length_m": 86,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "major road",
+     "name": "Northeast Airport Way"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-156094659",
+   "label": "overpass",
+   "name": "Northeast Lombard Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    156094659
+   ],
+   "start": [
+    45.560884,
+    -122.564257
+   ],
+   "end": [
+    45.560457,
+    -122.56308
+   ],
+   "length_m": 103,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-124814137",
+   "label": "overpass",
+   "name": "Overpass over major road North Greeley Avenue",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    124814137
+   ],
+   "start": [
+    45.559477,
+    -122.694527
+   ],
+   "end": [
+    45.559583,
+    -122.694068
+   ],
+   "length_m": 38,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "North Greeley Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30287659",
+   "label": "overpass",
+   "name": "Overpass over freeway, freeway I 205",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30287659
+   ],
+   "start": [
+    45.559407,
+    -122.565038
+   ],
+   "end": [
+    45.559115,
+    -122.564514
+   ],
+   "length_m": 52,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-33011115",
+   "label": "overpass",
+   "name": "North Concord Avenue Bridge",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    33011115
+   ],
+   "start": [
+    45.556209,
+    -122.68481
+   ],
+   "end": [
+    45.55577,
+    -122.684857
+   ],
+   "length_m": 64,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "North Going Street"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1041344835",
+   "label": "overpass",
+   "name": "North Greeley Avenue",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1041344835
+   ],
+   "start": [
+    45.556148,
+    -122.692985
+   ],
+   "end": [
+    45.555863,
+    -122.692806
+   ],
+   "length_m": 35,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "North Going Street"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-125663899",
+   "label": "overpass",
+   "name": "North Going Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    125663899
+   ],
+   "start": [
+    45.556126,
+    -122.693752
+   ],
+   "end": [
+    45.556129,
+    -122.694875
+   ],
+   "length_m": 88,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-121303960",
+   "label": "overpass",
+   "name": "North Failing Street Pedestrian Crossing",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    121303960
+   ],
+   "start": [
+    45.550968,
+    -122.678378
+   ],
+   "end": [
+    45.550969,
+    -122.678963
+   ],
+   "length_m": 46,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": true,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30216285",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30216285
+   ],
+   "start": [
+    45.548644,
+    -122.559482
+   ],
+   "end": [
+    45.548339,
+    -122.559933
+   ],
+   "length_m": 49,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1383935613",
+   "label": "overpass",
+   "name": "Northeast 102nd Avenue",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1383935613
+   ],
+   "start": [
+    45.547948,
+    -122.55765
+   ],
+   "end": [
+    45.546743,
+    -122.557693
+   ],
+   "length_m": 134,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30215060",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30215060
+   ],
+   "start": [
+    45.546428,
+    -122.559539
+   ],
+   "end": [
+    45.546079,
+    -122.558874
+   ],
+   "length_m": 65,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-781007979",
+   "label": "overpass",
+   "name": "Northeast 102nd Avenue",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    781007979
+   ],
+   "start": [
+    45.54491,
+    -122.557738
+   ],
+   "end": [
+    45.546743,
+    -122.557693
+   ],
+   "length_m": 203,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30369782",
+   "label": "overpass",
+   "name": "I 84 Corridor",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30369782
+   ],
+   "start": [
+    45.542546,
+    -122.51051
+   ],
+   "end": [
+    45.542467,
+    -122.509833
+   ],
+   "length_m": 54,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Northeast 148th Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30369794",
+   "label": "overpass",
+   "name": "I-84 Bike Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30369794
+   ],
+   "start": [
+    45.542139,
+    -122.496143
+   ],
+   "end": [
+    45.542148,
+    -122.495344
+   ],
+   "length_m": 62,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Northeast 162nd Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-143136530",
+   "label": "overpass",
+   "name": "Overpass over freeway US 30",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    143136530
+   ],
+   "start": [
+    45.537316,
+    -122.696898
+   ],
+   "end": [
+    45.537306,
+    -122.697879
+   ],
+   "length_m": 77,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "US 30"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-966842189",
+   "label": "overpass",
+   "name": "Overpass over MAX light rail, major road North Interstate Avenue",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    966842189
+   ],
+   "start": [
+    45.535777,
+    -122.674461
+   ],
+   "end": [
+    45.535146,
+    -122.673333
+   ],
+   "length_m": 119,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "major road",
+     "name": "North Interstate Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "major road"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1324286395",
+   "label": "overpass",
+   "name": "Overpass over freeway, freeway Banfield Freeway, railroad UP Portland Subdivision",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1324286395
+   ],
+   "start": [
+    45.532892,
+    -122.563709
+   ],
+   "end": [
+    45.534182,
+    -122.563667
+   ],
+   "length_m": 143,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30216134",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30216134
+   ],
+   "start": [
+    45.532623,
+    -122.564322
+   ],
+   "end": [
+    45.533986,
+    -122.563991
+   ],
+   "length_m": 153,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30288081",
+   "label": "overpass",
+   "name": "Hollywood/Northeast 42nd Avenue",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30288081
+   ],
+   "start": [
+    45.532285,
+    -122.620315
+   ],
+   "end": [
+    45.533037,
+    -122.620303
+   ],
+   "length_m": 83,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": true,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1042086776",
+   "label": "overpass",
+   "name": "Northeast 28th Avenue",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1042086776
+   ],
+   "start": [
+    45.531768,
+    -122.637169
+   ],
+   "end": [
+    45.530114,
+    -122.6372
+   ],
+   "length_m": 183,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-856063670",
+   "label": "overpass",
+   "name": "Northeast 21st Avenue Bike Lane",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    856063670
+   ],
+   "start": [
+    45.529761,
+    -122.644816
+   ],
+   "end": [
+    45.530691,
+    -122.644805
+   ],
+   "length_m": 103,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-51807308",
+   "label": "overpass",
+   "name": "Eastbank Esplanade Access",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    51807308
+   ],
+   "start": [
+    45.527943,
+    -122.666848
+   ],
+   "end": [
+    45.528088,
+    -122.666156
+   ],
+   "length_m": 56,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-106204050",
+   "label": "overpass",
+   "name": "Overpass over major road Northwest 118th Avenue",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    106204050
+   ],
+   "start": [
+    45.526597,
+    -122.797336
+   ],
+   "end": [
+    45.526573,
+    -122.797872
+   ],
+   "length_m": 42,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Northwest 118th Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-128357004",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    128357004
+   ],
+   "start": [
+    45.5262,
+    -122.564184
+   ],
+   "end": [
+    45.526198,
+    -122.563913
+   ],
+   "length_m": 21,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "blumenauer",
+   "label": "overpass",
+   "name": "Congressman Earl Blumenauer Bicycle and Pedestrian Bridge",
+   "named_in_osm": true,
+   "aliases": [
+    "blumenauer bridge",
+    "earl blumenauer bridge",
+    "blumenauer bike bridge",
+    "blumenauer bicycle and pedestrian bridge",
+    "congressman blumenauer bridge",
+    "i-84 bike bridge",
+    "ne 7th bike bridge"
+   ],
+   "misspellings": [
+    "bluemanuer",
+    "bluemanuer bridge",
+    "blumenhauer",
+    "bloomenauer",
+    "blumenaur",
+    "blumenower",
+    "blumenour",
+    "blumnauer"
+   ],
+   "osm_way_ids": [
+    1123764541,
+    1393983921
+   ],
+   "start": [
+    45.526088,
+    -122.658637
+   ],
+   "end": [
+    45.527279,
+    -122.658633
+   ],
+   "length_m": 132,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Banfield Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Portland Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "preferred",
+   "preference_reason": "Whitney: it is just good and can be prioritized. Car-free, wide, direct link across I-84.",
+   "weight": 1.5,
+   "crosses_text": "Interstate 84 and the Union Pacific Railroad",
+   "street": "NE 7th Avenue",
+   "south_end": "Central Eastside Industrial District",
+   "north_end": "Lloyd District",
+   "length_ft": 475,
+   "width_ft": 24,
+   "structure": "tied arch",
+   "opened": "2022-07-31",
+   "part_of": "Green Loop (northeast link across I-84)",
+   "sources": [
+    "https://www.kpff.com/project/congressman-earl-blumenauer-bicycle-and-pedestrian-bridge-kpff/",
+    "https://www.portland.gov/transportation/news/2022/8/12/blumenauer-bridge-open-public"
+   ]
+  },
+  {
+   "id": "op-106204123",
+   "label": "overpass",
+   "name": "Kathy Christy Pedestrian Bridge",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    106204123
+   ],
+   "start": [
+    45.526021,
+    -122.792526
+   ],
+   "end": [
+    45.526019,
+    -122.793043
+   ],
+   "length_m": 40,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Northwest Cedar Hills Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-849939203",
+   "label": "overpass",
+   "name": "Ned Flanders Crossing",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    849939203
+   ],
+   "start": [
+    45.525742,
+    -122.686409
+   ],
+   "end": [
+    45.525727,
+    -122.687193
+   ],
+   "length_m": 61,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 405"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-52233661",
+   "label": "overpass",
+   "name": "East Burnside Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    52233661
+   ],
+   "start": [
+    45.522597,
+    -122.564333
+   ],
+   "end": [
+    45.522608,
+    -122.566065
+   ],
+   "length_m": 135,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway"
+   ],
+   "near_rail": true,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-106204097",
+   "label": "overpass",
+   "name": "Overpass over major road Northwest Cedar Hills Boulevard",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    106204097
+   ],
+   "start": [
+    45.521855,
+    -122.792128
+   ],
+   "end": [
+    45.521691,
+    -122.792662
+   ],
+   "length_m": 46,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Northwest Cedar Hills Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30253697",
+   "label": "overpass",
+   "name": "Southeast Main Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30253697
+   ],
+   "start": [
+    45.51424,
+    -122.56603
+   ],
+   "end": [
+    45.514145,
+    -122.563668
+   ],
+   "length_m": 185,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    },
+    {
+     "kind": "major road",
+     "name": "Southeast 96th Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway",
+    "major road"
+   ],
+   "near_rail": true,
+   "category": "mixed_use_overpass",
+   "structure_type": "bike lane on a street overpass",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-107264220",
+   "label": "overpass",
+   "name": "Overpass over freeway Northwest Sunset Highway",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    107264220
+   ],
+   "start": [
+    45.509533,
+    -122.78259
+   ],
+   "end": [
+    45.5102,
+    -122.781862
+   ],
+   "length_m": 93,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "Northwest Sunset Highway"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": true,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-118873073",
+   "label": "overpass",
+   "name": "Overpass over freeway, freeway I 405",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    118873073
+   ],
+   "start": [
+    45.505691,
+    -122.67791
+   ],
+   "end": [
+    45.50524,
+    -122.677914
+   ],
+   "length_m": 50,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 405"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-120604814",
+   "label": "overpass",
+   "name": "Overpass over freeway Southwest Ross Island Way",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    120604814
+   ],
+   "start": [
+    45.503285,
+    -122.678044
+   ],
+   "end": [
+    45.503442,
+    -122.677896
+   ],
+   "length_m": 29,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "Southwest Ross Island Way"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-870562887",
+   "label": "overpass",
+   "name": "Bob Stacey Crossing",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    870562887
+   ],
+   "start": [
+    45.502372,
+    -122.651715
+   ],
+   "end": [
+    45.502046,
+    -122.652197
+   ],
+   "length_m": 62,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": "Orange Line"
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Brooklyn Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "walk your bike",
+   "steps_attached": true,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-65589794",
+   "label": "overpass",
+   "name": "Southwest Hooker Street Pedestrian Bridge",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    65589794
+   ],
+   "start": [
+    45.502152,
+    -122.678341
+   ],
+   "end": [
+    45.502139,
+    -122.676888
+   ],
+   "length_m": 113,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "Southwest Ross Island Way"
+    },
+    {
+     "kind": "major road",
+     "name": "Southwest Naito Parkway"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-39565160",
+   "label": "overpass",
+   "name": "Overpass over major road Southeast Powell Boulevard",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    39565160
+   ],
+   "start": [
+    45.501323,
+    -122.65703
+   ],
+   "end": [
+    45.501769,
+    -122.657032
+   ],
+   "length_m": 50,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Southeast Powell Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-118247189",
+   "label": "overpass",
+   "name": "Overpass over major road Southeast Powell Boulevard",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    118247189
+   ],
+   "start": [
+    45.499784,
+    -122.648885
+   ],
+   "end": [
+    45.500174,
+    -122.649208
+   ],
+   "length_m": 50,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Southeast Powell Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-171728513",
+   "label": "overpass",
+   "name": "United States Congresswoman Darlene Hooley Bridge",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    171728513
+   ],
+   "start": [
+    45.499329,
+    -122.672149
+   ],
+   "end": [
+    45.499381,
+    -122.674737
+   ],
+   "length_m": 204,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 405"
+    },
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    },
+    {
+     "kind": "major road",
+     "name": "OR 43"
+    },
+    {
+     "kind": "major road",
+     "name": "South Hood Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-30254284",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    30254284
+   ],
+   "start": [
+    45.497673,
+    -122.566536
+   ],
+   "end": [
+    45.497047,
+    -122.566535
+   ],
+   "length_m": 69,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Southeast Powell Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-51812612",
+   "label": "overpass",
+   "name": "Rhine-Lafayette Pedestrian Overpass",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    51812612
+   ],
+   "start": [
+    45.497287,
+    -122.646784
+   ],
+   "end": [
+    45.497079,
+    -122.646169
+   ],
+   "length_m": 53,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "UP Brooklyn Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "walk your bike",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-127812541",
+   "label": "overpass",
+   "name": "Southeast Steele Street",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    127812541
+   ],
+   "start": [
+    45.484534,
+    -122.56674
+   ],
+   "end": [
+    45.484505,
+    -122.565582
+   ],
+   "length_m": 90,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-52233653",
+   "label": "overpass",
+   "name": "I-205 Multi-Use Path",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    52233653
+   ],
+   "start": [
+    45.479653,
+    -122.567034
+   ],
+   "end": [
+    45.478392,
+    -122.56702
+   ],
+   "length_m": 140,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": ""
+    },
+    {
+     "kind": "major road",
+     "name": "Southeast Foster Road"
+    },
+    {
+     "kind": "major road",
+     "name": "Southeast Woodstock Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-899651034",
+   "label": "overpass",
+   "name": "Fanno Creek Trail",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    899651034
+   ],
+   "start": [
+    45.469497,
+    -122.785652
+   ],
+   "end": [
+    45.469485,
+    -122.787111
+   ],
+   "length_m": 114,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "Beaverton-Tigard Freeway"
+    },
+    {
+     "kind": "railroad",
+     "name": "OE District"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-486301353",
+   "label": "overpass",
+   "name": "Willamette Greenway",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    486301353
+   ],
+   "start": [
+    45.464812,
+    -122.668351
+   ],
+   "end": [
+    45.463613,
+    -122.668452
+   ],
+   "length_m": 151,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "Willamette Shore Trolley"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "high",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-923041195",
+   "label": "overpass",
+   "name": "Overpass over major road South Macadam Avenue",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    923041195
+   ],
+   "start": [
+    45.464366,
+    -122.668752
+   ],
+   "end": [
+    45.464369,
+    -122.668966
+   ],
+   "length_m": 17,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "South Macadam Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1455057284",
+   "label": "overpass",
+   "name": "Overpass over railroad Willamette Shore Trolley",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1455057284
+   ],
+   "start": [
+    45.464276,
+    -122.668173
+   ],
+   "end": [
+    45.464427,
+    -122.668499
+   ],
+   "length_m": 31,
+   "crosses": [
+    {
+     "kind": "railroad",
+     "name": "Willamette Shore Trolley"
+    }
+   ],
+   "crosses_kinds": [
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-923041190",
+   "label": "overpass",
+   "name": "Overpass over major road South Macadam Avenue",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    923041190
+   ],
+   "start": [
+    45.464179,
+    -122.668928
+   ],
+   "end": [
+    45.464178,
+    -122.668712
+   ],
+   "length_m": 17,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "South Macadam Avenue"
+    }
+   ],
+   "crosses_kinds": [
+    "major road"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-27592650",
+   "label": "overpass",
+   "name": "Springwater Corridor",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    27592650
+   ],
+   "start": [
+    45.460982,
+    -122.63686
+   ],
+   "end": [
+    45.461181,
+    -122.636141
+   ],
+   "length_m": 60,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "railroad",
+     "name": "UP Brooklyn Subdivision"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-27592648",
+   "label": "overpass",
+   "name": "Springwater Corridor",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    27592648
+   ],
+   "start": [
+    45.460146,
+    -122.639893
+   ],
+   "end": [
+    45.460442,
+    -122.638812
+   ],
+   "length_m": 90,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "Southeast McLoughlin Boulevard"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": true,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-147193011",
+   "label": "overpass",
+   "name": "Southeast Johnson Creek Boulevard",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    147193011
+   ],
+   "start": [
+    45.456663,
+    -122.572088
+   ],
+   "end": [
+    45.456683,
+    -122.57366
+   ],
+   "length_m": 123,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-23622252",
+   "label": "overpass",
+   "name": "Overpass over freeway I 5",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    23622252
+   ],
+   "start": [
+    45.454068,
+    -122.71695
+   ],
+   "end": [
+    45.453627,
+    -122.716669
+   ],
+   "length_m": 53,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 5"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "low",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-147193025",
+   "label": "overpass",
+   "name": "Southeast Otty Road",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    147193025
+   ],
+   "start": [
+    45.451295,
+    -122.571353
+   ],
+   "end": [
+    45.451313,
+    -122.573164
+   ],
+   "length_m": 141,
+   "crosses": [
+    {
+     "kind": "MAX light rail",
+     "name": ""
+    },
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "MAX light rail",
+    "freeway"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1155335591",
+   "label": "overpass",
+   "name": "Overpass over freeway I 205",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1155335591
+   ],
+   "start": [
+    45.433411,
+    -122.565553
+   ],
+   "end": [
+    45.433382,
+    -122.566807
+   ],
+   "length_m": 98,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-1050443844",
+   "label": "overpass",
+   "name": "Overpass over freeway I 205",
+   "named_in_osm": false,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    1050443844
+   ],
+   "start": [
+    45.43307,
+    -122.566694
+   ],
+   "end": [
+    45.433101,
+    -122.565433
+   ],
+   "length_m": 98,
+   "crosses": [
+    {
+     "kind": "freeway",
+     "name": "I 205"
+    }
+   ],
+   "crosses_kinds": [
+    "freeway"
+   ],
+   "near_rail": false,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-151559618",
+   "label": "overpass",
+   "name": "Southwest Pacific Highway",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    151559618
+   ],
+   "start": [
+    45.431561,
+    -122.771365
+   ],
+   "end": [
+    45.431041,
+    -122.772333
+   ],
+   "length_m": 95,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Southwest Tigard Street"
+    },
+    {
+     "kind": "railroad",
+     "name": "OE District"
+    }
+   ],
+   "crosses_kinds": [
+    "major road",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  },
+  {
+   "id": "op-151559621",
+   "label": "overpass",
+   "name": "Southwest Pacific Highway",
+   "named_in_osm": true,
+   "aliases": [],
+   "misspellings": [],
+   "osm_way_ids": [
+    151559621
+   ],
+   "start": [
+    45.430917,
+    -122.77219
+   ],
+   "end": [
+    45.431448,
+    -122.771198
+   ],
+   "length_m": 97,
+   "crosses": [
+    {
+     "kind": "major road",
+     "name": "Southwest Tigard Street"
+    },
+    {
+     "kind": "railroad",
+     "name": "OE District"
+    }
+   ],
+   "crosses_kinds": [
+    "major road",
+    "railroad"
+   ],
+   "near_rail": true,
+   "category": "pedestrian_overpass",
+   "structure_type": "bike and pedestrian bridge",
+   "bike_access": "bikes allowed",
+   "steps_attached": false,
+   "effort": "medium",
+   "part_of_trail": false,
+   "preference": "low",
+   "preference_reason": "Whitney finds overpasses tiring, often the ones near the train and MAX. Low preference, not blocked.",
+   "weight": 0.5
+  }
+ ]
+}
