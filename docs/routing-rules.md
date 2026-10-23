@@ -6,7 +6,7 @@ Working document and shared reference. Read it as a rider (the Ruling column) or
 |---|---|
 | Owner | Whitney Hale |
 | Created | 2026-10-23 |
-| Document version | 0.2.0 (WIP) |
+| Document version | 0.2.1 (WIP) |
 | Repository | https://github.com/whitneyhale/bridgeridepdx (branch main) |
 | Last updated | 2026-10-23 |
 
@@ -241,7 +241,7 @@ Every bridge and overpass has one category. The category says who shares it, so 
 | C-07 | Mixed use overpass: a road overpass with a bike lane. | `mixed_use_overpass`: 7 in `overpasses.json`. | Proposed |
 | C-08 | Rail only bridge: trains only. Never offered. | `rail_only`, for example the BNSF railroad bridge at St. Johns. Not stored as an entry. | Decided |
 | C-09 | Each entry also lists what uses it and what the bike facility is. | `modes` (cars, bus, MAX, streetcar, freight rail, passenger rail, bikes, pedestrians), `bike_facility`, `transit` with line numbers and source. | Decided |
-| C-10 | Transit lines are facts with a source, not guesses. | Bus lines on Burnside, Morrison, Hawthorne, Steel come from TriMet's Rose Lanes release, which lists the lines that benefit from bridge lanes. Ross Island transit is unknown. C-TRAN on I-5 and I-205 is inferred, not confirmed. | Open |
+| C-10 | Transit lines are facts with a source, not guesses. | Bus lines on Burnside, Morrison, Hawthorne, Steel come from TriMet's Rose Lanes release, which lists the lines that benefit from bridge lanes. Ross Island: no current TriMet line found; Line 9 crosses on Tilikum (TriMet schedule) and Line 19 moved to Tilikum in August 2023 to avoid Ross Island congestion (TriMet). C-TRAN on I-5 and I-205 is inferred, not confirmed. | Open |
 
 ---
 
@@ -350,6 +350,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
+| 0.2.1 | 2026-10-23 | Pending (see Changelog) | Ross Island and Tilikum transit checked on TriMet. |
 | 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
 | 0.1.0 | 2026-10-23 | 4fc7a87 | First version. Collects every routing rule decided so far. |
 
@@ -360,6 +361,18 @@ The Git reference is the commit hash, tag, or pull request number where that ver
 ## 6. Changelog
 
 Newest first. One entry per change. Copy the template below for each new entry.
+
+### 2026-10-23, doc version 0.2.1
+
+- Reporter: Whitney Hale (asked to check TriMet), Claude (drafted)
+- Rules touched: C-10
+- What changed (plain language): no current bus found on the Ross Island Bridge. TriMet lines 9 and 19 cross on Tilikum.
+- Why: Whitney asked to check TriMet's maps instead of guessing.
+- Developer notes: `bridge_names.json` transit for ross-island and tilikum; `bridges.json` and section 9 regenerated.
+- GitHub version: commit pending.
+- Status after change: Open (C-TRAN still unconfirmed)
+- Test rides affected: none
+- Replaces: none
 
 ### 2026-10-23, doc version 0.2.0
 
@@ -435,7 +448,7 @@ Example of a filled entry:
 8. Are x0.5 for overpasses and x1.5 for Blumenauer the right strength (O-04)?
 9. What should count as the "most common" bike routes near you (L-07)?
 10. On the Interstate Bridge, which side path do you use going north, and going south?
-11. Does a bus cross the Ross Island Bridge? Do you know which C-TRAN routes use the I-5 and I-205 bridges (C-10)?
+11. Do you know which C-TRAN routes use the I-5 and I-205 bridges (C-10)? Ross Island was checked on TriMet: no current line found.
 
 ## 9. Bridges
 
@@ -651,7 +664,7 @@ One section per crossing, generated from `data/bridges.json`. To change a fact, 
 | Category | Transit and pedestrian bridge (`transit_and_pedestrian`) |
 | Uses | MAX, bus, streetcar, bikes, pedestrians |
 | Bike facility | 14 ft paths on both sides (Wikipedia). No private cars |
-| Transit | MAX Orange Line, TriMet buses, Portland Streetcar (Wikipedia) |
+| Transit | MAX Orange Line; TriMet 9 (TriMet schedule) and 19 (since August 2023, TriMet release); Portland Streetcar (Wikipedia) |
 | Structure | cable-stayed, 2015 |
 | Aliases | tilikum, tilikum crossing, the tilikum, bridge of the people, portland-milwaukie light rail bridge, caruthers crossing |
 | Misspellings | tillicum, tillikum, tilakum, tilikim, tilicum, tillicum crossing |
@@ -676,7 +689,7 @@ One section per crossing, generated from `data/bridges.json`. To change a fact, 
 | Category | Mixed use bridge (`mixed_use`) |
 | Uses | cars, pedestrians |
 | Bike facility | One north-side walkway with no barrier from the westbound lane. No bike facilities listed (Wikipedia) |
-| Transit | unknown |
+| Transit | None found. TriMet Line 9 (Powell) crosses on Tilikum (TriMet schedule page), and Line 19 moved to Tilikum in August 2023 to avoid Ross Island Bridge congestion (TriMet release) |
 | Structure | cantilever deck truss, 1926 |
 | Aliases | ross island, the ross island, ross island bridge, ross |
 | Misspellings | ross isle, rossisland, ross iland, ross island brdg |

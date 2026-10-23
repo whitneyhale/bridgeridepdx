@@ -2205,7 +2205,7 @@
     "pedestrians"
    ],
    "bike_facility": "14 ft paths on both sides (Wikipedia). No private cars",
-   "transit": "MAX Orange Line, TriMet buses, Portland Streetcar (Wikipedia)",
+   "transit": "MAX Orange Line; TriMet 9 (TriMet schedule) and 19 (since August 2023, TriMet release); Portland Streetcar (Wikipedia)",
    "river": "Willamette",
    "river_mile": 13.8,
    "position": {
@@ -2459,7 +2459,7 @@
     "pedestrians"
    ],
    "bike_facility": "One north-side walkway with no barrier from the westbound lane. No bike facilities listed (Wikipedia)",
-   "transit": "unknown",
+   "transit": "None found. TriMet Line 9 (Powell) crosses on Tilikum (TriMet schedule page), and Line 19 moved to Tilikum in August 2023 to avoid Ross Island Bridge congestion (TriMet release)",
    "river": "Willamette",
    "river_mile": 14.0,
    "position": {

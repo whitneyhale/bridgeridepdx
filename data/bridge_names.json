@@ -396,7 +396,7 @@
     "pedestrians"
    ],
    "bike_facility": "14 ft paths on both sides (Wikipedia). No private cars",
-   "transit": "MAX Orange Line, TriMet buses, Portland Streetcar (Wikipedia)"
+   "transit": "MAX Orange Line; TriMet 9 (TriMet schedule) and 19 (since August 2023, TriMet release); Portland Streetcar (Wikipedia)"
   },
   "ross-island": {
    "name": "Ross Island Bridge",
@@ -439,7 +439,7 @@
     "pedestrians"
    ],
    "bike_facility": "One north-side walkway with no barrier from the westbound lane. No bike facilities listed (Wikipedia)",
-   "transit": "unknown"
+   "transit": "None found. TriMet Line 9 (Powell) crosses on Tilikum (TriMet schedule page), and Line 19 moved to Tilikum in August 2023 to avoid Ross Island Bridge congestion (TriMet release)"
   },
   "sellwood": {
    "name": "Sellwood Bridge",
@@ -642,7 +642,9 @@
   "https://www.masstransitmag.com/home/press-release/12281442/trimet-trimet-bus-service-returns-to-sellwood-bridge-in-december-after-12-years-away",
   "https://www.pdxmonthly.com/travel-and-outdoors/2026/02/transit-trip-forest-park-leif-erikson-trail-st-johns-trimet",
   "https://en.wikipedia.org/wiki/List_of_bridges_in_Portland,_Oregon",
-  "https://en.wikipedia.org/wiki/C-Tran_(Washington)"
+  "https://en.wikipedia.org/wiki/C-Tran_(Washington)",
+  "https://go.trimet.org/schedules/r009.htm",
+  "https://www.masstransitmag.com/bus/press-release/53070360/trimet-trimets-forward-together-plan-adds-another-line-to-car-free-tilikum-crossing"
  ],
  "categories": {
   "mixed_use": "Mixed use bridge: cars, bikes, and pedestrians share the bridge, on separate lanes, paths, or sidewalks. May also carry buses, streetcar, or rail.",
