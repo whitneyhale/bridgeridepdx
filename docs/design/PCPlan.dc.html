@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PC prototype, Plan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F5F2}
+a{color:#1F5F8B}a:hover{color:#174A6C}
+</style>
+</helmet>
+<div style="min-height: 820px; background: #F3F5F2; font-family: Inter, system-ui, sans-serif; color: #15211D; display: flex; flex-direction: column;">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 20px; background: #15211D; color: #FFFFFF;">
+<span style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 22px; margin-right: 8px;">Bridge Ride PDX</span>
+<label style="flex: 1 1 260px; display: flex; align-items: center; gap: 8px; min-width: 0;">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Route name</span>
+<input type="text" value="Hawthorne out, Steel back" style="flex-grow: 1; min-width: 0; height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #3B4A44; background: #22322C; color: #FFFFFF; font: inherit; font-size: 15px;">
+</label>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<button style="height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #3B4A44; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px;">Open</button>
+<button style="height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #3B4A44; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px;">Export GPX</button>
+<button style="height: 40px; padding: 0 16px; border-radius: 10px; border: 0; background: #7FD1A4; color: #15211D; font: inherit; font-weight: 600; font-size: 14px;">Save</button>
+</div>
+</header>
+
+<div style="flex-grow: 1; display: flex; flex-wrap: wrap; gap: 0;">
+
+<aside style="flex: 1 1 340px; max-width: 100%; box-sizing: border-box; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; background: #FFFFFF; border-right: 1px solid #E1E7E4;">
+<div>
+<h1 style="margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 24px;">Stops</h1>
+<p style="margin: 2px 0 0; font-size: 13px; color: #4A5A54;">Click the map to add. Drag to reorder.</p>
+</div>
+
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E1E7E4; border-radius: 10px;"><span style="width: 26px; height: 26px; border-radius: 50%; background: #15211D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">A</span><span style="flex-grow: 1;"><span style="display: block; font-size: 11px; font-weight: 600; color: #4A5A54; text-transform: uppercase; letter-spacing: 0.6px;">Start</span><span style="font-weight: 600; font-size: 14px;">Home</span></span></li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E1E7E4; border-radius: 10px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #1F5F8B;"></span><span style="flex-grow: 1;"><span style="display: block; font-size: 11px; font-weight: 600; color: #1F5F8B; text-transform: uppercase; letter-spacing: 0.6px;">Bridge · westbound · north side</span><span style="font-weight: 600; font-size: 14px;">Hawthorne Bridge</span></span></li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E1E7E4; border-radius: 10px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #E3EFE8; border: 2px solid #1B6B45; box-sizing: border-box;"></span><span style="flex-grow: 1;"><span style="display: block; font-size: 11px; font-weight: 600; color: #1B6B45; text-transform: uppercase; letter-spacing: 0.6px;">Road · northbound</span><span style="font-weight: 600; font-size: 14px;">Willamette Greenway Trail</span></span></li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E1E7E4; border-radius: 10px;"><span style="width: 26px; height: 26px; border-radius: 7px; background: #1F5F8B;"></span><span style="flex-grow: 1;"><span style="display: block; font-size: 11px; font-weight: 600; color: #1F5F8B; text-transform: uppercase; letter-spacing: 0.6px;">Bridge · eastbound · lower deck</span><span style="font-weight: 600; font-size: 14px;">Steel Bridge</span></span></li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E1E7E4; border-radius: 10px;"><span style="width: 26px; height: 26px; border-radius: 50%; background: #1B6B45; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;">B</span><span style="flex-grow: 1;"><span style="display: block; font-size: 11px; font-weight: 600; color: #1B6B45; text-transform: uppercase; letter-spacing: 0.6px;">Destination · loop</span><span style="font-weight: 600; font-size: 14px;">Back to start</span></span></li>
+</ol>
+
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;">
+<button style="height: 40px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 12px; font-weight: 600;">Stop</button>
+<button style="height: 40px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 12px; font-weight: 600;">Pass by</button>
+<button style="height: 40px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 12px; font-weight: 600;">Road</button>
+<button style="height: 40px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 12px; font-weight: 600;">Bridge</button>
+<button style="height: 40px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 12px; font-weight: 600;">Avoid</button>
+</div>
+
+<label style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; font-weight: 600;">Routing style</span>
+<select style="height: 40px; font: inherit; font-size: 14px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; padding: 0 8px;"><option>Greenway first</option><option>Balanced</option><option>Fastest safe</option><option>Low stress</option><option>Flat</option><option>Scenic</option><option>Smooth surface</option></select>
+</label>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 6px; border-top: 1px solid #E1E7E4;">
+<div><div style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 24px;">5.5 mi</div><div style="font-size: 12px; color: #4A5A54;">Distance</div></div>
+<div><div style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 24px;">[%]</div><div style="font-size: 12px; color: #4A5A54;">On greenway or path</div></div>
+<div><div style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 24px;">2</div><div style="font-size: 12px; color: #4A5A54;">Bridges</div></div>
+</div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; position: relative; min-height: 640px; background: #E8EDE9; overflow: hidden;">
+<div aria-hidden="true" style="position: absolute; inset: 0;">
+<div style="position: absolute; left: 42%; top: -40px; width: 120px; height: 760px; background: #BFD7E6; transform: rotate(5deg); border-radius: 60px;"></div>
+<div style="position: absolute; left: 37%; top: 130px; width: 24%; height: 10px; background: #1F5F8B; border-radius: 4px;"></div>
+<div style="position: absolute; left: 37%; top: 230px; width: 24%; height: 9px; background: #5D6B66; border-radius: 4px;"></div>
+<div style="position: absolute; left: 38%; top: 330px; width: 24%; height: 9px; background: #5D6B66; border-radius: 4px;"></div>
+<div style="position: absolute; left: 39%; top: 470px; width: 24%; height: 10px; background: #1F5F8B; border-radius: 4px;"></div>
+<div style="position: absolute; left: 36%; top: 134px; width: 7px; height: 344px; background: #1F5F8B; border-radius: 4px;"></div>
+<div style="position: absolute; left: 61%; top: 60px; width: 7px; height: 420px; background: #1F5F8B; border-radius: 4px;"></div>
+<div style="position: absolute; left: 61%; top: 56px; width: 30%; height: 7px; background: #1F5F8B; border-radius: 4px;"></div>
+</div>
+<div style="position: absolute; left: 20px; top: 112px; padding: 6px 10px; background: #FFFFFF; border-radius: 8px; font-size: 13px; box-shadow: 0 1px 3px rgba(21,33,29,0.15);"><strong style="font-family: 'Barlow Semi Condensed', sans-serif; font-size: 15px;">Steel</strong> · mixed use · lower deck path</div>
+<div style="position: absolute; left: 20px; top: 452px; padding: 6px 10px; background: #FFFFFF; border-radius: 8px; font-size: 13px; box-shadow: 0 1px 3px rgba(21,33,29,0.15);"><strong style="font-family: 'Barlow Semi Condensed', sans-serif; font-size: 15px;">Hawthorne</strong> · mixed use · north side westbound</div>
+<div style="position: absolute; right: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; background: #FFFFFF; border-radius: 10px; font-size: 12px; box-shadow: 0 1px 3px rgba(21,33,29,0.15);">
+<span style="display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 18px; height: 5px; background: #1F5F8B; border-radius: 2px;"></span>Your route</span>
+<span style="display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 18px; height: 5px; background: #1B6B45; border-radius: 2px;"></span>Greenway or path</span>
+<span style="display: flex; align-items: center; gap: 8px;"><span aria-hidden="true" style="width: 18px; height: 5px; background: #5D6B66; border-radius: 2px;"></span>Other bridge</span>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

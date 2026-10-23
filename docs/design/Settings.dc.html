@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F5F8B}a:hover{color:#174A6C}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3F5F2; font-family: Inter, system-ui, sans-serif; color: #15211D; display: flex; flex-direction: column;">
+
+<header style="padding: 20px 20px 10px;">
+<h1 style="margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 32px;">Settings</h1>
+</header>
+
+<div style="flex-grow: 1; overflow: auto; padding: 4px 20px 20px; display: flex; flex-direction: column; gap: 18px;">
+
+<section style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 12px; font-weight: 600; color: #4A5A54; text-transform: uppercase; letter-spacing: 0.6px;">Routing</h2>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden;">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 14px; border-bottom: 1px solid #E1E7E4;"><span style="font-size: 15px;">Default style</span><select style="height: 36px; font: inherit; font-size: 15px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; padding: 0 8px;"><option>Greenway first</option><option>Balanced</option><option>Low stress</option><option>Scenic</option></select></label>
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 14px; border-bottom: 1px solid #E1E7E4;"><span style="font-size: 15px;">Pass by counts within</span><span style="display: flex; align-items: center; gap: 6px;"><input type="number" value="150" style="width: 64px; height: 36px; font: inherit; font-size: 15px; border: 1px solid #C9D2CE; border-radius: 8px; padding: 0 8px; box-sizing: border-box;"><span style="font-size: 14px; color: #4A5A54;">m</span></span></label>
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 14px;"><span style="font-size: 15px;">Pass by may add up to</span><span style="display: flex; align-items: center; gap: 6px;"><input type="number" value="400" style="width: 64px; height: 36px; font: inherit; font-size: 15px; border: 1px solid #C9D2CE; border-radius: 8px; padding: 0 8px; box-sizing: border-box;"><span style="font-size: 14px; color: #4A5A54;">m</span></span></label>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 12px; font-weight: 600; color: #4A5A54; text-transform: uppercase; letter-spacing: 0.6px;">Crossings</h2>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden;">
+<label style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 14px; border-bottom: 1px solid #E1E7E4;"><span style="flex-grow: 1;"><span style="display: block; font-size: 15px;">Use overpasses only when needed</span><span style="display: block; font-size: 13px; color: #4A5A54;">Low preference. The Blumenauer Bridge is always preferred.</span></span><input type="checkbox" checked style="width: 24px; height: 24px; accent-color: #1B6B45;"></label>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 14px; border-bottom: 1px solid #E1E7E4;"><span style="flex-grow: 1;"><span style="display: block; font-size: 15px;">Avoid stairs and walk-your-bike spots</span></span><input type="checkbox" style="width: 24px; height: 24px; accent-color: #1B6B45;"></label>
+<label style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 14px;"><span style="flex-grow: 1;"><span style="display: block; font-size: 15px;">Warn about streetcar and MAX tracks</span></span><input type="checkbox" checked style="width: 24px; height: 24px; accent-color: #1B6B45;"></label>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 12px; font-weight: 600; color: #4A5A54; text-transform: uppercase; letter-spacing: 0.6px;">Riding</h2>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden;">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 14px; border-bottom: 1px solid #E1E7E4;"><span style="font-size: 15px;">Units</span><select style="height: 36px; font: inherit; font-size: 15px; border: 1px solid #C9D2CE; border-radius: 8px; background: #FFFFFF; padding: 0 8px;"><option>Miles and feet</option><option>Kilometers and meters</option></select></label>
+<a href="Welcome.dc.html" style="display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 8px 14px; text-decoration: none; color: #15211D;"><span><span style="display: block; font-size: 15px;">Battery check for tracking</span><span style="display: block; font-size: 13px; color: #4A5A54;">Samsung settings that can stop GPS when the screen locks</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5A54" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"></path></svg></a>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 12px; font-weight: 600; color: #4A5A54; text-transform: uppercase; letter-spacing: 0.6px;">Privacy</h2>
+<div style="background: #FFFFFF; border-radius: 14px; overflow: hidden;">
+<label style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 14px;"><span style="flex-grow: 1;"><span style="display: block; font-size: 15px;">Trim start and end when sharing</span><span style="display: block; font-size: 13px; color: #4A5A54;">Your location history stays on this phone.</span></span><input type="checkbox" checked style="width: 24px; height: 24px; accent-color: #1B6B45;"></label>
+</div>
+</section>
+</div>
+
+<nav aria-label="Main" style="height: 72px; flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E1E7E4; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));">
+<a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #4A5A54; font-size: 12px; font-weight: 500;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 4l6 2 5-2v14l-5 2-6-2-5 2V6l5-2z"></path><path d="M9 4v14M15 6v14"></path></svg>Map</a>
+<a href="Plan.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #4A5A54; font-size: 12px; font-weight: 500;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M8 18h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"></path></svg>Plan</a>
+<a href="Library.dc.html" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #4A5A54; font-size: 12px; font-weight: 500;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4V3z"></path></svg>Library</a>
+<a href="Settings.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #1B6B45; font-size: 12px; font-weight: 600;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg>Settings</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

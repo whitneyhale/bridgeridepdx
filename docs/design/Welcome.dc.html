@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>First launch</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F5F8B}a:hover{color:#174A6C}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #15211D; font-family: Inter, system-ui, sans-serif; color: #FFFFFF; display: flex; flex-direction: column; padding: 40px 24px 28px; box-sizing: border-box; gap: 26px;">
+
+<div aria-hidden="true" style="position: relative; height: 150px;">
+<div style="position: absolute; left: 140px; top: -10px; width: 80px; height: 170px; background: #1F5F8B; transform: rotate(4deg); border-radius: 40px;"></div>
+<div style="position: absolute; left: 100px; top: 30px; width: 160px; height: 10px; background: #E8EDE9; border-radius: 4px;"></div>
+<div style="position: absolute; left: 104px; top: 74px; width: 160px; height: 10px; background: #E8EDE9; border-radius: 4px;"></div>
+<div style="position: absolute; left: 108px; top: 118px; width: 160px; height: 10px; background: #7FD1A4; border-radius: 4px;"></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<h1 style="margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 44px; line-height: 1;">Bridge Ride PDX</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; color: #D7E1DC;">Plan bike rides across Portland's bridges on greenways and car-free paths. Free.</p>
+</div>
+
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.4;">
+<li style="display: flex; gap: 12px;"><span aria-hidden="true" style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: #1F5F8B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">1</span><span>Say a bridge any way you like: "the Hawthorne", "red bridge", "Tillicum".</span></li>
+<li style="display: flex; gap: 12px;"><span aria-hidden="true" style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: #1F5F8B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">2</span><span>Pick the direction. The app takes you onto the right side of the bridge.</span></li>
+<li style="display: flex; gap: 12px;"><span aria-hidden="true" style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: #1F5F8B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">3</span><span>Save it, ride it, and keep a log of every ride.</span></li>
+</ul>
+
+<section aria-label="Before your first ride" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 16px; background: #22322C;">
+<h2 style="margin: 0; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 18px;">Before your first ride on a Samsung</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: #D7E1DC;">Set battery use for this app to not optimized, keep it off the sleeping apps list, and start the ride before you lock the screen. Location is asked for when you press Start ride.</p>
+</section>
+
+<a href="Main.dc.html" style="margin-top: auto; height: 56px; border-radius: 14px; background: #7FD1A4; color: #15211D; display: flex; align-items: center; justify-content: center; text-decoration: none; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 20px;">Get started</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

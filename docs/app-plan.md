@@ -116,7 +116,7 @@ Decision gate: ride 30 minutes with the web version and the screen locked for 10
 
 ## Open items
 
-- Wireframes for each screen are not drawn yet.
+- Wireframes: first drafts done 2026-10-23, see [design/README.md](design/README.md). Not yet reviewed by Whitney.
 - Check the license terms for the city's Recommended Bicycle Routes data before using it.
 - Check whether Metro publishes the Bike There layer as downloadable data, its terms, and its coverage area. The map page itself does not name its data sources.
 - Decide whether to use Metro's six route categories as the labels for the route breakdown and stress score.

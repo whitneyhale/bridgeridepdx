@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ride</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F5F8B}a:hover{color:#174A6C}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #E8EDE9; font-family: Inter, system-ui, sans-serif; color: #15211D;">
+
+<div aria-hidden="true" style="position: absolute; inset: 0;">
+<div style="position: absolute; left: -40px; top: 360px; width: 480px; height: 120px; background: #BFD7E6; transform: rotate(-6deg);"></div>
+<div style="position: absolute; left: -20px; top: 404px; width: 440px; height: 26px; background: #6B7A74; transform: rotate(-6deg); border-radius: 4px;"></div>
+<div style="position: absolute; left: -20px; top: 398px; width: 440px; height: 8px; background: #1F5F8B; transform: rotate(-6deg); border-radius: 4px;"></div>
+<div style="position: absolute; left: 300px; top: 386px; width: 8px; height: 400px; background: #1F5F8B; border-radius: 4px;"></div>
+<div style="position: absolute; left: 252px; top: 560px; width: 104px; height: 104px; border-radius: 50%; background: rgba(180,72,15,0.14); border: 2px dashed #B4480F; box-sizing: border-box;"></div>
+<div style="position: absolute; left: 288px; top: 596px; width: 32px; height: 32px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(21,33,29,0.3);"><div style="width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #B4480F;"></div></div>
+<div style="position: absolute; left: 24px; top: 470px; font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 600; font-size: 14px; color: #3B4A44;">Hawthorne Bridge</div>
+<div style="position: absolute; left: 24px; top: 346px; font-size: 12px; font-weight: 600; color: #1F5F8B;">North side, westbound</div>
+</div>
+
+<div style="position: absolute; left: 12px; right: 12px; top: 12px; background: #15211D; color: #FFFFFF; border-radius: 18px; padding: 16px 18px; display: flex; gap: 14px; align-items: center;">
+<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20V10a4 4 0 0 1 4-4h6"></path><path d="M15 3l3 3-3 3"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+<div style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 34px; line-height: 1;">500 ft</div>
+<div style="font-size: 17px; font-weight: 600;">Keep right onto Hawthorne Bridge</div>
+<div style="font-size: 14px; color: #C9D6D0;">North side path, westbound</div>
+</div>
+</div>
+
+<div role="status" style="position: absolute; left: 12px; top: 150px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #FFF4EC; border: 1px solid #E8B99A; border-radius: 999px; font-size: 13px; font-weight: 600; color: #8A3409;">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #B4480F;"></span>
+GPS estimated · last fix 12 s ago
+</div>
+
+<div style="position: absolute; left: 12px; top: 196px; padding: 8px 12px; background: #FFFFFF; border-radius: 12px; font-size: 13px; color: #15211D; box-shadow: 0 1px 3px rgba(21,33,29,0.15); max-width: 250px;">
+Lift bridge. A river lift can stop you here.
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 20px 20px 0 0; box-shadow: 0 -2px 12px rgba(21,33,29,0.12); padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; justify-content: space-between; align-items: flex-end;">
+<div><div style="font-size: 12px; color: #4A5A54; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px;">Next</div><div style="font-weight: 600; font-size: 15px;">Willamette Greenway Trail, north</div></div>
+<div style="text-align: right;"><div style="font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 24px;">[mi] left</div><div style="font-size: 13px; color: #4A5A54;">Arrive [time]</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+<button style="height: 64px; border: 0; border-radius: 16px; background: #E8EDE9; color: #15211D; font: inherit; font-weight: 600; font-size: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>Pause</button>
+<button style="height: 64px; border: 0; border-radius: 16px; background: #E8EDE9; color: #15211D; font: inherit; font-weight: 600; font-size: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 0 1 14-5l2 2M20 4v5h-5"></path><path d="M20 12a8 8 0 0 1-14 5l-2-2M4 20v-5h5"></path></svg>Re-route</button>
+<a href="Library.dc.html" style="height: 64px; border-radius: 16px; background: #15211D; color: #FFFFFF; font-weight: 600; font-size: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>End</a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

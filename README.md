@@ -25,6 +25,7 @@ Starter scaffold. See [docs/requirements.md](docs/requirements.md) for scope and
 - `docs/prototype-spec.md` - PC prototype: features, cyclist routing styles, architecture, build order
 - `docs/app-plan.md` - Android app plan: screens, stories, rules, structure, tests, research notes
 - `docs/routing-rules.md` - WIP routing rules: objective, rulings, developer details, change log and change template. The shared reference.
+- `docs/design/` - first screen drafts (Map, Plan, Ride, Bridge sheet, Library, Settings, First launch, PC Plan)
 - `docs/test-rides.md` - pass/fail test rides for routing realism
 - `docs/spike-results.md` - first routing engine test results
 - `routing/` - local routing engine setup (GraphHopper). On Windows, double-click `routing/start.bat`, then open http://localhost:8989/maps/
