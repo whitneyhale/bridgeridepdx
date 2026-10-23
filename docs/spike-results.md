@@ -27,6 +27,14 @@ The greenway profile moves routes onto side streets at almost no extra distance.
 - Elevation was not tested. Flat style and climb budget need elevation data (SRTM), which could not be downloaded from the test machine. Test on your PC.
 - `config.yml` allows snapping points onto bridges (the engine's default blocks it). Untested, and relevant to Bridge stops.
 
+## Test ride 6 (Sellwood Bridge loop)
+
+Run with approximate start and waypoint coordinates, so treat the result as a rough check. Both profiles returned about 15 miles.
+
+- `bike` followed the intended ride: the Esplanade, then the west-side riverfront greenway through South Waterfront, the Sellwood Bridge, then the Springwater trail past Oaks Park and back along the Esplanade.
+- `greenway_first` did not. It rode the east side south, crossed the Sellwood Bridge to reach the west-side waypoint, and crossed back. It appears to rank the west-side riverfront path lower than east-side streets.
+- Lesson: the style alone does not reproduce a rider's habit. Bridge stops and via points are needed to force the intended side of the river, and the greenway weighting needs tuning for riverfront paths.
+
 ## Not yet tested
 
 - Elevation, Flat style, climb budget.

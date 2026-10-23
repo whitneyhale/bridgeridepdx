@@ -13,7 +13,7 @@ A ride passes when the route matches what the rider would actually ride: same br
 | 3 | Willamette River Loop (Steel, Hawthorne, Tilikum), about 10.6 mi | Bridge stops in both directions, loop back to start | | |
 | 4 | Waterfront Park and Eastbank Esplanade loop, about 6 mi | Scenic style, Destination loop, Steel Bridge | | |
 | 5 | Home to Alberta Arts, then Alameda Ridge greenways | Greenway first, climbing | | |
-| 6 | Springwater Corridor to Sellwood, east side | Path priority, long ride | | |
+| 6 | Home to the Sellwood Bridge by the west-side riverfront, cross eastbound, back north on the Springwater trail past Oaks Park (about 15 mi). Rider's own ride. Direction assumed, confirm. | Bridge stop (Sellwood, eastbound), Via points, path priority, loop back to start | Sellwood Bridge eastbound, then the trail past Oaks Park | |
 | 7 | Home to St. Johns Bridge | Long north ride, Pass by view stop | | |
 | 8 | Home to Forest Park (Thurman gate) via Broadway Bridge | Bridge stop, west side | | |
 | 9 | Fremont Bridge round trip | Bridge direction, both ways | | |
@@ -33,4 +33,4 @@ These cannot be routed with the Portland extract. They test the Ride log, not ro
 
 - Strike rides you would not do. Add rides you do.
 - Fill in the "Bridge or road expected" column from what you actually ride.
-- Rides 3 to 4 and 6 come from [this list of Portland trails](https://portlandecohouse.com/best-scenic-bike-trails-in-portland-oregon/). The Springwater claim about the Sellwood Bridge on that page is unverified.
+- Rides 3 and 4 come from [this list of Portland trails](https://portlandecohouse.com/best-scenic-bike-trails-in-portland-oregon/). The Springwater claim about the Sellwood Bridge on that page is unverified.
