@@ -5,16 +5,64 @@ A local app that runs on a PC. Plan a ride on a map, name it, save it, edit it, 
 ## What you can do
 
 1. Click a start and an end. Get a bike route.
-2. Add stops along the way. Each stop has a type:
-   - **Via**: the route must pass through this point.
-   - **Ride this road**: the route must use a chosen street (pick the street, not a point).
-   - **Bridge**: pick a bridge and a direction. The route crosses it that way.
-   - **Avoid**: a street or drawn area the route stays out of.
+2. Add stops along the way. Each stop has one of five types (details in "Stop types"):
+   - **Stop**: a place you actually stop.
+   - **Pass by**: a place you ride past for the view, then carry on.
+   - **Road**: a street the route must use.
+   - **Bridge**: a bridge crossed in a chosen direction.
+   - **Destination**: the last place.
+   Avoid areas and streets are rules, not stops (see "Rules").
 3. Pick a routing style (below).
 4. Drag a point, add one, delete one, or reorder them. The route recalculates.
 5. Name the route, add notes and tags, save it.
 6. Open, rename, duplicate, edit, or delete saved routes.
 7. Export to GPX (for a bike computer or phone). Import GPX.
+
+## Stop types
+
+The first point is always the start. After that, each stop is one of these. Every type is spec'd the same way: what you mean, how strict it is, where it goes in the order, what the router does, and what happens when it doesn't fit.
+
+### Stop
+- **Meaning**: I will stop here (coffee, viewpoint, friend's house).
+- **Strictness**: hard. The route goes exactly here.
+- **Order**: you set it. Drag to reorder.
+- **Router**: snaps to the nearest bikeable road or path, routes to it in the chosen style.
+- **Extra**: optional time to stay, used for the total trip time.
+
+### Pass by
+- **Meaning**: I want to ride past this for the view, then keep going on my route.
+- **Strictness**: soft. Get within the pass distance, but do not wreck the route to do it.
+- **Settings** (per route, adjustable per point):
+  - Pass distance: default 150 m. How close counts as passing.
+  - Detour budget: default 400 m extra per pass-by point.
+- **Order**: automatic by default. The app puts it where it adds the least distance along the route. You can pin it to a position.
+- **Router**: builds the route without pass-by points first. For each one, tries every position between existing stops, keeps the cheapest, and accepts it only if the added distance is within budget. The detour uses the same riding style, so a pass-by never drags you onto a high-stress road.
+- **When it doesn't fit**: the route skips it and says so, for example "Missed: Waterfront view, would add 1.2 km." One click turns it into a Stop.
+- **Check**: after routing, measure the closest approach to confirm the route actually passes within the pass distance.
+
+### Road
+- **Meaning**: ride along this street.
+- **Strictness**: hard.
+- **Pick**: click a street. Choose the whole street or a section (from here to here), and optionally a direction.
+- **Router**: forces entry at one end of the section and exit at the other.
+- **When it doesn't fit**: if the street is not bikeable or the direction is impossible, say so and do not add it.
+
+### Bridge
+- **Meaning**: cross this bridge this way.
+- **Strictness**: hard.
+- **Pick**: bridge name (aliases work) plus eastbound or westbound.
+- **Router**: forces the approach point then the exit point, in that order.
+- **When it doesn't fit**: bridges closed to bikes are not offered.
+
+### Destination
+- **Meaning**: the last place. The route ends here.
+- **Strictness**: hard. Only one per route, always last.
+- **Options**: Loop back to start (destination becomes the start), or open end.
+- **Router**: final leg ends here. No stops can be added after it. Dragging a new stop past it moves the destination.
+
+### Rules (not stops)
+- **Avoid street or area**: the route stays out of it. Draw an area or click a street.
+- Rules apply to the whole route, in any style.
 
 ## Routing styles for cyclists
 
@@ -83,10 +131,10 @@ Browser (map + sidebar)  <->  Local app (Python)  <->  Routing engine (GraphHopp
 
 1. **Spike (first)**: run GraphHopper on a Portland extract. Route between two points over the Hawthorne and compare against what you would ride. Check how well greenways are tagged in OpenStreetMap. This decides whether the city data layer is needed in phase 1 or later.
 2. **Map and basic routing**: click start and end, draw the route, show distance, time, climb.
-3. **Stops and edits**: via, drag, add, delete, reorder.
+3. **Stops and edits**: Stop and Destination types, drag, add, delete, reorder, loop back to start.
 4. **Save and manage**: name, notes, tags, save, open, rename, duplicate, delete, GPX export and import.
 5. **Cyclist styles**: greenway first, balanced, low stress, flat, plus the settings above.
-6. **Ride this road, Bridge, Avoid**: the constrained stops.
+6. **Road, Bridge, Avoid rules, Pass by**: the constrained stops. Pass by goes last because it depends on the rest working.
 7. **Round trip and alternatives**.
 
 ## Done means
