@@ -1,0 +1,82 @@
+{
+  "note": "Hand-edited. aliases = names riders use. misspellings = starter guesses, not collected from real use; add real ones as they appear. colors come from photo captions on Wikipedia's bridge list, not paint specs. Positions are generated into bridges.json by tools/build_bridges.py.",
+  "bridges": {
+    "st-johns": {
+      "name": "St. Johns Bridge", "year": 1931, "type": "suspension",
+      "aliases": ["st johns", "saint johns", "st. johns", "the st johns", "st johns bridge"],
+      "misspellings": ["st john's", "saint john's", "stjohns", "st jons", "saint jons"],
+      "colors": ["green"], "carries": "US 30 Bypass",
+      "bike_access": "yes", "county_code": null
+    },
+    "fremont": {
+      "name": "Fremont Bridge", "year": 1973, "type": "tied arch",
+      "aliases": ["fremont", "the fremont", "fremont bridge"],
+      "misspellings": ["freemont", "fremount", "frement", "fremont brdg"],
+      "colors": ["pale green"], "carries": "I-405 / US 30",
+      "bike_access": "no", "bike_note": "Freeway. Bicycles and pedestrians prohibited (OpenStreetMap: motorway, bicycle=no).", "county_code": null
+    },
+    "broadway": {
+      "name": "Broadway Bridge", "year": 1913, "type": "truss, bascule",
+      "aliases": ["broadway", "the broadway", "broadway bridge"],
+      "misspellings": ["brodway", "broad way", "broadwy", "broadway brdg"],
+      "colors": ["red"], "carries": "Broadway, streetcar",
+      "bike_access": "yes", "county_code": "06757"
+    },
+    "steel": {
+      "name": "Steel Bridge", "year": 1912, "type": "through truss, double vertical lift",
+      "aliases": ["steel", "the steel", "steel bridge"],
+      "misspellings": ["steal", "the steal", "stele", "steel brdg"],
+      "colors": ["black"], "carries": "Rail, MAX; lower deck road and bike/pedestrian paths",
+      "bike_access": "yes", "bike_note": "Use the lower deck paths.", "county_code": null
+    },
+    "burnside": {
+      "name": "Burnside Bridge", "year": 1926, "type": "bascule",
+      "aliases": ["burnside", "the burnside", "burnside bridge", "burn side"],
+      "misspellings": ["burnsid", "burnsides", "bernside", "burnside brdg"],
+      "colors": [], "carries": "Burnside Street",
+      "bike_access": "yes", "county_code": "00511"
+    },
+    "morrison": {
+      "name": "Morrison Bridge", "year": 1958, "type": "bascule",
+      "aliases": ["morrison", "the morrison", "morrison bridge"],
+      "misspellings": ["morison", "morrisson", "morrision", "morrison brdg"],
+      "colors": [], "carries": "Morrison Street",
+      "bike_access": "yes", "county_code": "02758"
+    },
+    "hawthorne": {
+      "name": "Hawthorne Bridge", "year": 1910, "type": "truss, vertical lift",
+      "aliases": ["hawthorne", "the hawthorne", "hawthorne bridge"],
+      "misspellings": ["hawthorn", "hawthorn bridge", "hawthrone", "hawtorne", "hawthorne brdg"],
+      "colors": ["green"], "carries": "Hawthorne Boulevard",
+      "bike_access": "yes", "county_code": "02757"
+    },
+    "marquam": {
+      "name": "Marquam Bridge", "year": 1966, "type": "cantilever truss",
+      "aliases": ["marquam", "the marquam", "marquam bridge", "i-5 bridge", "i5 bridge"],
+      "misspellings": ["markum", "marcum", "marquem", "marquam brdg"],
+      "colors": ["gray"], "carries": "I-5",
+      "bike_access": "no", "bike_note": "Freeway. Bicycles prohibited (OpenStreetMap: motorway).", "county_code": null
+    },
+    "tilikum": {
+      "name": "Tilikum Crossing", "year": 2015, "type": "cable-stayed",
+      "aliases": ["tilikum", "tilikum crossing", "the tilikum", "bridge of the people"],
+      "misspellings": ["tillicum", "tillikum", "tilakum", "tilikim", "tilicum", "tillicum crossing"],
+      "colors": [], "carries": "MAX Orange Line, buses, streetcar, bike and pedestrian path; no cars",
+      "bike_access": "yes", "bike_note": "Alias 'Bridge of the People' is from memory, not yet verified against a source.", "county_code": null
+    },
+    "ross-island": {
+      "name": "Ross Island Bridge", "year": 1926, "type": "cantilever deck truss",
+      "aliases": ["ross island", "the ross island", "ross island bridge", "ross"],
+      "misspellings": ["ross isle", "rossisland", "ross iland", "ross island brdg"],
+      "colors": [], "carries": "US 26 / Powell Boulevard",
+      "bike_access": "limited", "bike_note": "OpenStreetMap marks one way as bicycle discouraged. The routing engine avoids the bridge. Verify with a rider before offering it.", "county_code": null
+    },
+    "sellwood": {
+      "name": "Sellwood Bridge", "year": 2016, "type": "deck arch",
+      "aliases": ["sellwood", "the sellwood", "sellwood bridge"],
+      "misspellings": ["selwood", "sellwod", "sellwoood", "sellwood brdg"],
+      "colors": ["brown"], "carries": "Tacoma Street",
+      "bike_access": "yes", "county_code": "21493"
+    }
+  }
+}

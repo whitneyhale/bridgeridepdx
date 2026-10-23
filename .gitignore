@@ -5,3 +5,5 @@ routing/graph-cache/
 routing/gh.log
 *.sqlite
 *.local.json
+tools/.cache/
+__pycache__/

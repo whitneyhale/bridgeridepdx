@@ -1,15 +1,888 @@
 {
-  "note": "Coordinates are null until sourced from OpenStreetMap. Aliases are starter values; add misspellings and colors as they come up.",
-  "bridges": [
-    { "id": "steel", "name": "Steel Bridge", "aliases": ["steel", "the steel"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "burnside", "name": "Burnside Bridge", "aliases": ["burnside", "burn side"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "morrison", "name": "Morrison Bridge", "aliases": ["morrison", "morison"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "hawthorne", "name": "Hawthorne Bridge", "aliases": ["hawthorne", "hawthorn"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "tilikum", "name": "Tilikum Crossing", "aliases": ["tilikum", "tillicum", "bridge of the people"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "broadway", "name": "Broadway Bridge", "aliases": ["broadway"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "fremont", "name": "Fremont Bridge", "aliases": ["fremont"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "st-johns", "name": "St. Johns Bridge", "aliases": ["st johns", "saint johns", "st. johns"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "sellwood", "name": "Sellwood Bridge", "aliases": ["sellwood"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null },
-    { "id": "ross-island", "name": "Ross Island Bridge", "aliases": ["ross island"], "crossings": ["eastbound", "westbound"], "lat": null, "lng": null }
-  ]
+ "generated": "2026-10-23",
+ "convention": "eastbound = from the west approach to the east approach. Points are [lat, lon], placed about 60 m outside each bridge end so the router can snap to the street or path.",
+ "attribution": "Positions derived from OpenStreetMap (c) OpenStreetMap contributors, ODbL.",
+ "bridges": [
+  {
+   "id": "st-johns",
+   "name": "St. Johns Bridge",
+   "aliases": [
+    "st johns",
+    "saint johns",
+    "st. johns",
+    "the st johns",
+    "st johns bridge"
+   ],
+   "misspellings": [
+    "st john's",
+    "saint john's",
+    "stjohns",
+    "st jons",
+    "saint jons"
+   ],
+   "colors": [
+    "green"
+   ],
+   "year": 1931,
+   "type": "suspension",
+   "carries": "US 30 Bypass",
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.583246,
+    -122.768646
+   ],
+   "east_end": [
+    45.588712,
+    -122.756997
+   ],
+   "span_m": 1091,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.582945,
+      -122.769287
+     ],
+     "to": [
+      45.589012,
+      -122.756356
+     ],
+     "validated": true,
+     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.589012,
+      -122.756356
+     ],
+     "to": [
+      45.582945,
+      -122.769287
+     ],
+     "validated": true,
+     "validation": "route 1241 m vs 1211 m straight (x1.02), 1200 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    115910434,
+    115910442,
+    124252583,
+    128247154,
+    404734557,
+    837981556
+   ]
+  },
+  {
+   "id": "fremont",
+   "name": "Fremont Bridge",
+   "aliases": [
+    "fremont",
+    "the fremont",
+    "fremont bridge"
+   ],
+   "misspellings": [
+    "freemont",
+    "fremount",
+    "frement",
+    "fremont brdg"
+   ],
+   "colors": [
+    "pale green"
+   ],
+   "year": 1973,
+   "type": "tied arch",
+   "carries": "I-405 / US 30",
+   "county_bridge_code": null,
+   "bike_access": "no",
+   "bike_note": "Freeway. Bicycles and pedestrians prohibited (OpenStreetMap: motorway, bicycle=no).",
+   "west_end": [
+    45.535474,
+    -122.686067
+   ],
+   "east_end": [
+    45.541859,
+    -122.678201
+   ],
+   "span_m": 938,
+   "crossings": {
+    "eastbound": {
+     "offered": false,
+     "from": [
+      45.535064,
+      -122.686571
+     ],
+     "to": [
+      45.542268,
+      -122.677697
+     ]
+    },
+    "westbound": {
+     "offered": false,
+     "from": [
+      45.542268,
+      -122.677697
+     ],
+     "to": [
+      45.535064,
+      -122.686571
+     ]
+    }
+   },
+   "osm_way_ids": [
+    5509112,
+    5509137,
+    42230757,
+    49098926,
+    586135841,
+    1125176093,
+    1342066755
+   ]
+  },
+  {
+   "id": "broadway",
+   "name": "Broadway Bridge",
+   "aliases": [
+    "broadway",
+    "the broadway",
+    "broadway bridge"
+   ],
+   "misspellings": [
+    "brodway",
+    "broad way",
+    "broadwy",
+    "broadway brdg"
+   ],
+   "colors": [
+    "red"
+   ],
+   "year": 1913,
+   "type": "truss, bascule",
+   "carries": "Broadway, streetcar",
+   "county_bridge_code": "06757",
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.52997,
+    -122.677633
+   ],
+   "east_end": [
+    45.533025,
+    -122.671745
+   ],
+   "span_m": 571,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.529649,
+      -122.678253
+     ],
+     "to": [
+      45.533346,
+      -122.671125
+     ],
+     "validated": true,
+     "validation": "route 711 m vs 691 m straight (x1.03), 615 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.533346,
+      -122.671125
+     ],
+     "to": [
+      45.529649,
+      -122.678253
+     ],
+     "validated": true,
+     "validation": "route 715 m vs 691 m straight (x1.04), 606 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    69334747,
+    69334754,
+    119646676,
+    126306260,
+    126306261,
+    126306262,
+    126306263,
+    153506698,
+    153506700,
+    153506705,
+    418972075,
+    422121241,
+    422121245,
+    422121253,
+    422121256,
+    422121260,
+    422121263,
+    422121265,
+    595202018,
+    919955469,
+    1430484328,
+    1430484330
+   ]
+  },
+  {
+   "id": "steel",
+   "name": "Steel Bridge",
+   "aliases": [
+    "steel",
+    "the steel",
+    "steel bridge"
+   ],
+   "misspellings": [
+    "steal",
+    "the steal",
+    "stele",
+    "steel brdg"
+   ],
+   "colors": [
+    "black"
+   ],
+   "year": 1912,
+   "type": "through truss, double vertical lift",
+   "carries": "Rail, MAX; lower deck road and bike/pedestrian paths",
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": "Use the lower deck paths.",
+   "west_end": [
+    45.526903,
+    -122.672369
+   ],
+   "east_end": [
+    45.528545,
+    -122.66681
+   ],
+   "span_m": 470,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.526693,
+      -122.673079
+     ],
+     "to": [
+      45.528755,
+      -122.6661
+     ],
+     "validated": true,
+     "validation": "route 952 m vs 590 m straight (x1.61), 479 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.528755,
+      -122.6661
+     ],
+     "to": [
+      45.526693,
+      -122.673079
+     ],
+     "validated": false,
+     "validation": "route 1523 m vs 590 m straight (x2.58), 474 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    30288924,
+    125410435,
+    153469294,
+    153469330,
+    154070500,
+    156121087,
+    177859545,
+    348027805,
+    348027806,
+    348027807,
+    348027808,
+    348027809,
+    348027811,
+    348027812,
+    348027813,
+    348027814,
+    348027815,
+    892538227,
+    892538228,
+    1053619185,
+    1060492173
+   ]
+  },
+  {
+   "id": "burnside",
+   "name": "Burnside Bridge",
+   "aliases": [
+    "burnside",
+    "the burnside",
+    "burnside bridge",
+    "burn side"
+   ],
+   "misspellings": [
+    "burnsid",
+    "burnsides",
+    "bernside",
+    "burnside brdg"
+   ],
+   "colors": [],
+   "year": 1926,
+   "type": "bascule",
+   "carries": "Burnside Street",
+   "county_bridge_code": "00511",
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.523266,
+    -122.671585
+   ],
+   "east_end": [
+    45.523086,
+    -122.662565
+   ],
+   "span_m": 703,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.523281,
+      -122.672354
+     ],
+     "to": [
+      45.52307,
+      -122.661796
+     ],
+     "validated": true,
+     "validation": "route 863 m vs 823 m straight (x1.05), 733 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.52307,
+      -122.661796
+     ],
+     "to": [
+      45.523281,
+      -122.672354
+     ],
+     "validated": true,
+     "validation": "route 844 m vs 823 m straight (x1.03), 732 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    117739100,
+    117739110,
+    117996189,
+    117996190,
+    117996192,
+    122317137,
+    124113872,
+    245133024,
+    245133025,
+    425464044,
+    436490767,
+    689033333,
+    689033334,
+    689033335,
+    689033336,
+    689033337,
+    689033338,
+    689033341,
+    689033342,
+    689033343,
+    689033344
+   ]
+  },
+  {
+   "id": "morrison",
+   "name": "Morrison Bridge",
+   "aliases": [
+    "morrison",
+    "the morrison",
+    "morrison bridge"
+   ],
+   "misspellings": [
+    "morison",
+    "morrisson",
+    "morrision",
+    "morrison brdg"
+   ],
+   "colors": [],
+   "year": 1958,
+   "type": "bascule",
+   "carries": "Morrison Street",
+   "county_bridge_code": "02758",
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.518534,
+    -122.673457
+   ],
+   "east_end": [
+    45.517447,
+    -122.66533
+   ],
+   "span_m": 645,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.518635,
+      -122.674213
+     ],
+     "to": [
+      45.517346,
+      -122.664574
+     ],
+     "validated": true,
+     "validation": "route 1071 m vs 765 m straight (x1.4), 672 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.517346,
+      -122.664574
+     ],
+     "to": [
+      45.518635,
+      -122.674213
+     ],
+     "validated": true,
+     "validation": "route 1252 m vs 765 m straight (x1.64), 626 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    45701294,
+    115811860,
+    115811862,
+    127586070,
+    144373676,
+    144373677,
+    189781331,
+    681301885,
+    681301889,
+    681301892,
+    689032756,
+    689032757
+   ]
+  },
+  {
+   "id": "hawthorne",
+   "name": "Hawthorne Bridge",
+   "aliases": [
+    "hawthorne",
+    "the hawthorne",
+    "hawthorne bridge"
+   ],
+   "misspellings": [
+    "hawthorn",
+    "hawthorn bridge",
+    "hawthrone",
+    "hawtorne",
+    "hawthorne brdg"
+   ],
+   "colors": [
+    "green"
+   ],
+   "year": 1910,
+   "type": "truss, vertical lift",
+   "carries": "Hawthorne Boulevard",
+   "county_bridge_code": "02757",
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.514108,
+    -122.6746
+   ],
+   "east_end": [
+    45.51226,
+    -122.661374
+   ],
+   "span_m": 1051,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.514213,
+      -122.675355
+     ],
+     "to": [
+      45.512154,
+      -122.66062
+     ],
+     "validated": true,
+     "validation": "route 1216 m vs 1171 m straight (x1.04), 1152 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.512154,
+      -122.66062
+     ],
+     "to": [
+      45.514213,
+      -122.675355
+     ],
+     "validated": true,
+     "validation": "route 1515 m vs 1171 m straight (x1.29), 1104 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    5509543,
+    30259913,
+    30260114,
+    30260211,
+    30260258,
+    30260391,
+    31826899,
+    34089106,
+    53189252,
+    94233468,
+    94236910,
+    117445983,
+    117446006,
+    117446013,
+    117446023,
+    124089668,
+    127409217,
+    131906323,
+    143113684,
+    150590778,
+    150590781,
+    150590782,
+    150590784,
+    150590785,
+    150590786,
+    198240016,
+    220072685,
+    244213429,
+    246542709,
+    282172530,
+    282172533,
+    282174153,
+    282174242,
+    282180697,
+    586109402,
+    604717230,
+    604717231,
+    681301893,
+    681301894,
+    681301895,
+    681301896,
+    681301897,
+    681301898,
+    681301899,
+    681301900,
+    681301901,
+    681301905,
+    689031433,
+    689031434,
+    689031435,
+    689031436,
+    689031437,
+    689031438,
+    689032190,
+    689032191,
+    689032192,
+    689032193,
+    837830287,
+    954875673,
+    1035045147,
+    1180367455,
+    1509938874,
+    1509938875,
+    1509938876,
+    1509938877,
+    1509938878
+   ]
+  },
+  {
+   "id": "marquam",
+   "name": "Marquam Bridge",
+   "aliases": [
+    "marquam",
+    "the marquam",
+    "marquam bridge",
+    "i-5 bridge",
+    "i5 bridge"
+   ],
+   "misspellings": [
+    "markum",
+    "marcum",
+    "marquem",
+    "marquam brdg"
+   ],
+   "colors": [
+    "gray"
+   ],
+   "year": 1966,
+   "type": "cantilever truss",
+   "carries": "I-5",
+   "county_bridge_code": null,
+   "bike_access": "no",
+   "bike_note": "Freeway. Bicycles prohibited (OpenStreetMap: motorway).",
+   "west_end": [
+    45.505649,
+    -122.715325
+   ],
+   "east_end": [
+    45.510418,
+    -122.666657
+   ],
+   "span_m": null,
+   "crossings": {
+    "eastbound": {
+     "offered": false,
+     "from": [
+      45.505574,
+      -122.716087
+     ],
+     "to": [
+      45.510493,
+      -122.665895
+     ]
+    },
+    "westbound": {
+     "offered": false,
+     "from": [
+      45.510493,
+      -122.665895
+     ],
+     "to": [
+      45.505574,
+      -122.716087
+     ]
+    }
+   },
+   "osm_way_ids": [
+    5520326,
+    5520348,
+    5528057,
+    23647929,
+    30474374,
+    98833361,
+    98833497,
+    98835862,
+    123689393,
+    123689394,
+    123689401,
+    239364258,
+    322611060,
+    356882079,
+    356882082,
+    595610338,
+    726596663,
+    726596664
+   ]
+  },
+  {
+   "id": "tilikum",
+   "name": "Tilikum Crossing",
+   "aliases": [
+    "tilikum",
+    "tilikum crossing",
+    "the tilikum",
+    "bridge of the people"
+   ],
+   "misspellings": [
+    "tillicum",
+    "tillikum",
+    "tilakum",
+    "tilikim",
+    "tilicum",
+    "tillicum crossing"
+   ],
+   "colors": [],
+   "year": 2015,
+   "type": "cable-stayed",
+   "carries": "MAX Orange Line, buses, streetcar, bike and pedestrian path; no cars",
+   "county_bridge_code": null,
+   "bike_access": "yes",
+   "bike_note": "Alias 'Bridge of the People' is from memory, not yet verified against a source.",
+   "west_end": [
+    45.503358,
+    -122.669637
+   ],
+   "east_end": [
+    45.506419,
+    -122.664565
+   ],
+   "span_m": 522,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.503005,
+      -122.670222
+     ],
+     "to": [
+      45.506771,
+      -122.663981
+     ],
+     "validated": true,
+     "validation": "route 759 m vs 642 m straight (x1.18), 556 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.506771,
+      -122.663981
+     ],
+     "to": [
+      45.503005,
+      -122.670222
+     ],
+     "validated": true,
+     "validation": "route 811 m vs 642 m straight (x1.26), 565 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    334030020,
+    389738959
+   ]
+  },
+  {
+   "id": "ross-island",
+   "name": "Ross Island Bridge",
+   "aliases": [
+    "ross island",
+    "the ross island",
+    "ross island bridge",
+    "ross"
+   ],
+   "misspellings": [
+    "ross isle",
+    "rossisland",
+    "ross iland",
+    "ross island brdg"
+   ],
+   "colors": [],
+   "year": 1926,
+   "type": "cantilever deck truss",
+   "carries": "US 26 / Powell Boulevard",
+   "county_bridge_code": null,
+   "bike_access": "limited",
+   "bike_note": "OpenStreetMap marks one way as bicycle discouraged. The routing engine avoids the bridge. Verify with a rider before offering it.",
+   "west_end": [
+    45.500663,
+    -122.674811
+   ],
+   "east_end": [
+    45.501552,
+    -122.660367
+   ],
+   "span_m": 1130,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.500616,
+      -122.675577
+     ],
+     "to": [
+      45.501599,
+      -122.659601
+     ],
+     "validated": false,
+     "validation": "route 3152 m vs 1250 m straight (x2.52), 0 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.501599,
+      -122.659601
+     ],
+     "to": [
+      45.500616,
+      -122.675577
+     ],
+     "validated": false,
+     "validation": "route 2881 m vs 1250 m straight (x2.3), 0 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    123374695,
+    127668662,
+    174985371,
+    189307193,
+    542826787,
+    682179096,
+    682179097,
+    682179098
+   ]
+  },
+  {
+   "id": "sellwood",
+   "name": "Sellwood Bridge",
+   "aliases": [
+    "sellwood",
+    "the sellwood",
+    "sellwood bridge"
+   ],
+   "misspellings": [
+    "selwood",
+    "sellwod",
+    "sellwoood",
+    "sellwood brdg"
+   ],
+   "colors": [
+    "brown"
+   ],
+   "year": 2016,
+   "type": "deck arch",
+   "carries": "Tacoma Street",
+   "county_bridge_code": "21493",
+   "bike_access": "yes",
+   "bike_note": null,
+   "west_end": [
+    45.464278,
+    -122.668985
+   ],
+   "east_end": [
+    45.464206,
+    -122.66109
+   ],
+   "span_m": 616,
+   "crossings": {
+    "eastbound": {
+     "offered": true,
+     "from": [
+      45.464285,
+      -122.669753
+     ],
+     "to": [
+      45.464199,
+      -122.660321
+     ],
+     "validated": true,
+     "validation": "route 1072 m vs 736 m straight (x1.46), 639 m on the bridge"
+    },
+    "westbound": {
+     "offered": true,
+     "from": [
+      45.464199,
+      -122.660321
+     ],
+     "to": [
+      45.464285,
+      -122.669753
+     ],
+     "validated": true,
+     "validation": "route 1112 m vs 736 m straight (x1.51), 678 m on the bridge"
+    }
+   },
+   "osm_way_ids": [
+    5515864,
+    465285319,
+    595610339,
+    595610340,
+    757982783,
+    923041198,
+    1102598708,
+    1102598709,
+    1193875579,
+    1193875588
+   ]
+  }
+ ]
 }

@@ -1,0 +1,99 @@
+{
+ "version": "0.1.0",
+ "status": "WIP, proposed values. Ratings were described by Whitney Hale in words; the numbers are a developer proposal and are NOT confirmed.",
+ "scale": "Each dimension is 1 (worst) to 5 (best). Scores are inputs to the style weights in docs/routing-rules.md, rules H-03 to H-12.",
+ "dimensions": [
+  "safety_from_cars",
+  "scenery",
+  "noise",
+  "comfort",
+  "surface"
+ ],
+ "attribution": "Way IDs from OpenStreetMap (c) OpenStreetMap contributors, ODbL.",
+ "corridors": [
+  {
+   "id": "eastbank-esplanade",
+   "name": "Eastbank Esplanade",
+   "aliases": [
+    "esplanade",
+    "east bank esplanade",
+    "eastside esplanade",
+    "the esplanade",
+    "waterfront path east"
+   ],
+   "side": "east",
+   "tier": "car-free path",
+   "north_end": [
+    45.5286637,
+    -122.6657505
+   ],
+   "south_end": [
+    45.5058533,
+    -122.6641782
+   ],
+   "length_m": 3438,
+   "osm_way_ids": [
+    5516428,
+    23629710,
+    30259255,
+    30259552,
+    30259584,
+    30259585,
+    30259708,
+    51807280,
+    51807308,
+    60427464,
+    95509809,
+    95509829,
+    115809983,
+    115809984,
+    117445994,
+    117446011,
+    119557204,
+    124098689,
+    139322400,
+    144929463,
+    144929464,
+    144929465,
+    152573311,
+    152573313,
+    154070496,
+    154070504,
+    154208527,
+    167219813,
+    246535706,
+    246535707,
+    445394707,
+    445394708,
+    445394709,
+    445394710,
+    667602925
+   ],
+   "ratings": {
+    "status": "proposed",
+    "safety_from_cars": 5,
+    "scenery": 5,
+    "noise": 2,
+    "comfort": 3,
+    "surface": 4
+   },
+   "rating_notes": {
+    "safety_from_cars": "No cars (stated).",
+    "scenery": "Beautiful view of the Willamette (stated).",
+    "noise": "Traffic noise from I-5 and nearby roads (stated).",
+    "comfort": "Some campers (stated); crowding at peak times is an assumption.",
+    "surface": "Not discussed; placeholder."
+   },
+   "ns_spine": {
+    "enabled": true,
+    "status": "scope to confirm",
+    "rule": "Preferred route for north-south or south-north movement when the rider is on the east side.",
+    "open_questions": [
+     "Does the preference apply to every style or only Greenway first, Scenic and Low stress?",
+     "How far off a straight line may the route go to reach the Esplanade?",
+     "Are there other east-side north-south spines to add?"
+    ]
+   }
+  }
+ ]
+}
