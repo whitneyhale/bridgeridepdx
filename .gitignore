@@ -4,3 +4,4 @@ routing/*.part
 routing/graph-cache/
 routing/gh.log
 *.sqlite
+*.local.json
