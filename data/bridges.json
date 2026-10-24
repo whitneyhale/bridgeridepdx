@@ -2000,22 +2000,22 @@
     },
     "nearest": [
      {
-      "id": "hawthorne",
-      "name": "Hawthorne Bridge",
-      "km": 1.9,
-      "direction": "E"
-     },
-     {
       "id": "tilikum",
       "name": "Tilikum Crossing",
-      "km": 1.9,
-      "direction": "E"
+      "km": 0.4,
+      "direction": "SE"
      },
      {
       "id": "ross-island",
       "name": "Ross Island Bridge",
-      "km": 2.0,
-      "direction": "SE"
+      "km": 0.7,
+      "direction": "S"
+     },
+     {
+      "id": "hawthorne",
+      "name": "Hawthorne Bridge",
+      "km": 0.7,
+      "direction": "N"
      }
     ]
    },
@@ -2053,8 +2053,8 @@
    "axis": "ew",
    "ends": {
     "west": [
-     45.506,
-     -122.691
+     45.503352,
+     -122.674576
     ],
     "east": [
      45.510418,
@@ -2063,25 +2063,25 @@
    },
    "approaches": {
     "west": [
-     45.506,
-     -122.691
+     45.502926,
+     -122.675053
     ],
     "east": [
-     45.510493,
-     -122.665895
+     45.510844,
+     -122.66618
     ]
    },
-   "span_m": null,
+   "span_m": 999,
    "crossings": {
     "eastbound": {
      "offered": false,
      "from": [
-      45.505574,
-      -122.716087
+      45.502926,
+      -122.675053
      ],
      "to": [
-      45.510493,
-      -122.665895
+      45.510844,
+      -122.66618
      ],
      "lane": {
       "side": null,
@@ -2091,12 +2091,12 @@
     "westbound": {
      "offered": false,
      "from": [
-      45.510493,
-      -122.665895
+      45.510844,
+      -122.66618
      ],
      "to": [
-      45.505574,
-      -122.716087
+      45.502926,
+      -122.675053
      ],
      "lane": {
       "side": null,
@@ -2106,32 +2106,7 @@
    },
    "lanes": [],
    "nearby_bike_routes": {
-    "west": [
-     {
-      "name": "Southwest Patton Road",
-      "kind": "path",
-      "distance_m": 395,
-      "direction": "SE"
-     },
-     {
-      "name": "United States Highway 26 (Oregon Bicycle alternative)",
-      "kind": "route",
-      "distance_m": 92,
-      "direction": "N"
-     },
-     {
-      "name": "Southwest Knights Boulevard",
-      "kind": "route",
-      "distance_m": 277,
-      "direction": "NW"
-     },
-     {
-      "name": "Southwest Canyon Court",
-      "kind": "route",
-      "distance_m": 308,
-      "direction": "NW"
-     }
-    ],
+    "west": [],
     "east": [
      {
       "name": "Willamette Greenway Trail",
@@ -2184,13 +2159,11 @@
     123689394,
     123689401,
     239364258,
-    322611060,
     356882079,
     356882082,
-    595610338,
-    726596663,
-    726596664
-   ]
+    595610338
+   ],
+   "nearby_bike_routes_note": "West-end feeders were derived from a wrong west endpoint (the 'Marquam Trail' way mix-up) and have been cleared. Re-run tools/extract_feeders.py against the pbf to refill. Marquam is car_only and never offered, so this is display-only."
   },
   {
    "id": "tilikum",
@@ -2714,8 +2687,8 @@
      {
       "id": "marquam",
       "name": "Marquam Bridge",
-      "km": 5.2,
-      "direction": "NW"
+      "km": 4.8,
+      "direction": "N"
      }
     ]
    },

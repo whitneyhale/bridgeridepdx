@@ -55,6 +55,7 @@ The first two write to `tools/.cache/` (not committed).
 - Colors come from Wikipedia photo captions, not paint specifications.
 - Steel Bridge westbound and both Ross Island crossings fail validation (rules B-07, B-08).
 - County bridge codes are filled in for five bridges only.
+- Marquam Bridge west-end bike routes are cleared: the old west endpoint came from "Marquam Trail" (a West Hills footway), so the feeders found there were wrong. Re-run `extract_feeders.py` to refill.
 
 ## Credit
 

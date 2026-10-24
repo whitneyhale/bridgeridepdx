@@ -664,11 +664,10 @@ One section per crossing, generated from `data/bridges.json`. To change a fact, 
 | Streets | I-5 |
 | West end | South of downtown (freeway) |
 | East end | Inner Southeast industrial area near the I-84 interchange (freeway) |
-| Position | Willamette bridge 8 of 11, counted north (downstream) to south (upstream). North: Hawthorne Bridge (0.4 river miles). South: Tilikum Crossing (0.3 river miles). Nearest: Hawthorne Bridge 1.9 km E, Tilikum Crossing 1.9 km E, Ross Island Bridge 2.0 km SE |
+| Position | Willamette bridge 8 of 11, counted north (downstream) to south (upstream). North: Hawthorne Bridge (0.4 river miles). South: Tilikum Crossing (0.3 river miles). Nearest: Tilikum Crossing 0.4 km SE, Ross Island Bridge 0.7 km S, Hawthorne Bridge 0.7 km N |
 | Bikes | No, closed to bikes. Freeway. Bicycles prohibited (OpenStreetMap: motorway). |
-| GPS, west approach | 45.505574, -122.716087 |
-| GPS, east approach | 45.510493, -122.665895 |
-| Bike routes near west end | Southwest Patton Road, United States Highway 26 (Oregon Bicycle alternative), Southwest Knights Boulevard, Southwest Canyon Court |
+| GPS, west approach | 45.502926, -122.675053 |
+| GPS, east approach | 45.510844, -122.666180 |
 | Bike routes near east end | Willamette Greenway Trail, United States Highway 26 (Oregon Bicycle alternative), 40 Mile Loop, Vera Katz Eastbank Esplanade, Southeast Clay Street |
 
 ### Tilikum Crossing
@@ -737,7 +736,7 @@ One section per crossing, generated from `data/bridges.json`. To change a fact, 
 | Streets | SE Tacoma St, SW Macadam Ave (OR 43) |
 | West end | OR 43 / Macadam Ave, Willamette Greenway Trail |
 | East end | Sellwood and Westmoreland at SE Tacoma St; Springwater Trail nearby |
-| Position | Willamette bridge 11 of 11, counted north (downstream) to south (upstream). North: Ross Island Bridge (2.5 river miles). Nearest: Ross Island Bridge 4.1 km N, Tilikum Crossing 4.5 km N, Marquam Bridge 5.2 km NW |
+| Position | Willamette bridge 11 of 11, counted north (downstream) to south (upstream). North: Ross Island Bridge (2.5 river miles). Nearest: Ross Island Bridge 4.1 km N, Tilikum Crossing 4.5 km N, Marquam Bridge 4.8 km N |
 | Bikes | Yes.  |
 | GPS, west approach | 45.464285, -122.669753 |
 | GPS, east approach | 45.464199, -122.660321 |

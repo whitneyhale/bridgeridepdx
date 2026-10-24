@@ -9,7 +9,8 @@ CACHE = os.path.join(HERE, ".cache"); os.makedirs(CACHE, exist_ok=True)
 TARGETS = {
  "st-johns": r"^st\.? johns bridge|^saint johns bridge", "fremont": r"^fremont bridge", "broadway": r"^broadway bridge",
  "steel": r"^steel bridge", "burnside": r"^burnside bridge", "morrison": r"^morrison bridge", "hawthorne": r"^hawthorne bridge",
- "marquam": r"^marquam", "tilikum": r"^tilikum", "ross-island": r"^ross island bridge", "sellwood": r"^sellwood bridge",
+ # "marquam" must include "bridge": "Marquam Trail" is a West Hills footway 3.5 km west of the river.
+ "marquam": r"^marquam bridge", "tilikum": r"^tilikum", "ross-island": r"^ross island bridge", "sellwood": r"^sellwood bridge",
 }
 # Columbia River crossings to Vancouver, WA run north-south. Their bike paths are separate OSM ways from the
 # motorway deck (which is tagged bicycle=no), so they are listed by way id.
