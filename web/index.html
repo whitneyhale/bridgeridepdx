@@ -1,51 +1,270 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bridge Ride PDX</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <style>
-    html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
-    #map { height: 100%; }
-    #status { position: absolute; z-index: 1000; top: 10px; left: 10px; right: 10px;
-      background: #fff; padding: 8px 12px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.3); font-size: 14px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bridge Ride PDX</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15211D; --ground:#F3F5F2; --greenway:#1B6B45; --river:#1F5F8B;
+    --signal:#B4480F; --line:#D6DBD6; --muted:#5C6B64;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--ground);color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;-webkit-text-size-adjust:100%}
+  #map{position:absolute;inset:0 0 auto 0;height:100%}
+  .sign{font-family:"Barlow Semi Condensed",system-ui,sans-serif;font-weight:700;
+    letter-spacing:.01em;text-transform:uppercase}
+
+  #status{position:absolute;z-index:1000;top:10px;left:58px;right:10px;background:#fff;
+    padding:10px 14px;border-radius:10px;box-shadow:0 1px 6px rgba(0,0,0,.25);font-size:14px}
+  #status.warn{background:var(--signal);color:#fff}
+
+  #sheet{position:absolute;z-index:1001;left:0;right:0;bottom:0;background:#fff;
+    border-radius:16px 16px 0 0;box-shadow:0 -2px 14px rgba(0,0,0,.22);
+    max-height:62vh;display:flex;flex-direction:column;
+    padding-bottom:env(safe-area-inset-bottom)}
+  #grip{width:40px;height:4px;border-radius:2px;background:var(--line);margin:8px auto 2px;flex:none}
+  #sheetHead{display:flex;align-items:center;gap:10px;padding:4px 16px 8px;flex:none}
+  #sheetHead h1{font-size:15px;margin:0;flex:1}
+  #count{font-size:12px;color:var(--muted);font-weight:500}
+  #toggle{border:0;background:none;font-size:22px;line-height:1;color:var(--muted);
+    min-width:44px;min-height:44px;cursor:pointer}
+  #body{overflow:auto;padding:0 16px 16px}
+  #sheet.closed #body{display:none}
+
+  ol{list-style:none;margin:0 0 12px;padding:0}
+  li.stop{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .seq{flex:none;width:26px;height:26px;border-radius:50%;background:var(--river);color:#fff;
+    font-size:13px;font-weight:600;display:grid;place-items:center;margin-top:2px}
+  .what{flex:1;min-width:0}
+  .what b{display:block;font-size:15px;font-weight:600}
+  .what span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+  .kill{flex:none;border:0;background:none;color:var(--signal);font-size:20px;
+    min-width:44px;min-height:44px;cursor:pointer}
+  .empty{color:var(--muted);font-size:14px;padding:14px 0 18px;line-height:1.5}
+
+  .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  button.act,input[type=text]{min-height:44px;border-radius:10px;font-size:15px;
+    font-family:inherit;border:1px solid var(--line)}
+  button.act{padding:0 14px;background:#fff;color:var(--ink);font-weight:600;cursor:pointer}
+  button.act.primary{background:var(--greenway);border-color:var(--greenway);color:#fff}
+  button.act.ghost{color:var(--muted)}
+  button.act:disabled{opacity:.45;cursor:default}
+  input[type=text]{flex:1 1 100%;min-width:120px;padding:0 12px;background:#fff;color:var(--ink)}
+
+  h2.sec{font-size:12px;color:var(--muted);margin:16px 0 6px;letter-spacing:.06em}
+  .saved{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .saved b{flex:1;font-size:14.5px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .saved small{color:var(--muted);font-size:12px;flex:none}
+  .note{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+  .bikepin{filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+</style>
 </head>
 <body>
-  <div id="status">Bridge Ride PDX</div>
-  <div id="map"></div>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    const map = L.map('map').setView([45.5231, -122.6765], 13);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+<div id="status">Bridge Ride PDX</div>
+<div id="map"></div>
 
-    // Show the rider's position and heading when available.
-    let marker = null;
-    if ('geolocation' in navigator) {
-      navigator.geolocation.watchPosition(pos => {
-        const { latitude, longitude, heading } = pos.coords;
-        if (!marker) marker = L.circleMarker([latitude, longitude], { radius: 8 }).addTo(map);
-        marker.setLatLng([latitude, longitude]);
-        const h = heading == null || Number.isNaN(heading) ? 'unknown' : Math.round(heading) + ' deg';
-        document.getElementById('status').textContent = 'Position locked. Heading: ' + h;
-      }, err => {
-        document.getElementById('status').textContent = 'GPS: ' + err.message;
-      }, { enableHighAccuracy: true });
-    }
+<section id="sheet">
+  <div id="grip"></div>
+  <div id="sheetHead">
+    <h1 class="sign">Your route</h1>
+    <span id="count"></span>
+    <button id="toggle" aria-label="Collapse panel">&#9662;</button>
+  </div>
+  <div id="body">
+    <ol id="stops"></ol>
+    <div class="row">
+      <input id="name" type="text" placeholder="Name this route" autocomplete="off">
+      <button class="act primary" id="save" disabled>Save</button>
+      <button class="act" id="gpx" disabled>GPX</button>
+      <button class="act ghost" id="clear" disabled>Clear</button>
+    </div>
+    <div id="savedWrap"></div>
+    <p class="note">Straight lines between crossings, not a routed path: the routing engine
+      runs on your PC, not here. Distance is a straight-line estimate.</p>
+  </div>
+</section>
 
-    // Bridge data: two approach points per bridge (west and east side).
-    // Bridges closed to bikes are drawn but labeled as such.
-    fetch('../data/bridges.json').then(r => r.json()).then(d => {
-      d.bridges.forEach(b => {
-        const note = b.bike_access === 'no' ? ' (closed to bikes)' : '';
-        Object.entries(b.approaches).forEach(([side, p]) =>
-          L.marker(p).addTo(map).bindPopup(b.name + ', ' + side + ' side. ' + b.category_label + note));
-      });
-    }).catch(() => {});
-  </script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const C = {ink:'#15211D', river:'#1F5F8B', greenway:'#1B6B45', signal:'#B4480F'};
+const DIR = {west:'eastbound', east:'westbound', south:'northbound', north:'southbound'};
+const KEY = 'bridgeride.routes.v1';
+const $ = id => document.getElementById(id);
+
+const map = L.map('map', {zoomControl:true}).setView([45.5231,-122.6765], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+
+const setStatus = (t, warn) => { const s=$('status'); s.textContent=t; s.classList.toggle('warn', !!warn); };
+
+/* ---- rider position: small bike in a disc, heading wedge ---- */
+const bikeIcon = heading => L.divIcon({
+  className:'', iconSize:[38,38], iconAnchor:[19,19],
+  html:`<svg class="bikepin" width="38" height="38" viewBox="0 0 38 38">
+    ${heading==null?'':`<path d="M19 1 L25 11 A17 17 0 0 0 13 11 Z" fill="${C.river}" opacity=".85"
+        transform="rotate(${heading} 19 19)"/>`}
+    <circle cx="19" cy="19" r="12" fill="${C.river}" stroke="#fff" stroke-width="2.5"/>
+    <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round">
+      <circle cx="14.6" cy="22.2" r="3.1"/><circle cx="23.4" cy="22.2" r="3.1"/>
+      <path d="M14.6 22.2 L18 16.4 L22 16.4 M18 16.4 L23.4 22.2 M20.4 13.9 L22.6 13.9"/>
+    </g></svg>`});
+let me = null;
+if ('geolocation' in navigator) {
+  navigator.geolocation.watchPosition(p => {
+    const {latitude:la, longitude:lo, heading:h} = p.coords;
+    const deg = (h==null || Number.isNaN(h)) ? null : Math.round(h);
+    if (!me) me = L.marker([la,lo], {icon:bikeIcon(deg), zIndexOffset:900}).addTo(map);
+    else { me.setLatLng([la,lo]); me.setIcon(bikeIcon(deg)); }
+    setStatus('Position locked. Heading: ' + (deg==null?'unknown':deg+' deg'));
+  }, e => setStatus('GPS: ' + e.message, true), {enableHighAccuracy:true});
+}
+
+/* ---- bridges ---- */
+let BRIDGES = [];
+const route = [];   // {id,name,dir,side,from,to,label}
+
+const km = (a,b) => { const R=6371, r=Math.PI/180,
+  dla=(b[0]-a[0])*r, dlo=(b[1]-a[1])*r,
+  h=Math.sin(dla/2)**2 + Math.cos(a[0]*r)*Math.cos(b[0]*r)*Math.sin(dlo/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h)); };
+
+const layer = L.layerGroup().addTo(map);
+function draw(){
+  layer.clearLayers();
+  route.forEach((c,i) => {
+    L.polyline([c.from,c.to], {color:C.river, weight:6, opacity:.95}).addTo(layer);
+    if (i) L.polyline([route[i-1].to, c.from],
+      {color:C.ink, weight:3, opacity:.5, dashArray:'6 8'}).addTo(layer);
+  });
+}
+
+function miles(){
+  let m = 0;
+  route.forEach((c,i) => { m += km(c.from,c.to); if (i) m += km(route[i-1].to, c.from); });
+  return m * 0.621371;
+}
+
+function render(){
+  const ol = $('stops'); ol.innerHTML = '';
+  if (!route.length) {
+    ol.innerHTML = '<p class="empty">Tap a bridge marker to add a crossing. ' +
+      'The side you tap sets the direction: tap the west side to cross eastbound, the east side to cross westbound.</p>';
+  }
+  route.forEach((c,i) => {
+    const li = document.createElement('li'); li.className = 'stop';
+    li.innerHTML = `<span class="seq">${i+1}</span>
+      <span class="what"><b>${c.name}</b><span>${c.dir}${c.side?' &middot; ride the '+c.side+' side':''}</span></span>`;
+    const x = document.createElement('button');
+    x.className='kill'; x.innerHTML='&times;'; x.setAttribute('aria-label','Remove '+c.name);
+    x.onclick = () => { route.splice(i,1); render(); draw(); };
+    li.appendChild(x); ol.appendChild(li);
+  });
+  const n = route.length;
+  $('count').textContent = n ? `${n} crossing${n>1?'s':''} &middot; ~${miles().toFixed(1)} mi`
+    .replace('&middot;','·') : '';
+  ['save','gpx','clear'].forEach(b => $(b).disabled = !n);
+}
+
+function add(b, side){
+  const dir = DIR[side];
+  const cr = b.crossings && b.crossings[dir];
+  if (!cr) return;
+  if (!cr.offered) {
+    setStatus(`${b.name} is not open to bikes: ${b.bike_note || b.category_label}`, true);
+    return;
+  }
+  route.push({id:b.id, name:b.name, dir, side:(cr.lane||{}).side || '',
+              from:cr.from, to:cr.to});
+  setStatus(`Added ${b.name} ${dir}.`);
+  $('sheet').classList.remove('closed');
+  render(); draw();
+}
+
+fetch('../data/bridges.json').then(r => r.json()).then(d => {
+  BRIDGES = d.bridges;
+  BRIDGES.forEach(b => {
+    Object.entries(b.approaches).forEach(([side, p]) => {
+      const dir = DIR[side], cr = (b.crossings||{})[dir] || {};
+      const ok = !!cr.offered;
+      L.circleMarker(p, {radius:9, weight:2.5, color:'#fff',
+        fillColor: ok ? C.greenway : C.signal, fillOpacity:1})
+        .addTo(map)
+        .bindTooltip(`${b.name} — ${side} side`, {direction:'top'})
+        .on('click', () => add(b, side));
+    });
+  });
+  setStatus('Tap a bridge to add a crossing.');
+}).catch(() => setStatus('Could not load bridge data.', true));
+
+/* ---- saved routes (browser only, this device) ---- */
+const read = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } };
+const write = v => { try { localStorage.setItem(KEY, JSON.stringify(v)); return true; } catch { return false; } };
+
+function renderSaved(){
+  const list = read(), w = $('savedWrap');
+  if (!list.length) { w.innerHTML = ''; return; }
+  w.innerHTML = '<h2 class="sec sign">Saved on this device</h2>';
+  list.forEach((r, i) => {
+    const row = document.createElement('div'); row.className = 'saved';
+    const b = document.createElement('b'); b.textContent = r.name;
+    const s = document.createElement('small');
+    s.textContent = `${r.crossings.length} crossing${r.crossings.length>1?'s':''}`;
+    const open = document.createElement('button');
+    open.className='act'; open.textContent='Open';
+    open.onclick = () => { route.length=0; r.crossings.forEach(c=>route.push(c));
+      render(); draw(); $('name').value = r.name;
+      if (route.length) map.fitBounds(L.latLngBounds(route.flatMap(c=>[c.from,c.to])).pad(.2)); };
+    const del = document.createElement('button');
+    del.className='kill'; del.innerHTML='&times;'; del.setAttribute('aria-label','Delete '+r.name);
+    del.onclick = () => { const v=read(); v.splice(i,1); write(v); renderSaved(); };
+    row.append(b,s,open,del); w.appendChild(row);
+  });
+}
+
+$('save').onclick = () => {
+  const name = ($('name').value || '').trim() ||
+    route.map(c=>c.name.replace(/ Bridge$/,'')).join(' to ');
+  const v = read(); const at = v.findIndex(r => r.name === name);
+  const rec = {name, saved:new Date().toISOString(), crossings:route.map(c=>({...c}))};
+  if (at >= 0) v[at] = rec; else v.push(rec);
+  const ok = write(v);
+  setStatus(ok ? `Saved "${name}" on this device.`
+               : 'Could not save: browser storage is unavailable.', !ok);
+  $('name').value = name; renderSaved();
+};
+
+$('gpx').onclick = () => {
+  const name = ($('name').value||'').trim() || 'Bridge Ride';
+  const pts = route.flatMap(c => [c.from, c.to]);
+  const gpx = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Bridge Ride PDX" xmlns="http://www.topografix.com/GPX/1/1">
+ <metadata><name>${name}</name></metadata>
+ <trk><name>${name}</name><trkseg>
+${pts.map(p=>`  <trkpt lat="${p[0]}" lon="${p[1]}"></trkpt>`).join('\n')}
+ </trkseg></trk>
+</gpx>`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([gpx], {type:'application/gpx+xml'}));
+  a.download = name.replace(/[^\w -]/g,'').trim().replace(/\s+/g,'-') + '.gpx';
+  a.click(); URL.revokeObjectURL(a.href);
+};
+
+$('clear').onclick = () => { route.length = 0; $('name').value=''; render(); draw();
+  setStatus('Route cleared. Tap a bridge to start again.'); };
+
+$('toggle').onclick = () => {
+  const s = $('sheet'), shut = s.classList.toggle('closed');
+  $('toggle').innerHTML = shut ? '&#9652;' : '&#9662;';
+  $('toggle').setAttribute('aria-label', shut ? 'Expand panel' : 'Collapse panel');
+};
+
+render(); renderSaved();
+</script>
 </body>
 </html>
