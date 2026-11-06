@@ -7,8 +7,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -80,11 +78,16 @@ fun BridgeMap(modifier: Modifier, handle: MapHandle) {
             mapView.getMapAsync { map ->
                 handle.map = map
                 map.cameraPosition = CameraPosition.Builder().target(PORTLAND).zoom(11.5).build()
-                map.setStyle(Style.Builder().fromUri(STYLE_URL)) { style -> addBridgeEnds(style, ends) }
+                map.setStyle(Style.Builder().fromUri(STYLE_URL)) { style ->
+                    addBridgeEnds(style, ends)
+                    // MapLibre sets its own description on the view; replace it once the ends are drawn,
+                    // so screen readers and Maestro know the bridges are on the map.
+                    mapView.contentDescription = "Map, ${ends.size} bridge ends"
+                }
             }
             mapView
         },
-        modifier = modifier.semantics { contentDescription = "Map, ${ends.size} bridge ends" },
+        modifier = modifier,
     )
 }
 
