@@ -12,8 +12,10 @@ android {
         minSdk = 29
         targetSdk = 36
         // Bump both for every release tag (v0.1.0 -> 1, v0.1.1 -> 2, ...).
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
+        // Phone (S24) and the CI emulator only, to keep the APK small.
+        ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
 
     // Pre-alpha test key, kept in the repo so every build installs over the last one.
@@ -62,4 +64,5 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.core.ktx)
     implementation(libs.play.services.location)
+    implementation(libs.maplibre.android)
 }

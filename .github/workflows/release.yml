@@ -1,16 +1,14 @@
-# Release when versionName in android/app/build.gradle.kts has no GitHub release yet.
+# Release when versionName in android/app/build.gradle.kts has no GitHub release yet,
+# and only after the full Android CI (unit tests, lint, Maestro on an emulator) passed on that commit.
 # Bump versionName and versionCode, add docs/test-cards/v<versionName>.md, push: the APK is published
-# as a pre-release with that test card. Pushing a v* tag by hand works too.
+# as a pre-release with that test card.
 name: Release
 
 on:
-  push:
+  workflow_run:
+    workflows: [Android]
+    types: [completed]
     branches: [main, phase-1]
-    paths:
-      - android/app/build.gradle.kts
-      - docs/test-cards/**
-      - .github/workflows/release.yml
-    tags: ["v*"]
 
 permissions:
   contents: write
@@ -21,9 +19,12 @@ concurrency:
 
 jobs:
   release:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Version and test card
         id: v
         env:
@@ -31,9 +32,6 @@ jobs:
         run: |
           v="v$(grep -oP 'versionName = "\K[^"]+' android/app/build.gradle.kts)"
           echo "tag=$v" >> "$GITHUB_OUTPUT"
-          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "$v" != "${GITHUB_REF_NAME}" ]; then
-            echo "versionName $v does not match tag ${GITHUB_REF_NAME}"; exit 1
-          fi
           if gh release view "$v" >/dev/null 2>&1; then
             echo "Release $v already exists; nothing to do."; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
@@ -53,7 +51,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.v.outputs.tag }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk "bridgeride-$TAG.apk"
-          gh release create "$TAG" "bridgeride-$TAG.apk" --target "$GITHUB_SHA" \
+          gh release create "$TAG" "bridgeride-$TAG.apk" --target "$SHA" \
             --prerelease --title "Bridge Ride $TAG" --notes-file "docs/test-cards/$TAG.md"

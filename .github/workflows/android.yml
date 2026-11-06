@@ -3,7 +3,7 @@ name: Android
 
 on:
   push:
-    branches: [main]
+    branches: [main, phase-1]
   pull_request:
   workflow_dispatch:
 
@@ -23,6 +23,8 @@ jobs:
           for f in data/*.json routing/*.json docs/design/*.json; do python -c "import json,sys; json.load(open(sys.argv[1]))" "$f" || exit 1; done
           python tools/match_bridge.py | tee match.txt
           tail -1 match.txt | grep -qE "^([0-9]+) of \1 passed$" || { echo "name matcher cases failed"; exit 1; }
+          python tools/export_bridge_ends.py
+          git diff --exit-code android/app/src/main/assets/bridge_ends.csv || { echo "bridge_ends.csv is out of date: run tools/export_bridge_ends.py"; exit 1; }
       - uses: actions/setup-java@v6
         with: { distribution: temurin, java-version: "17" }
       - uses: gradle/actions/setup-gradle@v6

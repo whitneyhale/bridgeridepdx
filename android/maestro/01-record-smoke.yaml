@@ -3,7 +3,6 @@ appId: pdx.bridgeride.app
 ---
 - launchApp:
     clearState: true
-- assertVisible: "Bridge Ride"
 - assertVisible: "Start ride"
 - setLocation:
     latitude: 45.5134
@@ -30,4 +29,6 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "Start ride"
     timeout: 10000
+- tapOn: "Library"
+- assertVisible: "Ride log"
 - assertVisible: "Ride, .*"

@@ -36,7 +36,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -57,6 +62,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -71,29 +77,119 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { BridgeRideTheme { RecorderScreen() } }
+        setContent { BridgeRideTheme { AppScreen() } }
     }
 }
 
 private const val STALE_MS = 5_000L // N-09: marker turns orange after 5 s without a fix
 
+private enum class Tab(val label: String) { MAP("Map"), LIBRARY("Library"), SETTINGS("Settings") }
+
+/** Nav: Map, Library, Settings (decided 2026-11-05). */
 @Composable
-fun RecorderScreen() {
+fun AppScreen() {
+    var tab by remember { mutableStateOf(Tab.MAP) }
+    Scaffold(
+        bottomBar = {
+            NavigationBar {
+                Tab.entries.forEach { t ->
+                    NavigationBarItem(
+                        selected = tab == t,
+                        onClick = { tab = t },
+                        icon = {
+                            Icon(
+                                painterResource(when (t) { Tab.MAP -> R.drawable.ic_tab_map; Tab.LIBRARY -> R.drawable.ic_tab_library; Tab.SETTINGS -> R.drawable.ic_tab_settings }),
+                                contentDescription = null,
+                            )
+                        },
+                        label = { Text(t.label) },
+                    )
+                }
+            }
+        },
+    ) { pad ->
+        Box(Modifier.fillMaxSize().padding(pad)) {
+            when (tab) {
+                Tab.MAP -> MapTab()
+                Tab.LIBRARY -> LibraryTab()
+                Tab.SETTINGS -> SettingsTab()
+            }
+        }
+    }
+}
+
+@Composable
+private fun MapTab() {
     val context = LocalContext.current
     val status by Recorder.status.collectAsStateWithLifecycle()
     var message by remember { mutableStateOf<String?>(null) }
-    var rides by remember { mutableStateOf(emptyList<RideSummary>()) }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
-    var pendingExport by remember { mutableStateOf<RideSummary?>(null) }
-    val scope = rememberCoroutineScope()
+    val handle = remember { MapHandle() }
 
     // Keep the screen on while recording (S1).
     LocalView.current.keepScreenOn = status.recording
-
     LaunchedEffect(Unit) { while (true) { now = System.currentTimeMillis(); delay(1000) } }
-    LaunchedEffect(status.recording) {
-        rides = withContext(Dispatchers.IO) { RideStore.list(context) }
+
+    val permissions = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+        val fine = result[Manifest.permission.ACCESS_FINE_LOCATION] == true
+        val coarse = result[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+        message = when {
+            fine -> { Recorder.start(context); null }
+            coarse -> "Approximate location only. Recording needs precise location: tap Start again and choose Precise."
+            else -> "Location is off for Bridge Ride. Recording needs it while a ride runs."
+        }
     }
+    fun hasFine() = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    fun startRide() {
+        if (hasFine()) { Recorder.start(context); message = null; return }
+        val asks = mutableListOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (Build.VERSION.SDK_INT >= 33) asks += Manifest.permission.POST_NOTIFICATIONS
+        permissions.launch(asks.toTypedArray())
+    }
+    fun locate() {
+        status.lastFix?.let { centerOn(handle, it.lat, it.lon); return }
+        if (!hasFine()) { message = "Tap Start ride to allow location, then Locate works."; return }
+        try {
+            LocationServices.getFusedLocationProviderClient(context)
+                .getCurrentLocation(Priority.PRIORITY_BALANCED_POWER_ACCURACY, null)
+                .addOnSuccessListener { loc -> if (loc != null) centerOn(handle, loc.latitude, loc.longitude) else message = "No location yet." }
+        } catch (e: SecurityException) { message = "Location is off for Bridge Ride." }
+    }
+
+    Box(Modifier.fillMaxSize()) {
+        BridgeMap(Modifier.fillMaxSize(), handle)
+        Column(Modifier.align(Alignment.TopStart).safeDrawingPadding().padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            GpsLine(status, now)
+        }
+        OutlinedButton(
+            onClick = ::locate,
+            modifier = Modifier.align(Alignment.CenterEnd).padding(12.dp).heightIn(min = 48.dp),
+            colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.surface),
+        ) { Text("Locate") }
+        Card(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(12.dp)) {
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Stats(status, now)
+                if (status.recording) HoldToStop { Recorder.stop(context) }
+                else Button(
+                    onClick = ::startRide,
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp),
+                    shape = RoundedCornerShape(16.dp),
+                ) { Text("Start ride", fontSize = 22.sp, fontWeight = FontWeight.Bold) }
+                message?.let { Text(it, color = MaterialTheme.colorScheme.error) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun LibraryTab() {
+    val context = LocalContext.current
+    val status by Recorder.status.collectAsStateWithLifecycle()
+    var rides by remember { mutableStateOf(emptyList<RideSummary>()) }
+    var pendingExport by remember { mutableStateOf<RideSummary?>(null) }
+    var message by remember { mutableStateOf<String?>(null) }
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(status.recording) { rides = withContext(Dispatchers.IO) { RideStore.list(context) } }
 
     val exporter = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/gpx+xml")) { uri: Uri? ->
         val ride = pendingExport ?: return@rememberLauncherForActivityResult
@@ -105,56 +201,35 @@ fun RecorderScreen() {
         }
     }
 
-    val permissions = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-        val fine = result[Manifest.permission.ACCESS_FINE_LOCATION] == true
-        val coarse = result[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-        message = when {
-            fine -> { Recorder.start(context); null }
-            coarse -> "Approximate location only. Recording needs precise location: tap Start again and choose Precise."
-            else -> "Location is off for Bridge Ride. Recording needs it while a ride runs."
+    LazyColumn(
+        Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        item { Spacer(Modifier.height(8.dp)); Text("Ride log", fontSize = 28.sp, fontWeight = FontWeight.Bold) }
+        message?.let { m -> item { Text(m, color = MaterialTheme.colorScheme.secondary) } }
+        if (rides.isEmpty()) item { Text("No rides yet.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+        items(rides, key = { it.file.name }) { ride ->
+            RideRow(ride, recording = status.recording && ride.startMs == status.startMs) {
+                pendingExport = ride
+                exporter.launch(ride.file.name.replace(".csv", ".gpx"))
+            }
         }
+        item { Spacer(Modifier.height(24.dp)) }
     }
+}
 
-    fun startRide() {
-        val hasFine = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-        if (hasFine) { Recorder.start(context); message = null; return }
-        val asks = mutableListOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        if (Build.VERSION.SDK_INT >= 33) asks += Manifest.permission.POST_NOTIFICATIONS
-        permissions.launch(asks.toTypedArray())
-    }
-
-    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        LazyColumn(
-            Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            item {
-                Spacer(Modifier.height(8.dp))
-                Text("Bridge Ride", fontSize = 28.sp, fontWeight = FontWeight.Bold)
-                Text("0.1 recorder · test build", color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-            item { BatteryCheck() }
-            item { GpsLine(status, now) }
-            item { Stats(status, now) }
-            item {
-                if (status.recording) HoldToStop { Recorder.stop(context) }
-                else Button(
-                    onClick = ::startRide,
-                    modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp),
-                    shape = RoundedCornerShape(16.dp),
-                ) { Text("Start ride", fontSize = 22.sp, fontWeight = FontWeight.Bold) }
-            }
-            message?.let { m -> item { Text(m, color = MaterialTheme.colorScheme.error) } }
-            item { Text("Rides", fontSize = 20.sp, fontWeight = FontWeight.Bold) }
-            if (rides.isEmpty()) item { Text("No rides yet.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
-            items(rides, key = { it.file.name }) { ride ->
-                RideRow(ride, recording = status.recording && ride.startMs == status.startMs) {
-                    pendingExport = ride
-                    exporter.launch(ride.file.name.replace(".csv", ".gpx"))
-                }
-            }
-            item { Spacer(Modifier.height(24.dp)) }
-        }
+@Composable
+private fun SettingsTab() {
+    val context = LocalContext.current
+    val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "" }
+    Column(
+        Modifier.fillMaxSize().safeDrawingPadding().padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text("Settings", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+        BatteryCheck()
+        Text("Bridge Ride $version · test build", color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
     }
 }
 
@@ -163,7 +238,7 @@ private fun BatteryCheck() {
     val context = LocalContext.current
     val pm = context.getSystemService(PowerManager::class.java)
     val ok = pm.isIgnoringBatteryOptimizations(context.packageName)
-    if (ok) return
+    if (ok) { Text("Battery: Unrestricted. Tracking will not be stopped by battery saving."); return }
     Card(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text("Battery may stop tracking", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.error)
