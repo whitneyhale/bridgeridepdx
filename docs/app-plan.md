@@ -58,7 +58,7 @@ Must, Should, Could. Won't is listed at the end.
 - Could: As a rider, I set pass distance and detour budget.
 
 ### Won't (for now)
-Accounts, social features, live location sharing, themed rides, other cities.
+Accounts, social features, live location sharing, other cities. (Themed rides moved into the plan on 2026-11-05, task 3.11.)
 
 ## Rules
 

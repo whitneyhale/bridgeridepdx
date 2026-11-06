@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bridge Ride PDX</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -91,6 +92,8 @@
 </section>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js"></script>
 <script>
 const C = {ink:'#15211D', river:'#1F5F8B', greenway:'#1B6B45', signal:'#B4480F'};
 const DIR = {west:'eastbound', east:'westbound', south:'northbound', north:'southbound'};
@@ -98,8 +101,9 @@ const KEY = 'bridgeride.routes.v1';
 const $ = id => document.getElementById(id);
 
 const map = L.map('map', {zoomControl:true}).setView([45.5231,-122.6765], 13);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  {maxZoom:19, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+// OpenFreeMap vector tiles: free, no key (openfreemap.org). Replaced the OSM tile server, which is for light use only.
+L.maplibreGL({style:'https://tiles.openfreemap.org/styles/liberty',
+  attribution:'<a href="https://openfreemap.org">OpenFreeMap</a> &copy; <a href="https://www.openmaptiles.org/">OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
 
 const setStatus = (t, warn) => { const s=$('status'); s.textContent=t; s.classList.toggle('warn', !!warn); };
 

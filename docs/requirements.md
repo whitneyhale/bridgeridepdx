@@ -39,4 +39,4 @@ Bridge Ride PDX: a free cycling route planner for Portland built around the rive
 
 ## Won't (this version)
 
-Accounts, social features, live location sharing, themed rides, other cities.
+Accounts, social features, live location sharing, other cities. (Themed rides moved into the plan on 2026-11-05, task 3.11.)

@@ -6,7 +6,7 @@ A free cycling route planner for Portland, built around the river bridges: green
 
 - Built and checked: routing engine on a Portland map, bridge data for 14 crossings, name matching, overpasses, rules, screen drafts, a web map that shows bridges and GPS.
 - Not built: recording, route following, turn prompts, saving, ride log.
-- Next: slice S1, record a ride only, tested on the bike. See `docs/remaining-work.md`.
+- Next: native Android app, Phase 1. Release 0.1 records a ride. See `docs/remaining-work.md` and `docs/android-plan.md`.
 
 ## Start here
 
@@ -14,7 +14,10 @@ A free cycling route planner for Portland, built around the river bridges: green
 |---|---|
 | `docs/project-prompt.md` | Briefing for any AI or developer: status, unique parts, bugs, gotchas, data, inputs and outputs |
 | `docs/requirements.md` | All requirements on one page |
-| `docs/remaining-work.md` | Bike-testable slices, in order |
+| `docs/remaining-work.md` | Tasks by phase, one at a time |
+| `docs/android-plan.md` | Android decisions, stack, modules |
+| `docs/qa-plan.md` | QA rules, test card and bug templates |
+| `android/` | The Android app |
 | `docs/routing-rules.md` | Every routing rule, with change log and one section per bridge |
 | `docs/ux-spec.md` | How the app looks and behaves (Wayfinding look) |
 | `docs/design/` | Screen drafts, design-system prompt, palette check |

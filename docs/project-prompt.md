@@ -1,6 +1,6 @@
 # Prompt: Bridge Ride PDX project briefing
 
-Paste this into a new chat or give it to a developer before they touch the repo `whitneyhale/bridgeridepdx`. Updated 2026-10-23.
+Paste this into a new chat or give it to a developer before they touch the repo `whitneyhale/bridgeridepdx`. Updated 2026-11-05.
 
 ---
 
@@ -38,10 +38,11 @@ Plan a ride like a Portland rider thinks ("Hawthorne out, Steel back"), on green
 | Name matcher | Done | 40 of 40 cases |
 | Overpasses | Done, weights untested on real rides | `data/overpasses.json` |
 | Bridge descriptions | 3 of 14 written | `content/bridges/` |
-| Web map page | Shows bridges and GPS | headless Chrome test, 28 points |
-| Recording, following, prompts, saving, ride log | Not built | `docs/remaining-work.md` |
+| Web map page | PC planning page; OpenFreeMap tiles since 2026-11-05 | headless Chrome test, 28 points |
+| Android app (native, N-11) | Phase 1 started: shell, CI and recorder (release 0.1) | `android/`, `docs/android-plan.md`, `docs/remaining-work.md` |
+| Following, prompts, saving, ride log | Not built | `docs/remaining-work.md` |
 | Design system | Not built; prompt ready | `docs/design/design-system-prompt.md` |
-| Screen drafts | 8 drafts, not reviewed by Whitney | `docs/design/` |
+| Screen drafts | v1 in repo, v2 in Figma; v3 changes listed (task 1.0) | `docs/design/screen-descriptions.md` |
 
 ## Known bugs
 
@@ -52,7 +53,7 @@ Plan a ride like a Portland rider thinks ("Hawthorne out, Steel back"), on green
 5. Waypoints on one side of the river do not force a bridge; Bridge stops are required (ride 13).
 6. The engine leaves the Steel Bridge unnamed in directions.
 7. Color-blind checks fail for 5 decided or proposed pairs, worst is route blue vs greenway green (`docs/design/palette-report.md`).
-8. Screen drafts: the Plan "add stop" row is cut off by the bottom bar; the Settings Privacy row is hidden under the nav bar.
+8. Screen drafts v2 and earlier show your position as an arrow; it must be the bike marker (N-09). Fixed in v3 (task 1.0).
 
 ## Known gotchas
 
@@ -107,7 +108,7 @@ Planned app records (not built): Route (name, notes, tags, stops in order with t
 | Data tools (`tools/*.py`) | Portland OpenStreetMap file, engine at localhost:8989, hand files | JSON in `tools/.cache/` and `data/` |
 | Routing engine | Points, profile, custom model, headings | Path, distance, time, instructions |
 | Name matcher | Typed or spoken bridge name | One bridge id, several (ask), or none |
-| Phone app (planned) | GPS fixes, taps, search text, GPX files | Map, turn prompts, warnings, GPX export, ride log |
+| Phone app (native Android, in progress) | GPS fixes, taps, search text, GPX files | Map, turn prompts, warnings, GPX export, ride log |
 | Checks | Data files, engine | PASS or FAIL lines, `docs/design/palette-report.md` |
 
 ## Read next

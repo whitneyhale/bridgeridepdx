@@ -45,7 +45,7 @@ If a Figma tool or an image-generation tool is available in that chat, use it. I
 - A bridge is a directional crossing (eastbound or westbound), not a point. Lane side is shown.
 - Five stop types: Stop, Pass by, Road, Bridge, Destination.
 - Placeholders in [square brackets] are values the app does not compute yet. Keep them.
-- Core planning stays free. No accounts, no social features, no themed rides in this version.
+- Core planning stays free. No accounts, no social features. Themed rides allowed (decided 2026-11-05; plan task 3.11).
 - Dark mode: yes, light and dark.
 - Theme: roses (Portland, City of Roses), bikes, bridges, dark greens, dark reds, Willamette blue, and a larger, bluer Columbia. Proposed palette additions: Forest #0F3D2B, Rose #9B1B30, Columbia #1769B8 (dark mode set in `palette.json`).
 - Icons: cartoon-simple, one per bridge (all 14 in `data/bridges.json`), plus rose, bicycle, and a stag head. The stag is an original drawing inspired by Portland's white stag; do not copy the sign or its lettering.

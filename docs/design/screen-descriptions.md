@@ -1,31 +1,44 @@
-# Bridge Ride PDX: main screens
+# Bridge Ride PDX: main screens (v2, new theme)
 
-Renders of the first drafts in `docs/design/` (2026-10-23, not yet reviewed). Look: Wayfinding. Heading font in the images is a stand-in (DejaVu Sans Condensed); the real one is Barlow Semi Condensed. Values in [brackets] are not computed yet.
+Rebuilt 2026-10-23 from the first drafts in this folder. Copied from the claude.ai project on 2026-11-05. The v2 images (`01-map` to `07-first-launch`, light and dark) live in the Figma file "Bridge Ride PDX - phone screens v2", not in this repo.
 
-## 1. Map (idle) - `01-map.png`
-Search bar ("Where to? Try "the hawthorne""), map layers button, filter chips (East side, South of Burnside, Between Morrison and Hawthorne). Map shows the river, bridges as gray bars with names, greenways in green, your position in blue. Bottom sheet "Near you" lists nearby bike routes (Eastbank Esplanade, Salmon-Taylor, Clay Street) and two nearest bridge cards (Hawthorne, Morrison). Four-tab nav: Map, Plan, Library, Settings.
+Light and dark for every screen except First launch, which is always forest green. Theme: Forest, Rose, Greenway, Willamette, Columbia. Heading font in the images is a stand-in (DejaVu Sans Condensed); the real one is Barlow Semi Condensed. Values in [brackets] are not computed yet. The map is a stylised, not-to-scale drawing, not real tiles. Warnings stay orange (decision still open).
 
-## 2. Plan a route - `02-plan.png`
-Route name and summary (Loop, 5.5 mi, Greenway first), Save button, small map. Stops list with type labels: Start, Bridge westbound, Road northbound, Bridge eastbound, Destination (loop). Drag to reorder. Bottom: style chips (Greenway first, Balanced, Low stress, more by scroll) and a large Start ride button.
-Seen in the render: the dashed "add stop" row is cut off by the bottom bar.
+## 1. Map (idle)
+Search bar with rose mark ("Where to? Try "the hawthorne""), layers and locate buttons, filter chips (East side, South of Burnside, Morrison to Hawthorne; the row scrolls). Map shows the Willamette, greenways in green with white casing, car-free paths dashed, bridges as bars with name pills (Hawthorne highlighted, Marquam dimmed and dashed for no bikes), your position in blue with heading. Sheet "Near you": two bridge cards with layer 2 icons (Hawthorne, Morrison) and a bike routes row (Eastbank Esplanade). Four-tab nav: Map, Plan, Library, Settings.
 
-## 3. Ride - `03-ride.png`
-Dark next-turn banner (500 ft, Keep right onto Hawthorne Bridge, North side path, westbound). Orange pill "GPS estimated, last fix 12 s ago". Lift bridge warning. Map with your arrow inside a dashed uncertainty circle. Bottom panel: next leg, [mi] left, Arrive [time]; Pause, Re-route, End buttons.
+## 2. Plan a route
+Route name, summary (Loop, 5.5 mi, Greenway first), Save. Small map with the loop route. Five stop rows with type glyphs and drag handles: Start, Bridge westbound, Road northbound, Bridge eastbound, Destination (loop). "Add a stop" row now fully visible. Style chips (Greenway first, Balanced, Low stress, Scenic) and a large Start ride button with the bicycle mark.
 
-## 4. Bridge sheet - `04-bridge-sheet.png`
-Category tag (Mixed use bridge), name, one-sentence summary, Cross eastbound and Cross westbound buttons. "Which side" shows North = westbound path, South = eastbound path, with a data caveat. "Shared with" chips (Cars, TriMet lines, Bikes, People walking). Where it is, Getting on and off.
+## 3. Ride
+Forest next-turn banner (500 ft, Keep right onto Hawthorne Bridge, North side path, Westbound). Orange pill "GPS estimated, last fix 12 s ago". Lift bridge warning card. Map with your arrow inside a dashed uncertainty circle and the route in Willamette blue. Bottom panel: next leg, [mi] left, Arrive [time], and Pause, Re-route, End (End in rose).
 
-## 5. Library - `05-library.png`
-Planned / Ride log toggle, search by name or tag. Saved route cards with length and tags (Hawthorne out, Steel back; Sellwood loop). Recently ridden entry (Banks-Vernonia Trail, [date]). "+ Log a past ride".
+## 4. Bridge sheet
+Hero scene with the layer 2 Hawthorne icon and the bike with rose basket. Tags (Mixed use bridge, Lift bridge), name, one-sentence summary, Cross eastbound and Cross westbound buttons. Which side: North = westbound path, South = eastbound path, with the data caveat. Shared with chips and Where it is. The sheet scrolls; Getting on and off and Good to know sit below.
 
-## 6. Settings - `06-settings.png`
-Routing: default style, pass-by distance (150 m), pass-by detour (400 m). Crossings: overpass preference, avoid stairs, streetcar and MAX track warning. Riding: units, Samsung battery check. Privacy: trim start and end when sharing.
-Seen in the render: the bottom nav covers the Privacy row until you scroll.
+## 5. Library
+Planned / Ride log toggle, search. Two route cards with map thumbnails, length and tags (Hawthorne out, Steel back; Sellwood loop). Recently ridden entry (Banks-Vernonia Trail, [date]). Log a past ride.
 
-## 7. First launch - `07-first-launch.png`
-Dark screen. Logo mark (river with three bridge bars), "Bridge Ride PDX", one-line pitch ending "Free." Three numbered steps (say a bridge any way, pick direction, save and ride). Samsung battery note, location asked at Start ride. Get started button.
+## 6. Settings
+Routing (default style, pass-by 150 m and 400 m), Crossings (overpasses, stairs, streetcar and MAX tracks), Riding (units, Samsung battery check), Privacy (trim start and end when sharing). Fits above the nav with the Privacy row fully visible.
 
-## 8. PC plan - `08-pc-plan.png`
-Desktop prototype page: top bar (name, Open, Export GPX, Save), left stops panel with the five stop types plus Avoid, routing style, stats (5.5 mi, [%] on greenway or path, 2 bridges), large map with legend (Your route, Greenway or path, Other bridge).
+## 7. First launch
+Always forest. Columbia band across the top (wider, bluer), Willamette below with Steel, Hawthorne and Sellwood icons, bike with rose basket. Name, pitch ending "Free.", three numbered steps (rose circles), Samsung battery note, Get started.
 
-Update 2026-10-23: the rider position on Map and Ride is now a small bike marker with a heading wedge, not an arrow or dot.
+## Fixed from the first drafts
+Plan: "Add a stop" row was cut off by the bottom bar. Settings: bottom nav covered the Privacy row. Both now fit with 8 px or more clearance.
+
+## Needed in v3 (plan task 1.0, decided 2026-11-05)
+
+- Your position is the bike marker (N-09), never a blue dot or arrow. v2 Map and Ride show an arrow: fix.
+- Nav: Map, Library, Settings. The Plan tab goes; search starts plans.
+- Map: the label chips become Home, Work and favorites (N-14). Layers button 48 px.
+- Ride: one status line, most urgent first (lift, off route, GPS). Lift warning only within half a mile. No Re-route button (N-13). End is press-and-hold 1 s. A Destination button opens Home, Work, favorites. Dark variant for night riding.
+- Plan: one "Style" control instead of chips. Stops as numbered circles placed where they really are; best order line (T-11).
+- Bridge sheet: one Cross button from your side of the river; details fold below; Sources row full width.
+- Library: toggle 48 px; no test labels on cards.
+- First launch: river picture, one line, Get started; Samsung battery steps move to the first Start ride.
+- New: end-of-ride card (rating, bridges crossed as icons) for task 1.7.
+
+## Still open
+Logo pick (A, B or C), unverified bridge colors, map base (restyled tiles or default), orange vs red for warnings, Metro Bike There license for route-type colors, tagline.

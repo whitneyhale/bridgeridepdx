@@ -6,9 +6,9 @@ Working document and shared reference. Read it as a rider (the Ruling column) or
 |---|---|
 | Owner | Whitney Hale |
 | Created | 2026-10-23 |
-| Document version | 0.3.0 (WIP) |
+| Document version | 0.4.0 (WIP) |
 | Repository | https://github.com/whitneyhale/bridgeridepdx (branch main) |
-| Last updated | 2026-10-23 |
+| Last updated | 2026-11-05 |
 
 ## How to use this file
 
@@ -100,6 +100,7 @@ The first point is the start. After it, each stop is one of five types. Avoid is
 | T-08 | Bridge: cross this bridge in this direction. Hard. | See B-03. | Decided |
 | T-09 | Destination: the last place. One per route, always last. Options: loop back to start, or open end. | Final leg ends here. Dragging a new stop past it moves the Destination. | Decided |
 | T-10 | Avoid: stay out of a street or an area. Applies to the whole route in any style. | Custom model area with priority multiplier 0, or block list. | Decided |
+| T-11 | Best stop order: the app orders Stops for the rider by the cost of riding them in the chosen style, not by straight-line distance. Start is the rider; the end is the Destination or back to start. Pinned stops keep their place. A Bridge stop with no direction gets the one the order needs. A chain place ("any Fred Meyer") also picks which store. | Pair costs from the engine in the active style; all orders tried up to 8 stops, near-best heuristic above. Keep the rider's order unless the best saves at least 5% or 0.2 mi. Pass by stops are excluded, then slotted in (T-03). Target: 6 stops within 5 s. | Decided |
 
 ### 2.5 Routing styles and modifiers
 
@@ -115,6 +116,8 @@ The first point is the start. After it, each stop is one of five types. Avoid is
 | Y-08 | Smooth surface: avoid gravel, cobbles, and rough paving. | `surface` encoded value. Not built. | Decided |
 | Y-09 | Modifiers work on top of any style: tracks (S-03), intersections (S-04), dismount (S-05), no backtracking, climb budget, night (S-06), and up to three alternatives with distance, time, climb, and a stress score. | Not built. | Decided |
 | Y-10 | A style alone does not reproduce how a rider rides. Bridge stops and via points decide which side of the river and which bridge. | Test ride 6 and 13 findings (section 3.2). | Decided |
+| Y-11 | Fewest turns: fewer turns, easier to follow while riding. | Ask for up to 3 routes in the active style, keep the one with the fewest turn instructions. Not built. | Decided |
+| Y-12 | Ride back: return the way you came. | Reverse the stops, not the line. Each Bridge stop flips direction, so its lane side flips too (Hawthorne back = south side). Not built. | Decided |
 
 ### 2.6 Street hierarchy
 
@@ -146,9 +149,13 @@ The rider's rule: some streets are better than others, and "better" has more tha
 | N-05 | When off route, reroute from the current position in the same style. The saved route stays unchanged. | New route is a session route. Offer to save it. | Decided |
 | N-06 | Ride tracking keeps running when the phone locks. | Android foreground service of type location. Ask for permission at Start ride. Resume the exact route after lock. | Decided |
 | N-07 | Samsung battery settings can stop tracking. Guide the rider through them. | Checklist: battery not optimized for the app, not on sleeping apps, start in the foreground before locking. | Decided |
-| N-08 | Decision gate: ride 30 minutes in the web app with the screen locked for 10. If track gaps exceed 10 seconds, build the Ride screen natively in Kotlin. | One test, one pass or fail. Slice S1 in `docs/remaining-work.md` runs it. | Decided |
+| N-08 | Decision gate: ride 30 minutes in the web app with the screen locked for 10. If track gaps exceed 10 seconds, build the Ride screen natively in Kotlin. | One test, one pass or fail. Slice S1 in `docs/remaining-work.md` runs it. | Superseded by N-11 |
 | N-09 | The rider is shown as a small bike, not an arrow. | Disc with a white bicycle glyph and a heading wedge; turns warning orange when GPS is estimated. `docs/ux-spec.md`. | Decided |
-| N-10 | Phone tests run in Chrome on Android over HTTPS. | Browser GPS needs a secure origin (Chrome); localhost is exempt. GitHub Pages from the public repo. DuckDuckGo browser untested. | Decided |
+| N-10 | Phone tests run in Chrome on Android over HTTPS. | Browser GPS needs a secure origin (Chrome); localhost is exempt. GitHub Pages from the public repo. DuckDuckGo browser untested. Applies to the web prototype only since N-11. | Decided |
+| N-11 | The phone app is native Android. Browser and iOS ports come after it rides well. | Kotlin and Jetpack Compose, MapLibre with OpenFreeMap tiles, location foreground service, Room storage. App logic in a separate module so ports reuse it. | Decided |
+| N-12 | Two routing models: a slow planner and a fast navigator. | Planner (PC, later hosted): every preference, best order, alternatives, bridge checks, up to 5 s. Navigator (phone, offline, under 1 s): line-only rejoin, then a corridor slice the planner sends, then a full router. Navigator answers pass the bridge and banned-way checks or the old route is kept. | Decided |
+| N-13 | Rerouting respects the road the rider chose. | No off-route check while GPS is estimated, stopped, or walking. Work out Rejoin (ahead, never behind) and Continue from here (favors the current road). Switch quietly when it adds under 10% or 0.3 mi; otherwise show both for 10 s, then take the cheaper. No U-turn unless the only way or 30% shorter. One announcement per minute. Skipped bridge: ask once, default keep. Setting: Automatic, Ask, Off. | Proposed |
+| N-14 | Quick destinations: Home, Work and up to 3 favorites, one tap on the map, two mid-ride. | Stored on the phone only; never in the repo, GPX, or shared routes. Mid-ride switch has no dialog, Undo for 5 s; remaining stops dropped and restored by Undo. | Decided |
 
 ### 2.8 Data, sharing, and privacy
 
@@ -352,6 +359,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
+| 0.4.0 | 2026-11-05 | pending | Native Android, Fewest turns, Ride back, best stop order, planner and navigator, rerouting, quick destinations. |
 | 0.3.0 | 2026-10-23 | 226e8fa | Ride 6 confirmed, bike rider marker, phone test browser and hosting. |
 | 0.2.1 | 2026-10-23 | a1efbac | Ross Island and Tilikum transit checked on TriMet. |
 | 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
@@ -364,6 +372,18 @@ The Git reference is the commit hash, tag, or pull request number where that ver
 ## 6. Changelog
 
 Newest first. One entry per change. Copy the template below for each new entry.
+
+### 2026-11-05, doc version 0.4.0
+
+- Reporter: Whitney Hale
+- Rules touched: T-11, Y-11, Y-12, N-11 to N-14 added. N-08 superseded by N-11. N-10 limited to the web prototype.
+- What changed (plain language): the phone app is native Android. Two of Whitney's preference algorithms from 2026-10-20 become styles: Fewest turns and Ride back. The app orders stops for the rider in the chosen style. Planning and navigating use separate models. Rerouting keeps the road the rider chose when it costs little. Home, Work and favorites are one tap away and stay on the phone.
+- Why: Whitney's decisions in the Android plan session, 2026-11-05.
+- Developer notes: plan doc "Bridge Ride PDX: Android plan" on claude.ai; `docs/android-plan.md` summarizes it. N-13 thresholds (10%, 0.3 mi, 30%) are proposed and wait on open questions 12 to 14.
+- GitHub version: pending
+- Status after change: Decided, except N-13 Proposed
+- Test rides affected: none yet
+- Replaces: N-08
 
 ### 2026-10-23, doc version 0.3.0
 
@@ -464,6 +484,9 @@ Example of a filled entry:
 9. What should count as the "most common" bike routes near you (L-07)?
 10. On the Interstate Bridge, which side path do you use going north, and going south?
 11. Do you know which C-TRAN routes use the I-5 and I-205 bridges (C-10)? Ross Island was checked on TriMet: no current line found.
+12. Rerouting default: Automatic, or Ask every time (N-13)?
+13. How much extra is fine before the app asks: 10% or 0.3 mi, or different numbers (N-13)?
+14. When you walk the bike, should navigation pause or keep going at walking pace (N-13)?
 
 ## 9. Bridges
 
