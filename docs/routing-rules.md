@@ -359,7 +359,7 @@ From `data/overpasses.json`, latitude 45.46 to 45.56. All low preference except 
 
 | Doc version | Date | Git reference | Summary |
 |---|---|---|---|
-| 0.4.0 | 2026-11-05 | pending | Native Android, Fewest turns, Ride back, best stop order, planner and navigator, rerouting, quick destinations. |
+| 0.4.0 | 2026-11-05 | 213271a | Native Android, Fewest turns, Ride back, best stop order, planner and navigator, rerouting, quick destinations. |
 | 0.3.0 | 2026-10-23 | 226e8fa | Ride 6 confirmed, bike rider marker, phone test browser and hosting. |
 | 0.2.1 | 2026-10-23 | a1efbac | Ross Island and Tilikum transit checked on TriMet. |
 | 0.2.0 | 2026-10-23 | dd8b955 | Columbia crossings, Blumenauer, overpasses, categories, lane sides, location context, GPS gaps, closures, per-bridge sections. |
@@ -380,7 +380,7 @@ Newest first. One entry per change. Copy the template below for each new entry.
 - What changed (plain language): the phone app is native Android. Two of Whitney's preference algorithms from 2026-10-20 become styles: Fewest turns and Ride back. The app orders stops for the rider in the chosen style. Planning and navigating use separate models. Rerouting keeps the road the rider chose when it costs little. Home, Work and favorites are one tap away and stay on the phone.
 - Why: Whitney's decisions in the Android plan session, 2026-11-05.
 - Developer notes: plan doc "Bridge Ride PDX: Android plan" on claude.ai; `docs/android-plan.md` summarizes it. N-13 thresholds (10%, 0.3 mi, 30%) are proposed and wait on open questions 12 to 14.
-- GitHub version: pending
+- GitHub version: 213271a
 - Status after change: Decided, except N-13 Proposed
 - Test rides affected: none yet
 - Replaces: N-08
