@@ -26,10 +26,10 @@ Gate A: two recorded rides replay with no backward jumps; one wrong turn warned 
 
 | Task | What | Old slice | Status |
 |---|---|---|---|
-| 1.8 + 1.1 | App shell, core and app modules, CI, signed APK on each tag | S0 | In progress |
-| 1.3 | Recorder: Start, Stop, locked-screen tracking, GPX export (release 0.1) | S1 | In progress |
-| 1.0 | Screen drafts v3 (list in `docs/design/screen-descriptions.md`) | | Next |
-| 1.2 | Map with bridges | S0 | |
+| 1.8 + 1.1 | App shell, core and app modules, CI, release on new versionName | S0 | Done 2026-11-05 (PR #1, CI green) |
+| 1.3 | Recorder: Start, Stop, locked-screen tracking, GPX export (release 0.1) | S1 | Released v0.1.0; waiting on bike test |
+| 1.0 | Screen drafts v3 (list in `docs/design/screen-descriptions.md`) | | Prototypes done (Main, Plan, Ride, Ride night, Bridge, Summary); palette question open |
+| 1.2 | Map with bridges, Map/Library/Settings tabs (release 0.2) | S0 | Released v0.2.0 (both Maestro flows pass on emulator); waiting on desk test |
 | 1.4 | Bike marker, heading wedge, orange after 5 s stale (N-09) | S2 | |
 | 1.5 | GPS gaps stay calm (P-02 to P-04) | S3 | |
 | 1.6 | Follow a line, off route (N-04), line-only rejoin (N-12) | S4, S5 | |

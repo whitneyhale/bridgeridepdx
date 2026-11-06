@@ -1,0 +1,29 @@
+id,name,end,lat,lon,bike_access
+st-johns,St. Johns Bridge,east,45.588712,-122.756997,yes
+st-johns,St. Johns Bridge,west,45.583246,-122.768646,yes
+fremont,Fremont Bridge,east,45.541859,-122.678201,no
+fremont,Fremont Bridge,west,45.535474,-122.686067,no
+broadway,Broadway Bridge,east,45.533025,-122.671745,yes
+broadway,Broadway Bridge,west,45.529970,-122.677633,yes
+steel,Steel Bridge,east,45.528545,-122.666810,yes
+steel,Steel Bridge,west,45.526903,-122.672369,yes
+burnside,Burnside Bridge,east,45.523086,-122.662565,yes
+burnside,Burnside Bridge,west,45.523266,-122.671585,yes
+morrison,Morrison Bridge,east,45.517447,-122.665330,yes
+morrison,Morrison Bridge,west,45.518534,-122.673457,yes
+hawthorne,Hawthorne Bridge,east,45.512260,-122.661374,yes
+hawthorne,Hawthorne Bridge,west,45.514108,-122.674600,yes
+marquam,Marquam Bridge,east,45.510418,-122.666657,no
+marquam,Marquam Bridge,west,45.503352,-122.674576,no
+tilikum,Tilikum Crossing,east,45.506419,-122.664565,yes
+tilikum,Tilikum Crossing,west,45.503358,-122.669637,yes
+ross-island,Ross Island Bridge,east,45.501552,-122.660367,limited
+ross-island,Ross Island Bridge,west,45.500663,-122.674811,limited
+sellwood,Sellwood Bridge,east,45.464206,-122.661090,yes
+sellwood,Sellwood Bridge,west,45.464278,-122.668985,yes
+interstate-5,Interstate Bridge,north,45.621779,-122.673305,yes
+interstate-5,Interstate Bridge,south,45.612682,-122.678128,yes
+interstate-205,Glenn L. Jackson Memorial Bridge,north,45.603135,-122.551423,yes
+interstate-205,Glenn L. Jackson Memorial Bridge,south,45.573399,-122.547141,yes
+blumenauer,Congressman Earl Blumenauer Bicycle and Pedestrian Bridge,north,45.527279,-122.658633,yes
+blumenauer,Congressman Earl Blumenauer Bicycle and Pedestrian Bridge,south,45.526088,-122.658637,yes
