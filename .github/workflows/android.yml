@@ -1,4 +1,4 @@
-# Every push: data checks, unit tests, lint, APK, then a Maestro smoke test on an emulator.
+# Every push: data checks, unit tests, lint, APK, Maestro on an emulator, then a pre-release if versionName is new.
 name: Android
 
 on:
@@ -76,3 +76,27 @@ jobs:
           path: |
             maestro-report.xml
             ~/.maestro/tests/
+
+  # Publish a pre-release when versionName has no GitHub release yet. Runs only after the
+  # build and Maestro jobs pass, on a push (not a PR). Ship by bumping versionName/versionCode
+  # and adding docs/test-cards/v<versionName>.md.
+  release:
+    needs: [build, ui]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with: { name: apk, path: apk }
+      - name: Publish pre-release if this version is new
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="v$(grep -oP 'versionName = "\K[^"]+' android/app/build.gradle.kts)"
+          if gh release view "$v" >/dev/null 2>&1; then echo "Release $v already exists; nothing to do."; exit 0; fi
+          [ -f "docs/test-cards/$v.md" ] || { echo "missing docs/test-cards/$v.md"; exit 1; }
+          cp apk/app-debug.apk "bridgeride-$v.apk"
+          gh release create "$v" "bridgeride-$v.apk" --target "$GITHUB_SHA" \
+            --prerelease --title "Bridge Ride $v" --notes-file "docs/test-cards/$v.md"
