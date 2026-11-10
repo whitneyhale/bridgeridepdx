@@ -14,6 +14,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
@@ -224,7 +227,7 @@ private fun SettingsTab() {
     val context = LocalContext.current
     val version = remember { context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "" }
     Column(
-        Modifier.fillMaxSize().safeDrawingPadding().padding(16.dp),
+        Modifier.fillMaxSize().safeDrawingPadding().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Text("Settings", style = MaterialTheme.typography.headlineMedium)
@@ -268,10 +271,15 @@ private fun GpsLine(s: RecorderStatus, now: Long) {
         now - s.lastFix.timeMs > STALE_MS -> "GPS estimated · last fix ${(now - s.lastFix.timeMs) / 1000} s ago" to true
         else -> "GPS good · ±${s.lastFix.accuracyM.toInt()} m" to false
     }
-    val bg = if (warn) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
-    val fg = if (warn) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onSecondary
+    // Three states, three looks: off is a plain panel, good is the good-state color, a problem is the warning color with its icon.
+    val idle = !s.recording
+    val look = LocalLook.current
+    val bg = when { idle -> MaterialTheme.colorScheme.surface; warn -> MaterialTheme.colorScheme.error; else -> MaterialTheme.colorScheme.secondary }
+    val fg = when { idle -> MaterialTheme.colorScheme.onSurface; warn -> MaterialTheme.colorScheme.onError; else -> MaterialTheme.colorScheme.onSecondary }
     Row(
-        Modifier.fillMaxWidth().clip(lookShape()).background(bg).padding(horizontal = 16.dp, vertical = 12.dp),
+        Modifier.fillMaxWidth().clip(lookShape()).background(bg)
+            .border(look.border, if (idle) look.borderColor else bg, lookShape())
+            .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         if (warn) Icon(painterResource(R.drawable.ic_warning), contentDescription = "Warning", tint = fg, modifier = Modifier.size(22.dp))
@@ -291,19 +299,20 @@ private fun Warning(text: String) {
 @Composable
 private fun Stats(s: RecorderStatus, now: Long) {
     val elapsed = s.startMs?.let { (if (s.recording) now else s.lastFix?.timeMs ?: it) - it } ?: 0L
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        Stat("Time", "%d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60))
-        Stat("Miles", "%.2f".format(s.distanceM / 1609.344))
-        Stat("Gaps >10 s", s.gapsOver10s.toString())
-        Stat("Longest gap", "${s.longestGapMs / 1000} s")
+    // Four equal columns so values never run together, even in the wide number font of the dark look.
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Stat("Time", "%d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60), Modifier.weight(1f))
+        Stat("Miles", "%.2f".format(s.distanceM / 1609.344), Modifier.weight(1f))
+        Stat("Gaps 10 s+", s.gapsOver10s.toString(), Modifier.weight(1f))
+        Stat("Longest", "${s.longestGapMs / 1000} s", Modifier.weight(1f))
     }
 }
 
 @Composable
-private fun Stat(label: String, value: String) {
-    Column {
-        Text(value, fontSize = 24.sp, fontWeight = FontWeight.Bold, fontFamily = LocalLook.current.numbers)
-        Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
+private fun Stat(label: String, value: String, modifier: Modifier = Modifier) {
+    Column(modifier) {
+        Text(value, fontSize = 22.sp, fontWeight = FontWeight.Bold, fontFamily = LocalLook.current.numbers, maxLines = 1, softWrap = false)
+        Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp, maxLines = 1, softWrap = false)
     }
 }
 

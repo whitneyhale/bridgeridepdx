@@ -19,7 +19,8 @@ Native Android app, released one major function at a time. Updated 2026-11-09 (r
 | 14 bridge crossings; name matcher | 21 of 22 validate; 40 of 40 |
 | 0.1 recorder, GPX export | Released; bike test folded into the 0.2.1 card |
 | 0.2 map with bridge ends, tabs | Released; desk test folded into the 0.2.1 card |
-| 0.2.1 E and C looks, shrunk release build | In CI |
+| 0.2.1 E and C looks, shrunk release build | Released; failed Claude's screenshot review; superseded by 0.2.2 |
+| 0.2.2 layout fixes from that review | In CI; this is the build Whitney tests |
 
 ## Decisions 2026-11-09
 
@@ -35,7 +36,7 @@ Each release adds one major function. Claude's automated tests run first; it shi
 
 | Release | Major function | Claude's tests | Whitney's test |
 |---|---|---|---|
-| 0.2.1 | E and C looks; shrunk release build | Unit tests, lint, palette check, Maestro on the release build with screenshots of both looks | Desk: both looks readable outside; open bike test; speed check with the phone plugged in |
+| 0.2.2 | E and C looks; shrunk release build | Unit tests, lint, palette check, Maestro on the release build with screenshots of both looks | Desk: both looks readable outside; open bike test; speed check with the phone plugged in |
 | 0.3 | Ride basics: bike marker (1.4), GPS gaps (1.5), follow a line and off-route warning (1.6) | Unit tests; replay of recorded rides with gaps cut out; emulator ride with simulated GPS | Bike: one loop over a bridge and under the Esplanade decks; one wrong turn on purpose (Gate A) |
 | 0.4 | Offline Portland map; routes planned on the phone | Unit tests with coverage; 30-mile route under 1.5 s; emulator run in airplane mode | Plan a known ride in airplane mode; compare it to how you would ride it |
 | 0.5 | Bridge stops by name, turn banner, bridge art in the navigation view (2.1, 2.3, 2.5) | Rides 13 and 6 end to end; lane-side checks | Bike: ride 13 with the banner |
@@ -53,7 +54,7 @@ Each release adds one major function. Claude's automated tests run first; it shi
 | The same step fails twice | Stop. Write up the cause and the options; Whitney chooses. |
 | No result yet | Build the next release, but never more than one release ahead of her last result. |
 
-## Not in 0.2.1 (moved)
+## Not in 0.2.2 (moved)
 
 - E sticker icons and the 14 bridge icons as Android vector files: with the screens that show them (bike marker 0.3, bridge art 0.5, passport 0.6).
 - App-specific baseline profile: after the first speed numbers from the phone.
