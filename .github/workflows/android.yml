@@ -76,11 +76,12 @@ jobs:
           target: google_apis
           arch: x86_64
           disable-animations: true
-          # The emulator sometimes drops "offline" just after boot; wait until it is really up.
+          # The emulator sometimes drops "offline"; wait until it is up, and retry the suite once.
+          # Every flow starts with clearState, so a retry is safe. A real app bug fails both tries.
           script: |
             adb wait-for-device; for i in $(seq 1 60); do [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ] && break; sleep 2; done; sleep 10
             for i in 1 2 3; do adb wait-for-device && adb install -r apk/apk/release/app-release.apk && break; sleep 10; done
-            adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml
+            adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml || { echo "::warning::Maestro failed once (often the emulator going offline); retrying the suite"; sleep 15; adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml; }
       - uses: actions/upload-artifact@v7
         if: always()
         with:
