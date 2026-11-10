@@ -25,6 +25,7 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "GPS good.*"
     timeout: 30000
+- takeScreenshot: shot-1-recording-light
 - longPressOn: "Hold to stop"
 - extendedWaitUntil:
     visible: "Start ride"

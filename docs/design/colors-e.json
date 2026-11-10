@@ -1,0 +1,178 @@
+{
+ "name": "E, light (Portland Explorer and Local Culture)",
+ "note": "Decided 2026-11-09 from the Five Design Directions canvas. Code: android Theme.kt (PdxE) and tools/build_map_styles.py. Hazard was #D9480F on the canvas; darkened to #D44304 so white text reaches 4.5:1.",
+ "colors": {
+  "ink": {
+   "hex": "#1D2B4F",
+   "role": "text, outlines"
+  },
+  "muted": {
+   "hex": "#3A4767",
+   "role": "secondary text"
+  },
+  "cream": {
+   "hex": "#FFF5E1",
+   "role": "app background"
+  },
+  "white": {
+   "hex": "#FFFFFF",
+   "role": "cards"
+  },
+  "teal": {
+   "hex": "#0E7C74",
+   "role": "route line, primary actions"
+  },
+  "fern": {
+   "hex": "#3F7D3A",
+   "role": "greenways and bike paths, good states"
+  },
+  "rose": {
+   "hex": "#C2305F",
+   "role": "local picks"
+  },
+  "mustard": {
+   "hex": "#F2B705",
+   "role": "badges, selected tab, bridge dots"
+  },
+  "hazard": {
+   "hex": "#D44304",
+   "role": "warnings only"
+  },
+  "map-land": {
+   "hex": "#FFF0D6",
+   "role": "map land"
+  },
+  "map-water": {
+   "hex": "#9FD3D6",
+   "role": "map water"
+  }
+ },
+ "contrast": [
+  [
+   "ink",
+   "cream",
+   4.5,
+   "body text"
+  ],
+  [
+   "ink",
+   "white",
+   4.5,
+   "text on cards"
+  ],
+  [
+   "muted",
+   "cream",
+   4.5,
+   "secondary text"
+  ],
+  [
+   "muted",
+   "white",
+   4.5,
+   "secondary text on cards"
+  ],
+  [
+   "white",
+   "teal",
+   4.5,
+   "label on the Start button"
+  ],
+  [
+   "white",
+   "fern",
+   4.5,
+   "GPS good banner"
+  ],
+  [
+   "white",
+   "rose",
+   4.5,
+   "label on rose"
+  ],
+  [
+   "ink",
+   "mustard",
+   4.5,
+   "selected tab, badges"
+  ],
+  [
+   "white",
+   "hazard",
+   4.5,
+   "warning banner text"
+  ],
+  [
+   "hazard",
+   "white",
+   3,
+   "warning icon on a card"
+  ],
+  [
+   "teal",
+   "map-land",
+   3,
+   "route line on land"
+  ],
+  [
+   "teal",
+   "map-water",
+   3,
+   "route line over the river (bridges)"
+  ],
+  [
+   "fern",
+   "map-land",
+   3,
+   "bike path on land"
+  ],
+  [
+   "ink",
+   "map-land",
+   3,
+   "bridge dot ring on land"
+  ],
+  [
+   "ink",
+   "map-water",
+   3,
+   "bridge dot ring over water"
+  ]
+ ],
+ "must_differ": [
+  [
+   "teal",
+   "fern",
+   "the route vs a greenway",
+   "route is a solid line with an ink outline; greenways and bike paths are thin and dotted"
+  ],
+  [
+   "teal",
+   "map-water",
+   "the route on a bridge vs the river"
+  ],
+  [
+   "teal",
+   "mustard",
+   "the route vs bridge dots (bridge art never uses the route color)"
+  ],
+  [
+   "hazard",
+   "fern",
+   "warning vs good state",
+   "warnings always carry the warning icon"
+  ],
+  [
+   "hazard",
+   "rose",
+   "warning vs local picks",
+   "warnings always carry the warning icon; picks are round pins"
+  ],
+  [
+   "hazard",
+   "teal",
+   "warning vs the route",
+   "warnings always carry the warning icon"
+  ]
+ ]
+}

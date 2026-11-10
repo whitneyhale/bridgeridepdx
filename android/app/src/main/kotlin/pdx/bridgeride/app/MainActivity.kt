@@ -26,16 +26,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -55,7 +53,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -77,6 +74,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        LookPrefs.load(this)
         setContent { BridgeRideTheme { AppScreen() } }
     }
 }
@@ -91,20 +89,31 @@ fun AppScreen() {
     var tab by remember { mutableStateOf(Tab.MAP) }
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            val look = LocalLook.current
+            Column {
+            HorizontalDivider(thickness = look.border, color = look.borderColor)
+            NavigationBar(containerColor = MaterialTheme.colorScheme.surfaceContainer) {
                 Tab.entries.forEach { t ->
                     NavigationBarItem(
                         selected = tab == t,
                         onClick = { tab = t },
+                        colors = NavigationBarItemDefaults.colors(
+                            indicatorColor = MaterialTheme.colorScheme.secondaryContainer,
+                            selectedIconColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            selectedTextColor = MaterialTheme.colorScheme.onSurface,
+                            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        ),
                         icon = {
                             Icon(
                                 painterResource(when (t) { Tab.MAP -> R.drawable.ic_tab_map; Tab.LIBRARY -> R.drawable.ic_tab_library; Tab.SETTINGS -> R.drawable.ic_tab_settings }),
                                 contentDescription = null,
                             )
                         },
-                        label = { Text(t.label) },
+                        label = { Text(t.label, fontWeight = FontWeight.Bold) },
                     )
                 }
+            }
             }
         },
     ) { pad ->
@@ -161,21 +170,13 @@ private fun MapTab() {
         Column(Modifier.align(Alignment.TopStart).safeDrawingPadding().padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             GpsLine(status, now)
         }
-        OutlinedButton(
-            onClick = ::locate,
-            modifier = Modifier.align(Alignment.CenterEnd).padding(12.dp).heightIn(min = 48.dp),
-            colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.surface),
-        ) { Text("Locate") }
-        Card(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(12.dp)) {
+        SmallButton("Locate", Modifier.align(Alignment.CenterEnd).padding(12.dp), ::locate)
+        Panel(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(12.dp)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Stats(status, now)
                 if (status.recording) HoldToStop { Recorder.stop(context) }
-                else Button(
-                    onClick = ::startRide,
-                    modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp),
-                    shape = RoundedCornerShape(16.dp),
-                ) { Text("Start ride", fontSize = 22.sp, fontWeight = FontWeight.Bold) }
-                message?.let { Text(it, color = MaterialTheme.colorScheme.error) }
+                else BigButton("Start ride", onClick = ::startRide)
+                message?.let { Warning(it) }
             }
         }
     }
@@ -205,7 +206,7 @@ private fun LibraryTab() {
         Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        item { Spacer(Modifier.height(8.dp)); Text("Ride log", fontSize = 28.sp, fontWeight = FontWeight.Bold) }
+        item { Spacer(Modifier.height(8.dp)); Text("Ride log", style = MaterialTheme.typography.headlineMedium) }
         message?.let { m -> item { Text(m, color = MaterialTheme.colorScheme.secondary) } }
         if (rides.isEmpty()) item { Text("No rides yet.", color = MaterialTheme.colorScheme.onSurfaceVariant) }
         items(rides, key = { it.file.name }) { ride ->
@@ -226,10 +227,17 @@ private fun SettingsTab() {
         Modifier.fillMaxSize().safeDrawingPadding().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text("Settings", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+        Text("Settings", style = MaterialTheme.typography.headlineMedium)
+        val choice by LookPrefs.choice.collectAsStateWithLifecycle()
+        Text("Look", fontWeight = FontWeight.Bold)
+        LookPicker(choice) { LookPrefs.set(context, it) }
         BatteryCheck()
         Text("Bridge Ride $version · test build", color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text("Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
+        Text(
+            "Map © OpenFreeMap, OpenMapTiles, OpenStreetMap contributors. Map style based on OSM Liberty (CC BY 4.0). " +
+                "Fonts: Bricolage Grotesque, DM Sans, Archivo, IBM Plex Mono (SIL Open Font License).",
+            color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp,
+        )
     }
 }
 
@@ -239,18 +247,15 @@ private fun BatteryCheck() {
     val pm = context.getSystemService(PowerManager::class.java)
     val ok = pm.isIgnoringBatteryOptimizations(context.packageName)
     if (ok) { Text("Battery: Unrestricted. Tracking will not be stopped by battery saving."); return }
-    Card(Modifier.fillMaxWidth()) {
+    Panel(Modifier.fillMaxWidth()) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("Battery may stop tracking", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.error)
+            Warning("Battery may stop tracking")
             Text("Open App info, tap Battery, choose Unrestricted. Also keep Bridge Ride off the sleeping apps list (N-07).")
-            OutlinedButton(
-                onClick = {
-                    context.startActivity(
-                        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null)),
-                    )
-                },
-                modifier = Modifier.heightIn(min = 48.dp),
-            ) { Text("Open App info") }
+            SmallButton("Open App info") {
+                context.startActivity(
+                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null)),
+                )
+            }
         }
     }
 }
@@ -264,9 +269,23 @@ private fun GpsLine(s: RecorderStatus, now: Long) {
         else -> "GPS good · ±${s.lastFix.accuracyM.toInt()} m" to false
     }
     val bg = if (warn) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
-    Box(
-        Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(bg).padding(horizontal = 16.dp, vertical = 12.dp),
-    ) { Text(text, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
+    val fg = if (warn) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onSecondary
+    Row(
+        Modifier.fillMaxWidth().clip(lookShape()).background(bg).padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        if (warn) Icon(painterResource(R.drawable.ic_warning), contentDescription = "Warning", tint = fg, modifier = Modifier.size(22.dp))
+        Text(text, color = fg, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+    }
+}
+
+/** Warning text always carries the warning icon, so it never depends on color alone (palette fix, 2026-11-09). */
+@Composable
+private fun Warning(text: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Icon(painterResource(R.drawable.ic_warning), contentDescription = "Warning", tint = MaterialTheme.colorScheme.error, modifier = Modifier.size(20.dp))
+        Text(text, color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
+    }
 }
 
 @Composable
@@ -283,7 +302,7 @@ private fun Stats(s: RecorderStatus, now: Long) {
 @Composable
 private fun Stat(label: String, value: String) {
     Column {
-        Text(value, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+        Text(value, fontSize = 24.sp, fontWeight = FontWeight.Bold, fontFamily = LocalLook.current.numbers)
         Text(label, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
     }
 }
@@ -295,7 +314,7 @@ private fun HoldToStop(onStop: () -> Unit) {
     val scope = rememberCoroutineScope()
     var job by remember { mutableStateOf<Job?>(null) }
     Box(
-        Modifier.fillMaxWidth().heightIn(min = 64.dp).clip(RoundedCornerShape(16.dp))
+        Modifier.fillMaxWidth().heightIn(min = 64.dp).clip(lookShape())
             .background(MaterialTheme.colorScheme.onBackground)
             .semantics { contentDescription = "Hold for one second to stop the ride" }
             .pointerInput(Unit) {
@@ -323,7 +342,7 @@ private fun HoldToStop(onStop: () -> Unit) {
 
 @Composable
 private fun RideRow(ride: RideSummary, recording: Boolean, onExport: () -> Unit) {
-    Card(Modifier.fillMaxWidth()) {
+    Panel(Modifier.fillMaxWidth()) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(ride.name, fontWeight = FontWeight.SemiBold)
@@ -331,10 +350,7 @@ private fun RideRow(ride: RideSummary, recording: Boolean, onExport: () -> Unit)
                 Text("%.2f mi · %d fixes · %s".format(ride.distanceM / 1609.344, ride.fixes, gaps),
                     color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
             }
-            if (!recording) Button(
-                onClick = onExport, modifier = Modifier.heightIn(min = 48.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary),
-            ) { Text("GPX") }
+            if (!recording) SmallButton("GPX", onClick = onExport)
         }
     }
 }

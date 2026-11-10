@@ -2,10 +2,10 @@
     android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
     <!-- Bike centered in the 66 dp safe zone, scaled 2x from ic_bike. -->
     <group android:translateX="30" android:translateY="28" android:scaleX="2" android:scaleY="2">
-        <path android:strokeColor="#FFF3F5F2" android:strokeWidth="2" android:fillColor="#00000000"
+        <path android:strokeColor="#FFFFF5E1" android:strokeWidth="2" android:fillColor="#00000000"
             android:strokeLineCap="round" android:strokeLineJoin="round"
             android:pathData="M5.5,17.5m-3.5,0a3.5,3.5 0,1 0,7 0a3.5,3.5 0,1 0,-7 0 M18.5,17.5m-3.5,0a3.5,3.5 0,1 0,7 0a3.5,3.5 0,1 0,-7 0 M5.5,17.5 L9.5,9.5 L15.5,9.5 L18.5,17.5 M9.5,9.5 L12,17.5 L15.5,9.5 M8,6.5 L11,6.5 M9.5,6.5 L9.5,9.5 M15.5,9.5 L14.5,6 L17,6"/>
     </group>
-    <!-- Willamette line under the bike -->
-    <path android:fillColor="#FF1F5F8B" android:pathData="M28,72 h52 a3,3 0,0 1,0 6 h-52 a3,3 0,0 1,0 -6z"/>
+    <!-- Mustard ground line under the bike -->
+    <path android:fillColor="#FFF2B705" android:pathData="M28,72 h52 a3,3 0,0 1,0 6 h-52 a3,3 0,0 1,0 -6z"/>
 </vector>

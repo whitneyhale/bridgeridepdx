@@ -31,8 +31,8 @@ import pdx.bridgeride.core.BikeAccess
 import pdx.bridgeride.core.BridgeEnd
 import pdx.bridgeride.core.BridgeEnds
 
-/** OpenFreeMap: free vector tiles, no key (openfreemap.org). */
-private const val STYLE_URL = "https://tiles.openfreemap.org/styles/liberty"
+// Map styles are app assets (style_e.json light, style_c.json dark), built by tools/build_map_styles.py.
+// Tiles: OpenFreeMap, free vector tiles, no key (openfreemap.org).
 private val PORTLAND = LatLng(45.515, -122.670)
 
 fun loadBridgeEnds(context: Context): List<BridgeEnd> =
@@ -42,13 +42,15 @@ fun loadBridgeEnds(context: Context): List<BridgeEnd> =
 class MapHandle { var map: MapLibreMap? = null }
 
 /**
- * Task 1.2: the map with every bridge end. Bikeable ends are blue-green dots;
- * ends of bridges closed to bikes (Fremont, Marquam) are gray. The bike marker comes in task 1.4.
+ * Task 1.2: the map with every bridge end. Bikeable ends are dots in the look's bridge color
+ * (never the route color); ends of bridges closed to bikes (Fremont, Marquam) are gray.
+ * The style follows the look and is swapped when the rider changes it. The bike marker comes in task 1.4.
  */
 @Composable
 fun BridgeMap(modifier: Modifier, handle: MapHandle) {
     val context = LocalContext.current
     val ends = remember { loadBridgeEnds(context) }
+    val look = LocalLook.current
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val mapView = remember {
         MapLibre.getInstance(context)
@@ -78,20 +80,28 @@ fun BridgeMap(modifier: Modifier, handle: MapHandle) {
             mapView.getMapAsync { map ->
                 handle.map = map
                 map.cameraPosition = CameraPosition.Builder().target(PORTLAND).zoom(11.5).build()
-                map.setStyle(Style.Builder().fromUri(STYLE_URL)) { style ->
-                    addBridgeEnds(style, ends)
-                    // MapLibre sets its own description on the view; replace it once the ends are drawn,
-                    // so screen readers and Maestro know the bridges are on the map.
-                    mapView.contentDescription = "Map, ${ends.size} bridge ends"
-                }
             }
             mapView
         },
         modifier = modifier,
     )
+
+    // Load the style for the current look; runs again when the rider switches light and dark.
+    DisposableEffect(look.mapStyle) {
+        mapView.contentDescription = "Map loading"
+        mapView.getMapAsync { map ->
+            map.setStyle(Style.Builder().fromUri(look.mapStyle)) { style ->
+                addBridgeEnds(style, ends, look)
+                // MapLibre sets its own description on the view; replace it once the ends are drawn,
+                // so screen readers and Maestro know the bridges are on the map and which look is showing.
+                mapView.contentDescription = "Map, ${ends.size} bridge ends, ${if (look.dark) "dark" else "light"}"
+            }
+        }
+        onDispose { }
+    }
 }
 
-private fun addBridgeEnds(style: Style, ends: List<BridgeEnd>) {
+private fun addBridgeEnds(style: Style, ends: List<BridgeEnd>, look: Look) {
     fun layer(id: String, list: List<BridgeEnd>, color: String) {
         val features = list.map { e ->
             Feature.fromGeometry(Point.fromLngLat(e.lon, e.lat)).apply {
@@ -101,12 +111,12 @@ private fun addBridgeEnds(style: Style, ends: List<BridgeEnd>) {
         style.addSource(GeoJsonSource(id, FeatureCollection.fromFeatures(features)))
         style.addLayer(
             CircleLayer(id, id).withProperties(
-                circleRadius(6f), circleColor(color), circleStrokeColor("#FFFFFF"), circleStrokeWidth(2f),
+                circleRadius(7f), circleColor(color), circleStrokeColor(look.bridgeDotRing), circleStrokeWidth(2.5f),
             ),
         )
     }
-    layer("bridge-ends-closed", ends.filter { it.access == BikeAccess.NO }, "#8A9296")
-    layer("bridge-ends", ends.filter { it.access != BikeAccess.NO }, "#367C99")
+    layer("bridge-ends-closed", ends.filter { it.access == BikeAccess.NO }, look.bridgeDotClosed)
+    layer("bridge-ends", ends.filter { it.access != BikeAccess.NO }, look.bridgeDot)
 }
 
 @SuppressLint("MissingPermission") // only called after the precise-location check

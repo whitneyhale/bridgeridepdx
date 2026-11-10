@@ -4,14 +4,17 @@ appId: pdx.bridgeride.app
 - launchApp:
     clearState: true
 - extendedWaitUntil:
-    visible: "Map, 28 bridge ends"
-    timeout: 20000
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000
 - assertVisible: "Locate"
 - assertVisible: "Start ride"
 - tapOn: "Library"
 - assertVisible: "Ride log"
 - tapOn: "Settings"
-- assertVisible: "Bridge Ride 0.2.0.*"
+- assertVisible: "Bridge Ride [0-9]+\\.[0-9]+\\.[0-9]+.*"
+- assertVisible: "Look"
 - assertVisible: "Battery.*"
 - tapOn: "Map"
-- assertVisible: "Map, 28 bridge ends"
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000

@@ -1,0 +1,148 @@
+{
+ "name": "C, dark (Modern Urban Cyclist)",
+ "note": "Decided 2026-11-09 from the Five Design Directions canvas. Code: android Theme.kt (PdxC) and tools/build_map_styles.py. Bridge art is white, not the canvas's route green (safety rule 2026-11-06).",
+ "colors": {
+  "white": {
+   "hex": "#F5F5F5",
+   "role": "text, bridge dots"
+  },
+  "steel": {
+   "hex": "#9A9AA0",
+   "role": "secondary text"
+  },
+  "asphalt": {
+   "hex": "#0B0B0C",
+   "role": "app background, map land"
+  },
+  "concrete": {
+   "hex": "#18181A",
+   "role": "cards"
+  },
+  "green": {
+   "hex": "#22C55E",
+   "role": "route line, primary actions"
+  },
+  "cyan": {
+   "hex": "#3DD6F5",
+   "role": "greenways and bike paths, good states"
+  },
+  "signal": {
+   "hex": "#FF5A47",
+   "role": "warnings only"
+  },
+  "map-water": {
+   "hex": "#1B3D4F",
+   "role": "map water"
+  }
+ },
+ "contrast": [
+  [
+   "white",
+   "asphalt",
+   4.5,
+   "body text"
+  ],
+  [
+   "white",
+   "concrete",
+   4.5,
+   "text on cards"
+  ],
+  [
+   "steel",
+   "asphalt",
+   4.5,
+   "secondary text"
+  ],
+  [
+   "steel",
+   "concrete",
+   4.5,
+   "secondary text on cards"
+  ],
+  [
+   "asphalt",
+   "green",
+   4.5,
+   "label on the Start button"
+  ],
+  [
+   "asphalt",
+   "cyan",
+   4.5,
+   "GPS good banner"
+  ],
+  [
+   "asphalt",
+   "signal",
+   4.5,
+   "warning banner text"
+  ],
+  [
+   "signal",
+   "concrete",
+   3,
+   "warning icon on a card"
+  ],
+  [
+   "green",
+   "asphalt",
+   3,
+   "route line on land"
+  ],
+  [
+   "green",
+   "map-water",
+   3,
+   "route line over the river (bridges)"
+  ],
+  [
+   "cyan",
+   "asphalt",
+   3,
+   "bike path on land"
+  ],
+  [
+   "white",
+   "asphalt",
+   3,
+   "bridge dot on land"
+  ],
+  [
+   "white",
+   "map-water",
+   3,
+   "bridge dot over water"
+  ]
+ ],
+ "must_differ": [
+  [
+   "green",
+   "cyan",
+   "the route vs a greenway",
+   "route is a solid line with a black outline; greenways and bike paths are thin and dotted"
+  ],
+  [
+   "green",
+   "map-water",
+   "the route on a bridge vs the river"
+  ],
+  [
+   "green",
+   "white",
+   "the route vs bridge dots (bridge art never uses the route color)"
+  ],
+  [
+   "signal",
+   "green",
+   "warning vs the route",
+   "warnings always carry the warning icon"
+  ],
+  [
+   "signal",
+   "cyan",
+   "warning vs good state",
+   "warnings always carry the warning icon"
+  ]
+ ]
+}

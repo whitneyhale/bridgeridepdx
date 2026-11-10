@@ -1,4 +1,5 @@
-# Every push: data checks, unit tests, lint, APK, Maestro on an emulator, then a pre-release if versionName is new.
+# Every push: data checks, palette check, unit tests, lint, debug and release APKs, Maestro on an emulator
+# against the release APK (with screenshots of both looks), then a pre-release if versionName is new.
 name: Android
 
 on:
@@ -25,12 +26,18 @@ jobs:
           tail -1 match.txt | grep -qE "^([0-9]+) of \1 passed$" || { echo "name matcher cases failed"; exit 1; }
           python tools/export_bridge_ends.py
           git diff --exit-code android/app/src/main/assets/bridge_ends.csv || { echo "bridge_ends.csv is out of date: run tools/export_bridge_ends.py"; exit 1; }
+      - name: Palette check (contrast, color-blind separation) and map styles up to date
+        run: |
+          python tools/check_palette.py
+          git diff --exit-code docs/design/palette-report.md || { echo "palette-report.md is out of date: run tools/check_palette.py"; exit 1; }
+          python tools/build_map_styles.py
+          git diff --exit-code android/app/src/main/assets/ || { echo "map styles are out of date: run tools/build_map_styles.py"; exit 1; }
       - uses: actions/setup-java@v6
         with: { distribution: temurin, java-version: "17" }
       - uses: gradle/actions/setup-gradle@v6
-      - name: Unit tests, lint, APK
+      - name: Unit tests, lint, debug and release APKs
         working-directory: android
-        run: ./gradlew :core:test :app:lintDebug :app:assembleDebug
+        run: ./gradlew :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease
       - uses: actions/upload-artifact@v7
         if: always()
         with:
@@ -41,7 +48,10 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/mapping/release/mapping.txt
 
   ui:
     needs: build
@@ -69,7 +79,7 @@ jobs:
           # The emulator sometimes drops "offline" just after boot; wait until it is really up.
           script: |
             adb wait-for-device; for i in $(seq 1 60); do [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ] && break; sleep 2; done; sleep 10
-            for i in 1 2 3; do adb wait-for-device && adb install -r apk/app-debug.apk && break; sleep 10; done
+            for i in 1 2 3; do adb wait-for-device && adb install -r apk/apk/release/app-release.apk && break; sleep 10; done
             adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml
       - uses: actions/upload-artifact@v7
         if: always()
@@ -77,6 +87,7 @@ jobs:
           name: maestro
           path: |
             maestro-report.xml
+            shot-*.png
             ~/.maestro/tests/
 
   # Publish a pre-release when versionName has no GitHub release yet. Runs only after the
@@ -99,6 +110,7 @@ jobs:
           v="v$(grep -oP 'versionName = "\K[^"]+' android/app/build.gradle.kts)"
           if gh release view "$v" >/dev/null 2>&1; then echo "Release $v already exists; nothing to do."; exit 0; fi
           [ -f "docs/test-cards/$v.md" ] || { echo "missing docs/test-cards/$v.md"; exit 1; }
-          cp apk/app-debug.apk "bridgeride-$v.apk"
-          gh release create "$v" "bridgeride-$v.apk" --target "$GITHUB_SHA" \
+          cp apk/apk/release/app-release.apk "bridgeride-$v.apk"
+          cp apk/apk/debug/app-debug.apk "bridgeride-$v-debug.apk"
+          gh release create "$v" "bridgeride-$v.apk" "bridgeride-$v-debug.apk" --target "$GITHUB_SHA" \
             --prerelease --title "Bridge Ride $v" --notes-file "docs/test-cards/$v.md"

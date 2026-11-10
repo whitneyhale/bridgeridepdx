@@ -1,4 +1,21 @@
-# Screen drafts
+# Design
+
+## Current look (decided 2026-11-09)
+
+Light is E (Portland Explorer and Local Culture), dark is C (Modern Urban Cyclist), from the claude.ai canvas "Bridge Ride PDX: Five Design Directions". The Wayfinding look below is history.
+
+| File | What |
+|---|---|
+| `colors-e.json`, `colors-c.json` | The two palettes, with the contrast pairs and the pairs that must differ (by color or by a stated shape rule) |
+| `palette-report.md` | Output of `tools/check_palette.py`; CI fails on any FAIL |
+| `map-style-source.json` | Saved copy of OpenFreeMap's Liberty style (fork of OSM Liberty: code BSD 3-Clause, design CC BY 4.0) |
+| `../../tools/build_map_styles.py` | Builds the app's `style_e.json` and `style_c.json` from that copy |
+
+Fonts, packed in the app, all SIL Open Font License (texts in `android/app/src/main/assets/licenses/`): Bricolage Grotesque and DM Sans (E), Archivo and IBM Plex Mono (C).
+
+Rules: bridge art never uses the route color. The route is a solid line with an outline; greenways and bike paths are thin and dotted. A warning always carries the warning icon.
+
+# Screen drafts (Wayfinding, 2026-10-23)
 
 First drafts of the app screens, 2026-10-23. Source files for the design canvas "Bridge Ride PDX screens" on claude.ai (private to Whitney until shared). The canvas is where they are viewed and edited; these copies are for version history.
 

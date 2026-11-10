@@ -12,8 +12,8 @@ android {
         minSdk = 29
         targetSdk = 36
         // Bump both for every release tag (v0.1.0 -> 1, v0.1.1 -> 2, ...).
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.2.1"
         // Phone (S24) and the CI emulator only, to keep the APK small.
         ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
@@ -30,13 +30,18 @@ android {
     }
 
     buildTypes {
-        // Pre-alpha ships the debug build: debuggable, so ride logs can be pulled over USB.
+        // Debug: debuggable, so ride files can be pulled over USB. Attached to each release as "-debug".
         getByName("debug") {
             signingConfig = signingConfigs.getByName("test")
         }
+        // Release: what Whitney rides with since 0.2.1. R8 shrinks and optimizes the code; debug builds of
+        // Compose are much slower, so speed is only ever measured on this build. Same test key, so
+        // debug and release install over each other and keep the rides.
         getByName("release") {
             signingConfig = signingConfigs.getByName("test")
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
