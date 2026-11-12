@@ -1,0 +1,414 @@
+{
+ "generated": "2026-11-11",
+ "source": "OpenFreeMap vector tiles, water layer, zoom 14 (20261101_080013_pt)",
+ "attribution": "OpenFreeMap, (c) OpenMapTiles, data from OpenStreetMap contributors (ODbL)",
+ "convention": "bank[end] is the fraction of the way from that end to the other end at which the water starts, on five parallel lines: 1 and 0.5 corridors to the left, the bridge's own line, 0.5 and 1 corridors to the right, facing from 'from' to 'to'.",
+ "bridges": [
+  {
+   "id": "st-johns",
+   "from": "east",
+   "to": "west",
+   "length_m": 1091,
+   "corridor_m": 169,
+   "water": [
+    [
+     0.442,
+     0.828
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.433,
+     0.437,
+     0.442,
+     0.457,
+     0.49
+    ],
+    "west": [
+     0.167,
+     0.152,
+     0.172,
+     0.178,
+     0.154
+    ]
+   }
+  },
+  {
+   "id": "fremont",
+   "from": "east",
+   "to": "west",
+   "length_m": 938,
+   "corridor_m": 154,
+   "water": [
+    [
+     0.425,
+     0.784
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.427,
+     0.44,
+     0.425,
+     0.423,
+     0.447
+    ],
+    "west": [
+     0.212,
+     0.214,
+     0.216,
+     0.214,
+     0.222
+    ]
+   }
+  },
+  {
+   "id": "broadway",
+   "from": "east",
+   "to": "west",
+   "length_m": 571,
+   "corridor_m": 117,
+   "water": [
+    [
+     0.161,
+     0.611
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.193,
+     0.179,
+     0.161,
+     0.147,
+     0.158
+    ],
+    "west": [
+     0.4,
+     0.404,
+     0.389,
+     0.372,
+     0.337
+    ]
+   }
+  },
+  {
+   "id": "steel",
+   "from": "east",
+   "to": "west",
+   "length_m": 470,
+   "corridor_m": 107,
+   "water": [
+    [
+     0.209,
+     0.769
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.081,
+     0.145,
+     0.209,
+     0.231,
+     0.329
+    ],
+    "west": [
+     0.303,
+     0.286,
+     0.231,
+     0.214,
+     0.201
+    ]
+   }
+  },
+  {
+   "id": "burnside",
+   "from": "east",
+   "to": "west",
+   "length_m": 703,
+   "corridor_m": 130,
+   "water": [
+    [
+     0.365,
+     0.735
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.393,
+     0.39,
+     0.365,
+     0.35,
+     0.339
+    ],
+    "west": [
+     0.254,
+     0.262,
+     0.265,
+     0.251,
+     0.234
+    ]
+   }
+  },
+  {
+   "id": "morrison",
+   "from": "east",
+   "to": "west",
+   "length_m": 645,
+   "corridor_m": 124,
+   "water": [
+    [
+     0.264,
+     0.717
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.261,
+     0.261,
+     0.264,
+     0.255,
+     0.248
+    ],
+    "west": [
+     0.245,
+     0.264,
+     0.283,
+     0.301,
+     0.32
+    ]
+   }
+  },
+  {
+   "id": "hawthorne",
+   "from": "east",
+   "to": "west",
+   "length_m": 1051,
+   "corridor_m": 165,
+   "water": [
+    [
+     0.539,
+     0.895
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.469,
+     0.505,
+     0.539,
+     0.549,
+     0.552
+    ],
+    "west": [
+     0.103,
+     0.118,
+     0.105,
+     0.11,
+     0.114
+    ]
+   }
+  },
+  {
+   "id": "marquam",
+   "from": "east",
+   "to": "west",
+   "length_m": 999,
+   "corridor_m": 160,
+   "water": [
+    [
+     0.086,
+     0.535
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.198,
+     0.14,
+     0.086,
+     0.028,
+     0.0
+    ],
+    "west": [
+     0.383,
+     0.439,
+     0.465,
+     0.493,
+     0.547
+    ]
+   }
+  },
+  {
+   "id": "tilikum",
+   "from": "east",
+   "to": "west",
+   "length_m": 522,
+   "corridor_m": 112,
+   "water": [
+    [
+     0.073,
+     0.885
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.165,
+     0.131,
+     0.073,
+     0.038,
+     0.023
+    ],
+    "west": [
+     0.038,
+     0.081,
+     0.115,
+     0.154,
+     0.185
+    ]
+   }
+  },
+  {
+   "id": "ross-island",
+   "from": "east",
+   "to": "west",
+   "length_m": 1130,
+   "corridor_m": 173,
+   "water": [
+    [
+     0.083,
+     0.499
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.065,
+     0.073,
+     0.083,
+     0.131,
+     0.188
+    ],
+    "west": [
+     0.395,
+     0.503,
+     0.501,
+     0.48,
+     0.453
+    ]
+   }
+  },
+  {
+   "id": "sellwood",
+   "from": "east",
+   "to": "west",
+   "length_m": 616,
+   "corridor_m": 122,
+   "water": [
+    [
+     0.309,
+     0.831
+    ]
+   ],
+   "bank": {
+    "east": [
+     0.173,
+     0.244,
+     0.309,
+     0.375,
+     0.384
+    ],
+    "west": [
+     0.147,
+     0.137,
+     0.169,
+     0.166,
+     0.143
+    ]
+   }
+  },
+  {
+   "id": "interstate-5",
+   "from": "north",
+   "to": "south",
+   "length_m": 1079,
+   "corridor_m": 168,
+   "water": [
+    [
+     0.043,
+     0.848
+    ]
+   ],
+   "bank": {
+    "north": [
+     0.056,
+     0.028,
+     0.043,
+     0.048,
+     0.045
+    ],
+    "south": [
+     0.156,
+     0.182,
+     0.152,
+     0.217,
+     0.23
+    ]
+   }
+  },
+  {
+   "id": "interstate-205",
+   "from": "north",
+   "to": "south",
+   "length_m": 3323,
+   "corridor_m": 392,
+   "water": [
+    [
+     0.155,
+     0.548
+    ],
+    [
+     0.666,
+     0.964
+    ]
+   ],
+   "bank": {
+    "north": [
+     0.196,
+     0.182,
+     0.155,
+     0.12,
+     0.101
+    ],
+    "south": [
+     0.0,
+     0.0,
+     0.036,
+     0.094,
+     0.157
+    ]
+   }
+  },
+  {
+   "id": "blumenauer",
+   "from": "north",
+   "to": "south",
+   "length_m": 132,
+   "corridor_m": 100,
+   "water": [],
+   "bank": {
+    "north": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ],
+    "south": [
+     0.2,
+     0.2,
+     0.2,
+     0.2,
+     0.2
+    ]
+   },
+   "note": "Crosses I-84 and the Union Pacific tracks, not water. The whole 132 m deck is the crossing."
+  }
+ ]
+}

@@ -7,7 +7,8 @@ appId: pdx.bridgeride.app
     visible: "Map, 28 bridge ends, light"
     timeout: 30000
 - assertVisible: "Locate"
-- assertVisible: "Start ride"
+- assertVisible: "Plan a ride"
+- assertVisible: "Record only"
 - tapOn: "Library"
 - assertVisible: "Ride log"
 - tapOn: "Settings"

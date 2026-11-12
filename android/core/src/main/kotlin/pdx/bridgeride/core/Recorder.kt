@@ -103,6 +103,30 @@ object RideStats {
     }
 }
 
+/** Time spent moving, for the ride summary. */
+object MovingTime {
+    /** Slower than this between two fixes counts as stopped (a light, a bridge lift, a photo). */
+    const val MIN_SPEED_MPS = 1.0
+    /** A longer silence than this is a gap, not riding: it is not counted either way. */
+    const val MAX_STEP_MS = 10_000L
+
+    fun ms(fixes: List<Fix>): Long {
+        var total = 0L
+        var last: Fix? = null
+        for (f in fixes) {
+            if (f.accuracyM > RideStats.MAX_ACCURACY_FOR_DISTANCE_M) continue
+            val prev = last
+            last = f
+            if (prev == null) continue
+            val dt = f.timeMs - prev.timeMs
+            if (dt <= 0 || dt > MAX_STEP_MS) continue
+            val speed = RideStats.haversineM(prev.lat, prev.lon, f.lat, f.lon) / (dt / 1000.0)
+            if (speed >= MIN_SPEED_MPS) total += dt
+        }
+        return total
+    }
+}
+
 /** GPX 1.1 track, readable by Strava, Ride with GPS, Garmin and gpx.studio. */
 object Gpx {
     private fun esc(s: String) = s

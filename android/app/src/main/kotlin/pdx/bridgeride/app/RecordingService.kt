@@ -23,6 +23,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import pdx.bridgeride.core.Fix
 import pdx.bridgeride.core.FixLine
 import pdx.bridgeride.core.GapReport
+import pdx.bridgeride.core.RideMeta
+import pdx.bridgeride.core.RidePlan
 import pdx.bridgeride.core.RideStats
 import java.io.BufferedWriter
 import java.io.File
@@ -44,9 +46,11 @@ object Recorder {
     val status: StateFlow<RecorderStatus> = _status.asStateFlow()
     internal fun update(s: RecorderStatus) { _status.value = s }
 
-    fun start(context: Context) = context.startForegroundService(
-        Intent(context, RecordingService::class.java).setAction(RecordingService.ACTION_START),
-    )
+    /** Starts a ride. With a plan the ride follows its line; with none it only records. */
+    fun start(context: Context, plan: RidePlan? = null) {
+        Nav.begin(plan)
+        context.startForegroundService(Intent(context, RecordingService::class.java).setAction(RecordingService.ACTION_START))
+    }
 
     fun stop(context: Context) = context.startService(
         Intent(context, RecordingService::class.java).setAction(RecordingService.ACTION_STOP),
@@ -105,6 +109,8 @@ class RecordingService : Service() {
         startForeground(NOTE_ID, notification("Recording", "Waiting for GPS"), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)
         val file: File = RideStore.newRideFile(this, start)
         writer = BufferedWriter(FileWriter(file, true))
+        // Remember what this ride set out to follow, so the log and the summary can name it.
+        Nav.plan.value?.let { RideStore.writeMeta(file, RideMeta(name = it.name, planId = it.id)) }
         // Keeps the CPU awake between fixes so Samsung power saving does not batch or drop them.
         wakeLock = (getSystemService(POWER_SERVICE) as PowerManager)
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "bridgeride:ride")
@@ -126,6 +132,7 @@ class RecordingService : Service() {
     private fun onFix(f: Fix) {
         val w = writer ?: return
         w.write(FixLine.encode(f)); w.newLine(); w.flush()
+        Nav.onFix(f) // keeps the marker and the progress along the line current, screen on or off
         // Gaps: time since the previous fix of any quality (same rule as GapReport).
         var gaps = status.gapsOver10s
         var longest = status.longestGapMs

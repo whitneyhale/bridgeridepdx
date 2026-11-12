@@ -1,6 +1,6 @@
 # Remaining Work
 
-Native Android app, released one major function at a time. Updated 2026-11-09 (releases and test-result rules); rewritten 2026-11-05 from the Android plan (claude.ai doc "Bridge Ride PDX: Android plan"; summary in `docs/android-plan.md`). Rules cited are in `docs/routing-rules.md`.
+Native Android app, released one major function at a time. Updated 2026-11-12 (release 0.3); 2026-11-09 (releases and test-result rules); rewritten 2026-11-05 from the Android plan (claude.ai doc "Bridge Ride PDX: Android plan"; summary in `docs/android-plan.md`). Rules cited are in `docs/routing-rules.md`.
 
 ## How a task runs
 
@@ -20,7 +20,30 @@ Native Android app, released one major function at a time. Updated 2026-11-09 (r
 | 0.1 recorder, GPX export | Released; bike test folded into the 0.2.1 card |
 | 0.2 map with bridge ends, tabs | Released; desk test folded into the 0.2.1 card |
 | 0.2.1 E and C looks, shrunk release build | Released; failed Claude's screenshot review; superseded by 0.2.2 |
-| 0.2.2 layout fixes from that review | In CI; this is the build Whitney tests |
+| 0.2.2 layout fixes from that review | Released; Whitney's desk test done, bike test folded into the 0.3.0 card |
+| 0.3.0 ride basics and all screens | In CI; this is the build Whitney tests |
+
+## Decisions 2026-11-11 (release 0.3)
+
+Whitney's answers, and what was built from them:
+
+- Scope: ride basics plus every designed screen. Parts with no working logic are labeled "Not built yet" in the app, with the release they are due in.
+- Lines to follow: a recorded ride ("Ride again") and two built-in rides. GPX import was not chosen.
+- The app must deal with GPS drops and weak signal, and with rain and gloves. Ride controls are 64 dp tall, End needs a 1 s hold, Lock ignores touches until Unlock is held.
+- Built-in rides start on the Eastbank Esplanade at the Steel Bridge, a public spot. Whitney's home stays out of the repo.
+- Bridge crossing detection moved up from 0.6, so the summary and the passport show real data. A crossing is land on one bank, then land on the other, staying near the bridge (`android/core` `Crossings.kt`). Where each bank is comes from `data/water_spans.json` (`tools/build_water_spans.py`).
+- Side-of-bridge text is shown only where the data backs it (different sides each way, or the bridge's own text names the side). Sellwood, Interstate, Glenn Jackson and Blumenauer show "side not confirmed" until checked.
+
+The numbers behind the ride rules are in one place, `FollowRules` in `android/core` `RideFollower.kt`:
+
+| Rule | Value |
+|---|---|
+| Marker turns "estimated" (N-09) | 5 s without a good fix |
+| A fix is ignored for the marker | accuracy worse than 35 m |
+| Marker rides on the line | within 25 m of it |
+| Off the line | more than 40 m (or 1.5 times the GPS error) for 8 s |
+| Coasting in a gap | along the line at the last speed for 10 s, then hold |
+| Heading from GPS | only above 1.5 m/s; below that hold it, or use the compass |
 
 ## Decisions 2026-11-09
 
@@ -37,10 +60,10 @@ Each release adds one major function. Claude's automated tests run first; it shi
 | Release | Major function | Claude's tests | Whitney's test |
 |---|---|---|---|
 | 0.2.2 | E and C looks; shrunk release build | Unit tests, lint, palette check, Maestro on the release build with screenshots of both looks | Desk: both looks readable outside; open bike test; speed check with the phone plugged in |
-| 0.3 | Ride basics: bike marker (1.4), GPS gaps (1.5), follow a line and off-route warning (1.6) | Unit tests; replay of recorded rides with gaps cut out; emulator ride with simulated GPS | Bike: one loop over a bridge and under the Esplanade decks; one wrong turn on purpose (Gate A) |
+| 0.3 | Ride basics: bike marker (1.4), GPS gaps (1.5), follow a line and off-route warning (1.6). Also every screen (Plan, Ride, Summary, Passport, Bridge sheet), bridge crossing detection, rain and gloves | Unit tests; replay of rides with gaps cut out; both built-in rides followed start to finish; emulator ride over two bridges with simulated GPS | Bike: Hawthorne out, Steel back, under the Esplanade decks; one wrong turn on purpose; Lock and End with wet fingers (Gate A) |
 | 0.4 | Offline Portland map; routes planned on the phone | Unit tests with coverage; 30-mile route under 1.5 s; emulator run in airplane mode | Plan a known ride in airplane mode; compare it to how you would ride it |
-| 0.5 | Bridge stops by name, turn banner, bridge art in the navigation view (2.1, 2.3, 2.5) | Rides 13 and 6 end to end; lane-side checks | Bike: ride 13 with the banner |
-| 0.6 | Ride log (2.4), bridge passport, diagnostic export, end-of-ride rating (1.7) | Unit tests; emulator crossing stamps the passport | Cross a bridge; send the diagnostic file |
+| 0.5 | Bridge stops by name, add and reorder stops, turn banner, bridge art in the navigation view (2.1, 2.3, 2.5) | Rides 13 and 6 end to end; lane-side checks | Bike: ride 13 with the banner |
+| 0.6 | Diagnostic export; ride log search (2.4). Passport, summary and rating shipped in 0.3 | Unit tests | Send the diagnostic file |
 | 0.7 | Stop order (2.9), quick destinations (2.11), rider profile (2.12), address search (2.7) | Stop-order tests; first match-rate number | 4-stop errand ride |
 | 0.8 | Voice, battery, themed rides, street art (3.3, 3.4, 3.10, 3.11) | 4-hour simulated ride; memory check | 2-hour locked-screen ride, offline (Gate C) |
 

@@ -1,13 +1,14 @@
-# Release 0.1 smoke test (task 1.3): start a ride, get a fix, hold to stop, ride appears in the list.
+# Release 0.1 smoke test (task 1.3), kept current: record with no line to follow, get a fix,
+# hold to end, see the summary, and the ride appears in the log.
 appId: pdx.bridgeride.app
 ---
 - launchApp:
     clearState: true
-- assertVisible: "Start ride"
+- assertVisible: "Record only"
 - setLocation:
     latitude: 45.5134
     longitude: -122.6740
-- tapOn: "Start ride"
+- tapOn: "Record only"
 # Permission dialogs differ by Android version; tap whichever appears.
 - tapOn:
     text: "While using the app"
@@ -18,7 +19,8 @@ appId: pdx.bridgeride.app
 - tapOn:
     text: "Allow"
     optional: true
-- assertVisible: "Hold to stop"
+- assertVisible: "End"
+- assertVisible: "Recording"
 - setLocation:
     latitude: 45.5134
     longitude: -122.6720
@@ -26,9 +28,18 @@ appId: pdx.bridgeride.app
     visible: "GPS good.*"
     timeout: 30000
 - takeScreenshot: shot-1-recording-light
-- longPressOn: "Hold to stop"
+- longPressOn: "End"
 - extendedWaitUntil:
-    visible: "Start ride"
+    visible: "RIDE SAVED"
+    timeout: 15000
+- assertVisible: "Ride, .*"
+- assertVisible: "None on this ride."
+- scrollUntilVisible:
+    element: "Done"
+    direction: DOWN
+- tapOn: "Done"
+- extendedWaitUntil:
+    visible: "Record only"
     timeout: 10000
 - tapOn: "Library"
 - assertVisible: "Ride log"

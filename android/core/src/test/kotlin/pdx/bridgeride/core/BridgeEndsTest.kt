@@ -34,12 +34,34 @@ class BridgeEndsTest {
         assertEquals(BikeAccess.YES, byId.getValue("hawthorne").access)
     }
 
+    @Test fun S0_every_bridge_has_water_or_a_gap_between_its_banks() {
+        // bank = how far from each end the water starts. The two must leave room for the river.
+        BridgeEnds.parse(shipped).groupBy { it.id }.forEach { (id, e) ->
+            assertTrue(e.all { end -> end.bank.size == 5 && end.bank.all { it in 0.0..1.0 } }, "$id bank out of range")
+            for (k in 0..4) assertTrue(e[0].bank[k] + e[1].bank[k] <= 0.8, "$id has no room for water on line $k")
+        }
+        // The Hawthorne's east end is far inland at Grand Ave: the river starts past halfway.
+        val hawthorneEast = BridgeEnds.parse(shipped).first { it.id == "hawthorne" && it.end == "east" }
+        assertTrue(hawthorneEast.bankAt(0.0) in 0.45..0.6, "bank ${hawthorneEast.bankAt(0.0)}")
+    }
+
+    @Test fun S0_bank_is_read_across_the_corridor() {
+        val end = BridgeEnd("x", "X", "east", 45.5, -122.6, BikeAccess.YES, listOf(0.1, 0.2, 0.3, 0.4, 0.5))
+        assertEquals(0.1, end.bankAt(-1.0), 1e-9)
+        assertEquals(0.3, end.bankAt(0.0), 1e-9)
+        assertEquals(0.35, end.bankAt(0.25), 1e-9)
+        assertEquals(0.5, end.bankAt(1.0), 1e-9)
+        assertEquals(0.5, end.bankAt(3.0), 1e-9) // beyond the corridor: the edge value
+    }
+
     @Test fun S0_names_with_commas_and_bad_rows() {
         val lines = listOf(
-            "id,name,end,lat,lon,bike_access",
-            "x,\"Bridge, with comma\",west,45.5,-122.6,yes",
+            "id,name,end,lat,lon,bike_access,bank",
+            "x,\"Bridge, with comma\",west,45.5,-122.6,yes,0.2/0.2/0.25/0.3/0.3",
             "broken,row",
-            "y,Plain,east,not-a-number,-122.6,yes",
+            "y,Plain,east,not-a-number,-122.6,yes,0.2/0.2/0.25/0.3/0.3",
+            "z,Bank out of range,east,45.5,-122.6,yes,0.2/0.2/1.5/0.3/0.3",
+            "w,Too few banks,east,45.5,-122.6,yes,0.25",
         )
         val ends = BridgeEnds.parse(lines)
         assertEquals(1, ends.size)

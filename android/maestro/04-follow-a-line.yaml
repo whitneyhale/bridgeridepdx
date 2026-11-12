@@ -1,0 +1,182 @@
+# Release 0.3 (tasks 1.4, 1.5, 1.6): pick a built-in ride, follow its line over the Hawthorne Bridge with
+# simulated GPS, take a wrong turn, come back, lock and unlock, end, and see the crossing in the summary,
+# the passport and the bridge sheet. Then ride the recorded ride again.
+# The GPS points are made by tools/build_ride_flows.py from the ride file; do not edit them by hand.
+appId: pdx.bridgeride.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000
+- setLocation:
+    latitude: 45.516092
+    longitude: -122.667701
+- tapOn: "Plan a ride"
+- assertVisible: "Built-in rides"
+- assertVisible: "Sellwood loop"
+- takeScreenshot: shot-7-plan-list-light
+- tapOn: "Hawthorne out, Steel back"
+- assertVisible: "Loop · 2.6 mi · 2 bridges"
+- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
+- assertVisible: "BRIDGE · EASTBOUND · SOUTH SIDE"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: shot-8-plan-ride-light
+- tapOn: "Go"
+# Permission dialogs differ by Android version; tap whichever appears.
+- tapOn:
+    text: "While using the app"
+    optional: true
+- tapOn:
+    text: "Only this time"
+    optional: true
+- tapOn:
+    text: "Allow"
+    optional: true
+# On the line, 250 m before the river: the banner names the next bridge, its direction and side.
+- extendedWaitUntil:
+    visible: "Hawthorne Bridge"
+    timeout: 30000
+- assertVisible: "Westbound, north side"
+- assertVisible: "Left"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: shot-9-ride-next-bridge-light
+# Ride over the bridge at 20 m/s, a fix every second.
+- travel:
+    points:
+      - 45.516092,-122.667701
+      - 45.515914,-122.667743
+      - 45.515737,-122.667785
+      - 45.515559,-122.667827
+      - 45.515382,-122.667868
+      - 45.515204,-122.667910
+      - 45.515026,-122.667948
+      - 45.514848,-122.667982
+      - 45.514670,-122.668016
+      - 45.514492,-122.668051
+      - 45.514313,-122.668077
+      - 45.514133,-122.668093
+      - 45.513954,-122.668110
+      - 45.513774,-122.668127
+      - 45.513595,-122.668140
+      - 45.513415,-122.668146
+      - 45.513235,-122.668138
+      - 45.513055,-122.668130
+      - 45.512876,-122.668107
+      - 45.512810,-122.667958
+      - 45.512875,-122.667721
+      - 45.512800,-122.667533
+      - 45.512633,-122.667616
+      - 45.512561,-122.667771
+      - 45.512578,-122.668026
+      - 45.512628,-122.668272
+      - 45.512690,-122.668513
+      - 45.512753,-122.668754
+      - 45.512815,-122.668995
+      - 45.512877,-122.669235
+      - 45.512940,-122.669476
+      - 45.513002,-122.669717
+      - 45.513065,-122.669957
+      - 45.513127,-122.670198
+      - 45.513189,-122.670439
+      - 45.513252,-122.670680
+      - 45.513314,-122.670920
+      - 45.513377,-122.671161
+      - 45.513440,-122.671402
+      - 45.513503,-122.671642
+      - 45.513565,-122.671883
+      - 45.513627,-122.672123
+      - 45.513690,-122.672364
+      - 45.513753,-122.672605
+      - 45.513816,-122.672845
+      - 45.513878,-122.673086
+      - 45.513941,-122.673326
+      - 45.514013,-122.673561
+      - 45.514123,-122.673759
+      - 45.514280,-122.673880
+      - 45.514455,-122.673935
+      - 45.514628,-122.673884
+      - 45.514739,-122.673708
+      - 45.514747,-122.673514
+    speed: 20
+# Past the Hawthorne: the next bridge is the Steel.
+- extendedWaitUntil:
+    visible: "Steel Bridge"
+    timeout: 20000
+- assertVisible: "Eastbound, south side"
+- takeScreenshot: shot-10-ride-after-bridge-light
+# A wrong turn: 120 m and more from the line for over 8 s. One calm warning, with the way back.
+- travel:
+    points:
+      - 45.515749,-122.672944
+      - 45.515874,-122.672873
+      - 45.516000,-122.672802
+    speed: 3
+- extendedWaitUntil:
+    visible: "off the line"
+    timeout: 30000
+- assertVisible: ".*No rerouting yet\\."
+- takeScreenshot: shot-11-ride-off-line-light
+# Back on the line: the warning clears itself.
+- setLocation:
+    latitude: 45.514747
+    longitude: -122.673514
+- extendedWaitUntil:
+    visible: "Steel Bridge"
+    timeout: 30000
+# Rain and gloves: Lock ignores touches until Unlock is held.
+- tapOn: "Lock"
+- assertVisible: "Unlock"
+- takeScreenshot: shot-12-ride-locked-light
+- longPressOn: "Unlock"
+- extendedWaitUntil:
+    notVisible: "Unlock"
+    timeout: 10000
+- longPressOn: "End"
+- extendedWaitUntil:
+    visible: "RIDE SAVED"
+    timeout: 15000
+- assertVisible: "Hawthorne out, Steel back, .*"
+- assertVisible: "Bridges crossed"
+- assertVisible: "westbound"
+- assertVisible: "New stamp"
+- assertVisible: "Passport 1 of 12"
+- takeScreenshot: shot-13-summary-light
+- scrollUntilVisible:
+    element: "Prettier"
+    direction: DOWN
+- tapOn: "Good"
+- tapOn: "Prettier"
+- takeScreenshot: shot-13b-summary-rated-light
+- scrollUntilVisible:
+    element: "Done"
+    direction: DOWN
+- tapOn: "Done"
+- assertVisible: "Plan a ride"
+# The ride log names the ride, and the passport has the stamp.
+- tapOn: "Library"
+- assertVisible: "Ride log"
+- assertVisible: "Hawthorne out, Steel back, .*"
+- assertVisible: ".*1 bridge.*rated Good"
+- takeScreenshot: shot-14-library-light
+- tapOn: "Passport"
+- assertVisible: "Bridge passport"
+- assertVisible: "1 of 12"
+- assertVisible: "Hawthorne, stamped, crossed 1 time"
+- takeScreenshot: shot-15-passport-light
+- tapOn: "Hawthorne, stamped, crossed 1 time"
+- assertVisible: "Hawthorne Bridge"
+- assertVisible: "Westbound: ride the north side"
+- assertVisible: "Passport: crossed once."
+- takeScreenshot: shot-16-bridge-sheet-light
+- tapOn: "Close bridge details"
+# Ride it again: the recorded ride becomes a line to follow, with its bridge found.
+- tapOn: "Rides"
+- tapOn: "Ride again"
+- extendedWaitUntil:
+    visible: "Go"
+    timeout: 15000
+- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
+- takeScreenshot: shot-17-ride-again-light

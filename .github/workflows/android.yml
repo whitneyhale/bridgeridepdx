@@ -1,5 +1,6 @@
 # Every push: data checks, palette check, unit tests, lint, debug and release APKs, Maestro on an emulator
-# against the release APK (with screenshots of both looks), then a pre-release if versionName is new.
+# against the release APK (a simulated ride over two bridges, with screenshots of every screen in both looks),
+# then a pre-release if versionName is new.
 name: Android
 
 on:
@@ -25,7 +26,10 @@ jobs:
           python tools/match_bridge.py | tee match.txt
           tail -1 match.txt | grep -qE "^([0-9]+) of \1 passed$" || { echo "name matcher cases failed"; exit 1; }
           python tools/export_bridge_ends.py
-          git diff --exit-code android/app/src/main/assets/bridge_ends.csv || { echo "bridge_ends.csv is out of date: run tools/export_bridge_ends.py"; exit 1; }
+          python tools/export_bridge_info.py
+          git diff --exit-code android/app/src/main/assets/bridge_ends.csv android/app/src/main/assets/bridge_info.tsv || { echo "bridge_ends.csv or bridge_info.tsv is out of date: run tools/export_bridge_ends.py and tools/export_bridge_info.py"; exit 1; }
+          python tools/build_ride_flows.py
+          git diff --exit-code android/maestro/ || { echo "Maestro ride flows are out of date: run tools/build_ride_flows.py"; exit 1; }
       - name: Palette check (contrast, color-blind separation) and map styles up to date
         run: |
           python tools/check_palette.py

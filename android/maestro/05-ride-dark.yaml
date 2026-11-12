@@ -1,0 +1,102 @@
+# Release 0.3 in the dark look (C): the same screens as flow 04, over the Steel Bridge lower deck.
+# Screenshots are uploaded by CI so both looks can be reviewed without a phone.
+# The GPS points are made by tools/build_ride_flows.py from the ride file; do not edit them by hand.
+appId: pdx.bridgeride.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000
+- tapOn: "Settings"
+- tapOn: "Dark"
+- tapOn: "Map"
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, dark"
+    timeout: 30000
+- setLocation:
+    latitude: 45.525821
+    longitude: -122.669898
+- tapOn: "Plan a ride"
+- takeScreenshot: shot-18-plan-list-dark
+- tapOn: "Hawthorne out, Steel back"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: shot-19-plan-ride-dark
+- tapOn: "Go"
+# Permission dialogs differ by Android version; tap whichever appears.
+- tapOn:
+    text: "While using the app"
+    optional: true
+- tapOn:
+    text: "Only this time"
+    optional: true
+- tapOn:
+    text: "Allow"
+    optional: true
+- extendedWaitUntil:
+    visible: "Steel Bridge"
+    timeout: 30000
+- assertVisible: "Eastbound, south side"
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: shot-20-ride-next-bridge-dark
+- travel:
+    points:
+      - 45.525821,-122.669898
+      - 45.525994,-122.669969
+      - 45.526167,-122.670042
+      - 45.526337,-122.670125
+      - 45.526506,-122.670213
+      - 45.526672,-122.670310
+      - 45.526838,-122.670408
+      - 45.526951,-122.670257
+      - 45.527050,-122.670043
+      - 45.527149,-122.669828
+      - 45.527248,-122.669614
+      - 45.527343,-122.669396
+      - 45.527441,-122.669180
+      - 45.527538,-122.668965
+      - 45.527636,-122.668749
+      - 45.527735,-122.668535
+      - 45.527834,-122.668321
+      - 45.527924,-122.668098
+      - 45.528014,-122.667876
+      - 45.528037,-122.667630
+      - 45.528026,-122.667374
+      - 45.527934,-122.667157
+      - 45.527815,-122.666979
+      - 45.527702,-122.666779
+      - 45.527585,-122.666584
+      - 45.527464,-122.666395
+      - 45.527337,-122.666213
+    speed: 20
+- extendedWaitUntil:
+    visible: "to the finish"
+    timeout: 20000
+- takeScreenshot: shot-21-ride-after-bridge-dark
+- tapOn: "Lock"
+- takeScreenshot: shot-22-ride-locked-dark
+- longPressOn: "Unlock"
+- extendedWaitUntil:
+    notVisible: "Unlock"
+    timeout: 10000
+- longPressOn: "End"
+- extendedWaitUntil:
+    visible: "RIDE SAVED"
+    timeout: 15000
+- assertVisible: "eastbound"
+- assertVisible: "Passport 1 of 12"
+- takeScreenshot: shot-23-summary-dark
+- scrollUntilVisible:
+    element: "Done"
+    direction: DOWN
+- tapOn: "Done"
+- tapOn: "Library"
+- tapOn: "Passport"
+- assertVisible: "Steel, stamped, crossed 1 time"
+- takeScreenshot: shot-24-passport-dark
+- tapOn: "Steel, stamped, crossed 1 time"
+- assertVisible: "Steel Bridge"
+- takeScreenshot: shot-25-bridge-sheet-dark
+- tapOn: "Close bridge details"

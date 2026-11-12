@@ -99,6 +99,17 @@ data class Look(
     val bridgeDot: String,
     val bridgeDotRing: String,
     val bridgeDotClosed: String,
+    // The line being followed: solid with an outline, so it never depends on color alone (palette fix 1).
+    val route: String,
+    val routeCasing: String,
+    // The bike marker. "Est" is the estimated-position version, in the warning color.
+    val markerFill: Int,
+    val markerRing: Int,
+    val markerBike: Int,
+    val markerEstFill: Int,
+    val markerEstRing: Int,
+    val markerEstBike: Int,
+    val markerPointerEdge: Int,
 )
 
 val LocalLook = staticCompositionLocalOf<Look> { error("BridgeRideTheme is missing") }
@@ -137,11 +148,19 @@ private val LookE = Look(
     dark = false, corner = 18.dp, border = 2.5.dp, borderColor = PdxE.Ink, stickerShadow = 4.dp,
     numbers = Bricolage, mapStyle = "asset://style_e.json",
     bridgeDot = "#F2B705", bridgeDotRing = "#1D2B4F", bridgeDotClosed = "#B9B4A6",
+    route = "#0E7C74", routeCasing = "#1D2B4F",
+    markerFill = 0xFF0E7C74.toInt(), markerRing = 0xFF1D2B4F.toInt(), markerBike = 0xFFFFFFFF.toInt(),
+    markerEstFill = 0xFFD44304.toInt(), markerEstRing = 0xFF1D2B4F.toInt(), markerEstBike = 0xFFFFFFFF.toInt(),
+    markerPointerEdge = 0xFFFFF5E1.toInt(),
 )
 private val LookC = Look(
     dark = true, corner = 2.dp, border = 1.dp, borderColor = PdxC.Line, stickerShadow = 0.dp,
     numbers = PlexMono, mapStyle = "asset://style_c.json",
     bridgeDot = "#F5F5F5", bridgeDotRing = "#0B0B0C", bridgeDotClosed = "#5A5A60",
+    route = "#22C55E", routeCasing = "#000000",
+    markerFill = 0xFF0B0B0C.toInt(), markerRing = 0xFF22C55E.toInt(), markerBike = 0xFF22C55E.toInt(),
+    markerEstFill = 0xFF0B0B0C.toInt(), markerEstRing = 0xFFFF5A47.toInt(), markerEstBike = 0xFFFF5A47.toInt(),
+    markerPointerEdge = 0xFF0B0B0C.toInt(),
 )
 
 /** The rider's choice in Settings. SYSTEM follows the phone's dark mode. */
