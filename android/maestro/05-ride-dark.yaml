@@ -38,6 +38,7 @@ appId: pdx.bridgeride.app
     visible: "Steel Bridge"
     timeout: 30000
 - assertVisible: "Eastbound, south side"
+- assertVisible: "Bike marker.*"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-20-ride-next-bridge-dark
@@ -74,6 +75,8 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "to the finish"
     timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 3000
 - takeScreenshot: shot-21-ride-after-bridge-dark
 - tapOn: "Lock"
 - takeScreenshot: shot-22-ride-locked-dark

@@ -100,28 +100,30 @@ fun PlanSheet(app: AppState, data: AppData, rides: List<RideSummary>, onHeight: 
     BackHandler { if (app.plan != null) app.plan = null else app.planning = false }
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Panel(Modifier.fillMaxWidth().fillMaxHeight(0.6f).padding(start = 8.dp, end = 4.dp, bottom = 4.dp).onSizeChanged { onHeight(it.height) }) {
-            Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Column(Modifier.fillMaxSize().padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 if (plan == null) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("Plan a ride", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))
                         GlyphButton(back = false, description = "Close plan") { app.planning = false }
                     }
-                    Text("Built-in rides", fontWeight = FontWeight.Bold)
-                    data.rides.forEach { p -> PlanCard(p.name, p.summary(), "Starts: ${p.start}") { app.plan = p } }
-                    Text("Ride one of yours again", fontWeight = FontWeight.Bold)
-                    val mine = rides.filter { it.distanceM >= 200 }.take(5)
-                    if (mine.isEmpty()) Text("No recorded rides yet. Record one and it shows up here.", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    mine.forEach { r ->
-                        PlanCard(r.name, Units.miles(r.distanceM) + bridgeWords(r.crossings.size), null) {
-                            scope.launch {
-                                val made = withContext(Dispatchers.Default) { planFromRide(r, data) }
-                                if (made == null) message = "That ride is too short to follow." else { message = null; app.plan = made }
+                    Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Text("Built-in rides", fontWeight = FontWeight.Bold)
+                        data.rides.forEach { p -> PlanCard(p.name, p.summary(), "Starts: ${p.start}") { app.plan = p } }
+                        Text("Ride one of yours again", fontWeight = FontWeight.Bold)
+                        val mine = rides.filter { it.distanceM >= 200 }.take(5)
+                        if (mine.isEmpty()) Text("No recorded rides yet. Record one and it shows up here.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        mine.forEach { r ->
+                            PlanCard(r.name, Units.miles(r.distanceM) + bridgeWords(r.crossings.size), null) {
+                                scope.launch {
+                                    val made = withContext(Dispatchers.Default) { planFromRide(r, data) }
+                                    if (made == null) message = "That ride is too short to follow." else { message = null; app.plan = made }
+                                }
                             }
                         }
+                        message?.let { Warning(it) }
+                        NotBuilt("Themed rides (food cart loop, mural hunt). Due in 0.8.")
+                        NotBuilt("A route to any address or bridge you pick. Due in 0.4 and 0.5.")
                     }
-                    message?.let { Warning(it) }
-                    NotBuilt("Themed rides (food cart loop, mural hunt). Due in 0.8.")
-                    NotBuilt("A route to any address or bridge you pick. Due in 0.4 and 0.5.")
                 } else {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         GlyphButton(back = true, description = "Back to the list of rides") { app.plan = null }
@@ -130,13 +132,16 @@ fun PlanSheet(app: AppState, data: AppData, rides: List<RideSummary>, onHeight: 
                             Text(plan.summary(), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
                         }
                     }
-                    if (plan.note.isNotBlank()) Text(plan.note, fontSize = 14.sp)
-                    StopRow("START", plan.start.ifBlank { "Start of the line" }, null, null)
-                    plan.bridges.forEach { b ->
-                        StopRow("BRIDGE · ${b.direction.uppercase()}" + (b.side?.let { " · ${it.uppercase()} SIDE" } ?: ""), b.label, b.bridgeId, null)
+                    Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        if (plan.note.isNotBlank()) Text(plan.note, fontSize = 14.sp)
+                        StopRow("START", plan.start.ifBlank { "Start of the line" }, null, null)
+                        plan.bridges.forEach { b ->
+                            StopRow("BRIDGE · ${b.direction.uppercase()}" + (b.side?.let { " · ${it.uppercase()} SIDE" } ?: ""), b.label, b.bridgeId, null)
+                        }
+                        StopRow("END", if (plan.line.isLoop) "Back at the start" else "End of the line", null, null)
+                        NotBuilt("Add, remove or reorder stops. Due in 0.5.")
                     }
-                    StopRow("END", if (plan.line.isLoop) "Back at the start" else "End of the line", null, null)
-                    NotBuilt("Add, remove or reorder stops. Due in 0.5.")
+                    // Go stays in reach below the list, however long the list is.
                     BigButton("Go") { onGo(plan) }
                 }
             }
@@ -267,7 +272,7 @@ fun RideOverlay(status: RecorderStatus, follow: FollowState, plan: RidePlan?, co
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (plan != null) Stat("Left", Units.miles(follow.remainingM ?: plan.lengthM), Modifier.weight(1.2f))
                     else Stat("Ridden", Units.miles(status.distanceM), Modifier.weight(1.2f))
-                    Stat("Speed", Units.mph(follow.speedMps), Modifier.weight(1f))
+                    Stat("mph", "%.0f".format(follow.speedMps * 2.236936), Modifier.weight(0.8f))
                     Stat("Time", "%d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60), Modifier.weight(1f))
                 }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -398,77 +403,75 @@ fun SummaryScreen(file: File, data: AppData, rides: List<RideSummary>, onDone: (
         }
     }
 
-    Column(
-        Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).safeDrawingPadding()
-            .verticalScroll(rememberScrollState()).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        val r = ride
-        if (r == null) { Text("Reading the ride"); return@Column }
-        Text("RIDE SAVED", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-        Text(r.name, style = MaterialTheme.typography.headlineSmall)
-        Panel(Modifier.fillMaxWidth()) {
-            Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                val movingS = r.movingMs / 1000
-                Stat("Distance", Units.miles(r.distanceM), Modifier.weight(1f))
-                Stat("Moving", "%d:%02d".format(movingS / 60, movingS % 60), Modifier.weight(1f))
-                Stat("Average", if (movingS > 0) Units.mph(r.distanceM / movingS) else "none", Modifier.weight(1f))
-            }
-        }
-        Panel(Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                val all = stamps(rides.filter { it.file != file } + r)
-                val before = stamps(rides.filter { it.file != file })
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Bridges crossed", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                    Tag("Passport ${all.keys.count { id -> data.bikeable.any { it.id == id } }} of ${data.bikeable.size}")
+    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).safeDrawingPadding().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            val r = ride
+            if (r == null) { Text("Reading the ride"); return@Column }
+            Text("RIDE SAVED", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            Text(r.name, style = MaterialTheme.typography.headlineSmall)
+            Panel(Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val movingS = r.movingMs / 1000
+                    Stat("Distance", Units.miles(r.distanceM), Modifier.weight(1f))
+                    Stat("Moving", "%d:%02d".format(movingS / 60, movingS % 60), Modifier.weight(1f))
+                    Stat("Average", if (movingS > 0) Units.mph(r.distanceM / movingS) else "none", Modifier.weight(1f))
                 }
-                if (r.crossings.isEmpty()) Text("None on this ride.", color = MaterialTheme.colorScheme.onSurfaceVariant)
-                r.crossings.forEachIndexed { i, key ->
-                    val id = key.substringBefore(' ')
-                    val firstTime = id !in before && r.crossings.indexOfFirst { it.substringBefore(' ') == id } == i
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        BridgeIcon(id, Modifier.width(72.dp))
-                        Column(Modifier.weight(1f)) {
-                            Text(data.infoById[id]?.label ?: id, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
-                            Text(key.substringAfter(' '), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
+            }
+            Panel(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    val all = stamps(rides.filter { it.file != file } + r)
+                    val before = stamps(rides.filter { it.file != file })
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Bridges crossed", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                        Tag("Passport ${all.keys.count { id -> data.bikeable.any { it.id == id } }} of ${data.bikeable.size}")
+                    }
+                    if (r.crossings.isEmpty()) Text("None on this ride.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    r.crossings.forEachIndexed { i, key ->
+                        val id = key.substringBefore(' ')
+                        val firstTime = id !in before && r.crossings.indexOfFirst { it.substringBefore(' ') == id } == i
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            BridgeIcon(id, Modifier.width(72.dp))
+                            Column(Modifier.weight(1f)) {
+                                Text(data.infoById[id]?.label ?: id, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
+                                Text(key.substringAfter(' '), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
+                            }
+                            if (firstTime) Tag("New stamp")
                         }
-                        if (firstTime) Tag("New stamp")
                     }
                 }
             }
-        }
-        Panel(Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text("How was the route?", style = MaterialTheme.typography.titleMedium)
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    listOf("Good", "OK", "Bad").forEach { label ->
-                        Choice(label, rating == label, Modifier.weight(1f)) { save(if (rating == label) null else label, reasons) }
+            Panel(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("How was the route?", style = MaterialTheme.typography.titleMedium)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf("Good", "OK", "Bad").forEach { label ->
+                            Choice(label, rating == label, Modifier.weight(1f)) { save(if (rating == label) null else label, reasons) }
+                        }
                     }
-                }
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    listOf("Safer", "Prettier", "Faster", "Flatter", "Quieter").forEach { label ->
-                        Choice(label, label in reasons) { save(rating, if (label in reasons) reasons - label else reasons + label) }
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        listOf("Safer", "Prettier", "Faster", "Flatter", "Quieter").forEach { label ->
+                            Choice(label, label in reasons) { save(rating, if (label in reasons) reasons - label else reasons + label) }
+                        }
                     }
                 }
             }
-        }
-        Panel(Modifier.fillMaxWidth()) {
-            Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("GPS", style = MaterialTheme.typography.titleMedium)
-                Text(
-                    "${r.fixes} fixes. " + if (r.gaps.gapsOver10s == 0) "No gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s."
-                    else "${r.gaps.gapsOver10s} gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s.",
-                )
+            Panel(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text("GPS", style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        "${r.fixes} fixes. " + if (r.gaps.gapsOver10s == 0) "No gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s."
+                        else "${r.gaps.gapsOver10s} gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s.",
+                    )
+                }
             }
+            NotBuilt("Questions about streets you chose instead of the suggested ones. Due with the rider profile, 0.7.")
+            note?.let { Text(it, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold) }
         }
-        NotBuilt("Questions about streets you chose instead of the suggested ones. Due with the rider profile, 0.7.")
-        note?.let { Text(it, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold) }
+        // Export and Done stay in reach below the list.
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             TallButton("Export GPX", Modifier.weight(1f)) { exporter.launch(file.name.replace(".csv", ".gpx")) }
             Box(Modifier.weight(1f)) { BigButton("Done", onClick = onDone) }
         }
-        Spacer(Modifier.height(8.dp))
     }
 }
 

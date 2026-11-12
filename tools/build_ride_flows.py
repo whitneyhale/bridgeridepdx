@@ -134,11 +134,17 @@ appId: pdx.bridgeride.app
 - takeScreenshot: shot-7-plan-list-light
 - tapOn: "Hawthorne out, Steel back"
 - assertVisible: "Loop · 2.6 mi · 2 bridges"
-- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
-- assertVisible: "BRIDGE · EASTBOUND · SOUTH SIDE"
+- assertVisible: "Go"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-8-plan-ride-light
+- scrollUntilVisible:
+    element: "BRIDGE · WESTBOUND · NORTH SIDE"
+    direction: DOWN
+- scrollUntilVisible:
+    element: "BRIDGE · EASTBOUND · SOUTH SIDE"
+    direction: DOWN
+- takeScreenshot: shot-8b-plan-stops-light
 - tapOn: "Go"
 {PERMISSIONS}# On the line, 250 m before the river: the banner names the next bridge, its direction and side.
 - extendedWaitUntil:
@@ -146,6 +152,7 @@ appId: pdx.bridgeride.app
     timeout: 30000
 - assertVisible: "Westbound, north side"
 - assertVisible: "Left"
+- assertVisible: "Bike marker, position good.*"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-9-ride-next-bridge-light
@@ -155,6 +162,10 @@ appId: pdx.bridgeride.app
     visible: "Steel Bridge"
     timeout: 20000
 - assertVisible: "Eastbound, south side"
+# The marker has a heading now. (Stopped, the emulator's compass decides which; moving, it was west.)
+- assertVisible: "Bike marker, position good, heading (north|northeast|east|southeast|south|southwest|west|northwest)"
+- waitForAnimationToEnd:
+    timeout: 3000
 - takeScreenshot: shot-10-ride-after-bridge-light
 # A wrong turn: 120 m and more from the line for over 8 s. One calm warning, with the way back.
 {travel(wrong_turn, 3)}- extendedWaitUntil:
@@ -218,8 +229,10 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "Go"
     timeout: 15000
-- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
 - takeScreenshot: shot-17-ride-again-light
+- scrollUntilVisible:
+    element: "BRIDGE · WESTBOUND · NORTH SIDE"
+    direction: DOWN
 """
 
     # Dark look: the Steel Bridge lower deck, eastbound.
@@ -253,12 +266,15 @@ appId: pdx.bridgeride.app
     visible: "Steel Bridge"
     timeout: 30000
 - assertVisible: "Eastbound, south side"
+- assertVisible: "Bike marker.*"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-20-ride-next-bridge-dark
 {travel(over_steel, 20)}- extendedWaitUntil:
     visible: "to the finish"
     timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 3000
 - takeScreenshot: shot-21-ride-after-bridge-dark
 - tapOn: "Lock"
 - takeScreenshot: shot-22-ride-locked-dark

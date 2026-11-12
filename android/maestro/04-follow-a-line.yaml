@@ -18,11 +18,17 @@ appId: pdx.bridgeride.app
 - takeScreenshot: shot-7-plan-list-light
 - tapOn: "Hawthorne out, Steel back"
 - assertVisible: "Loop · 2.6 mi · 2 bridges"
-- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
-- assertVisible: "BRIDGE · EASTBOUND · SOUTH SIDE"
+- assertVisible: "Go"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-8-plan-ride-light
+- scrollUntilVisible:
+    element: "BRIDGE · WESTBOUND · NORTH SIDE"
+    direction: DOWN
+- scrollUntilVisible:
+    element: "BRIDGE · EASTBOUND · SOUTH SIDE"
+    direction: DOWN
+- takeScreenshot: shot-8b-plan-stops-light
 - tapOn: "Go"
 # Permission dialogs differ by Android version; tap whichever appears.
 - tapOn:
@@ -40,6 +46,7 @@ appId: pdx.bridgeride.app
     timeout: 30000
 - assertVisible: "Westbound, north side"
 - assertVisible: "Left"
+- assertVisible: "Bike marker, position good.*"
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-9-ride-next-bridge-light
@@ -106,6 +113,10 @@ appId: pdx.bridgeride.app
     visible: "Steel Bridge"
     timeout: 20000
 - assertVisible: "Eastbound, south side"
+# The marker has a heading now. (Stopped, the emulator's compass decides which; moving, it was west.)
+- assertVisible: "Bike marker, position good, heading (north|northeast|east|southeast|south|southwest|west|northwest)"
+- waitForAnimationToEnd:
+    timeout: 3000
 - takeScreenshot: shot-10-ride-after-bridge-light
 # A wrong turn: 120 m and more from the line for over 8 s. One calm warning, with the way back.
 - travel:
@@ -178,5 +189,7 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "Go"
     timeout: 15000
-- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
 - takeScreenshot: shot-17-ride-again-light
+- scrollUntilVisible:
+    element: "BRIDGE · WESTBOUND · NORTH SIDE"
+    direction: DOWN

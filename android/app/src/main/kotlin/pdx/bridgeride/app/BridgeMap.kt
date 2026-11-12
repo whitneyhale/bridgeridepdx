@@ -1,19 +1,37 @@
 package pdx.bridgeride.app
 
 import android.animation.ValueAnimator
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.SystemClock
 import android.view.animation.LinearInterpolator
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.graphics.vector.PathParser
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.graphics.PathParser
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -25,7 +43,6 @@ import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style
-import org.maplibre.android.style.expressions.Expression
 import org.maplibre.android.style.layers.CircleLayer
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.Property
@@ -33,16 +50,10 @@ import org.maplibre.android.style.layers.PropertyFactory.circleColor
 import org.maplibre.android.style.layers.PropertyFactory.circleRadius
 import org.maplibre.android.style.layers.PropertyFactory.circleStrokeColor
 import org.maplibre.android.style.layers.PropertyFactory.circleStrokeWidth
-import org.maplibre.android.style.layers.PropertyFactory.iconAllowOverlap
-import org.maplibre.android.style.layers.PropertyFactory.iconIgnorePlacement
-import org.maplibre.android.style.layers.PropertyFactory.iconImage
-import org.maplibre.android.style.layers.PropertyFactory.iconRotate
-import org.maplibre.android.style.layers.PropertyFactory.iconRotationAlignment
 import org.maplibre.android.style.layers.PropertyFactory.lineCap
 import org.maplibre.android.style.layers.PropertyFactory.lineColor
 import org.maplibre.android.style.layers.PropertyFactory.lineJoin
 import org.maplibre.android.style.layers.PropertyFactory.lineWidth
-import org.maplibre.android.style.layers.SymbolLayer
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.Feature
 import org.maplibre.geojson.FeatureCollection
@@ -52,7 +63,9 @@ import pdx.bridgeride.core.BikeAccess
 import pdx.bridgeride.core.BridgeEnd
 import pdx.bridgeride.core.Geo
 import pdx.bridgeride.core.LatLon
+import pdx.bridgeride.core.Units
 import kotlin.math.hypot
+import kotlin.math.roundToInt
 
 // Map styles are app assets (style_e.json light, style_c.json dark), built by tools/build_map_styles.py.
 // Tiles: OpenFreeMap, free vector tiles, no key (openfreemap.org).
@@ -71,6 +84,7 @@ data class MarkerState(
 /**
  * Everything the screens ask of the map: the line to follow, the bike marker, the camera.
  * It remembers what it was asked to show, so a style change (light to dark) redraws it all.
+ * The line and the bridge dots are map layers; the bike marker is drawn over the map (BikeMarker).
  */
 class MapController {
     var map: MapLibreMap? = null
@@ -98,6 +112,10 @@ class MapController {
     var onUserMove: () -> Unit = {}
     var onBridgeTap: (String) -> Unit = {}
 
+    /** The marker as the screen should draw it, or null when there is none. Compose state: reading it redraws. */
+    var onScreen by mutableStateOf<MarkerOnScreen?>(null)
+        private set
+
     fun attach(map: MapLibreMap, ends: List<BridgeEnd>, density: Float) {
         this.map = map
         this.ends = ends
@@ -108,6 +126,7 @@ class MapController {
                 onUserMove()
             }
         }
+        map.addOnCameraMoveListener { pushMarker() } // the map moved under the marker: put it back on its spot
         map.addOnMapClickListener { tap ->
             // The nearest bridge end within a thumb's width (28 dp) of the tap.
             val p = map.projection.toScreenLocation(tap)
@@ -126,6 +145,7 @@ class MapController {
     fun detach() {
         animator?.cancel(); animator = null
         map = null; style = null
+        onScreen = null
     }
 
     /** Called when a style has loaded: add our layers on top of it and redraw what was showing. */
@@ -143,20 +163,6 @@ class MapController {
             ),
         )
         addBridgeEnds(style, ends, look)
-        MarkerArt.images(density, look).forEach { (name, bitmap) -> style.addImage(name, bitmap) }
-        style.addSource(GeoJsonSource("me"))
-        style.addLayer(
-            SymbolLayer("me-pointer", "me").withProperties(
-                iconImage(Expression.get("pointer")), iconRotate(Expression.get("heading")),
-                iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_MAP), iconAllowOverlap(true), iconIgnorePlacement(true),
-            ),
-        )
-        style.addLayer(
-            SymbolLayer("me-puck", "me").withProperties(
-                iconImage(Expression.get("puck")), iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
-                iconAllowOverlap(true), iconIgnorePlacement(true),
-            ),
-        )
         pushRoute()
         pushMarker()
     }
@@ -173,15 +179,17 @@ class MapController {
         else source.setGeoJson(Feature.fromGeometry(LineString.fromLngLats(pts.map { Point.fromLngLat(it.lon, it.lat) })))
     }
 
+    /**
+     * Where the marker is on the screen right now. The marker is drawn by Compose on top of the map
+     * (BikeMarker), not as a map layer: that keeps it sharp at any size, lets it carry a spoken label,
+     * and lets the emulator tests see it. Refreshed on every marker step and every camera move.
+     */
     private fun pushMarker() {
-        val source = style?.getSourceAs<GeoJsonSource>("me") ?: return
+        val map = map
         val m = drawn
-        if (m == null) { source.setGeoJson(FeatureCollection.fromFeatures(emptyList())); return }
-        val f = Feature.fromGeometry(Point.fromLngLat(m.at.lon, m.at.lat))
-        f.addNumberProperty("heading", m.headingDeg ?: 0.0)
-        f.addStringProperty("pointer", when { m.headingDeg == null -> "me-blank"; m.estimated -> "me-pointer-est"; else -> "me-pointer" })
-        f.addStringProperty("puck", if (m.estimated) "me-puck-est" else "me-puck")
-        source.setGeoJson(f)
+        if (map == null || m == null) { onScreen = null; return }
+        val p = map.projection.toScreenLocation(LatLng(m.at.lat, m.at.lon))
+        onScreen = MarkerOnScreen(p.x, p.y, m.headingDeg?.let { Geo.norm(it - map.cameraPosition.bearing) }, m.headingDeg, m.estimated)
     }
 
     /**
@@ -331,16 +339,19 @@ fun BridgeMap(modifier: Modifier, controller: MapController, ends: List<BridgeEn
         }
     }
 
-    AndroidView(
-        factory = {
-            mapView.getMapAsync { map ->
-                map.cameraPosition = CameraPosition.Builder().target(PORTLAND).zoom(11.5).build()
-                controller.attach(map, ends, context.resources.displayMetrics.density)
-            }
-            mapView
-        },
-        modifier = modifier,
-    )
+    Box(modifier.clipToBounds()) {
+        AndroidView(
+            factory = {
+                mapView.getMapAsync { map ->
+                    map.cameraPosition = CameraPosition.Builder().target(PORTLAND).zoom(11.5).build()
+                    controller.attach(map, ends, context.resources.displayMetrics.density)
+                }
+                mapView
+            },
+            modifier = Modifier.fillMaxSize(),
+        )
+        controller.onScreen?.let { BikeMarker(it) }
+    }
 
     // Load the style for the current look; runs again when the rider switches light and dark.
     DisposableEffect(look.mapStyle) {
@@ -375,61 +386,56 @@ private fun addBridgeEnds(style: Style, ends: List<BridgeEnd>, look: Look) {
     layer("bridge-ends", ends.filter { it.access != BikeAccess.NO }, look.bridgeDot)
 }
 
+/** The marker in screen pixels. pointerDeg is where the pointer sits on the screen (0 is up), already turned for a rotated map. */
+data class MarkerOnScreen(val x: Float, val y: Float, val pointerDeg: Double?, val headingDeg: Double?, val estimated: Boolean)
+
+private const val BIKE_FRAME = "M-13 8 H0 L-5 -6 Z M-5 -6 H8 M0 8 L8.6 -4.5 M8 -6 L13 8 M8.4 -5 L7 -13 M2.5 -13 H7 C10.5 -13 13.2 -12 13.8 -9 M-5 -6 V-9.6 M-9.6 -9.8 H-1.4"
+private const val POINTER = "M0 -32 L8 -21 H-8 Z"
+
 /**
- * The bike marker, drawn once per look into small bitmaps for the map (task 1.4).
- * A round puck with a bicycle in it, always upright, and a pointer that circles it to show heading.
- * It is a bicycle, never a dot or an arrow (decided 2026-11-05). Shapes are from the E and C design boards.
+ * The bike marker (task 1.4): a round puck with a bicycle in it, always upright, and a pointer that
+ * circles it to show which way the rider is heading. It is a bicycle, never a dot or an arrow
+ * (decided 2026-11-05). While the position is a guess it is drawn in the warning color, and says so
+ * in its label, so the state never depends on color alone. Shapes are from the E and C design boards.
  */
-private object MarkerArt {
-    private const val FRAME = "M-13 8 H0 L-5 -6 Z M-5 -6 H8 M0 8 L8.6 -4.5 M8 -6 L13 8 M8.4 -5 L7 -13 M2.5 -13 H7 C10.5 -13 13.2 -12 13.8 -9 M-5 -6 V-9.6 M-9.6 -9.8 H-1.4"
-
-    fun images(density: Float, look: Look): Map<String, Bitmap> = mapOf(
-        "me-puck" to puck(density, look, estimated = false),
-        "me-puck-est" to puck(density, look, estimated = true),
-        "me-pointer" to pointer(density, look, estimated = false),
-        "me-pointer-est" to pointer(density, look, estimated = true),
-        "me-blank" to Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888),
-    )
-
-    private fun paint(color: Int, stroke: Float? = null) = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        this.color = color
-        if (stroke == null) style = Paint.Style.FILL else {
-            style = Paint.Style.STROKE; strokeWidth = stroke; strokeCap = Paint.Cap.ROUND; strokeJoin = Paint.Join.ROUND
+@Composable
+private fun BikeMarker(m: MarkerOnScreen) {
+    val look = LocalLook.current
+    val frame = remember { PathParser().parsePathString(BIKE_FRAME).toPath() }
+    val pointer = remember { PathParser().parsePathString(POINTER).toPath() }
+    val box = 100.dp
+    val half = with(LocalDensity.current) { (box / 2).toPx() }
+    val fill = Color(if (m.estimated) look.markerEstFill else look.markerFill)
+    val ring = Color(if (m.estimated) look.markerEstRing else look.markerRing)
+    val bike = Color(if (m.estimated) look.markerEstBike else look.markerBike)
+    // Estimated: the warning color (E's hazard orange is the puck fill, C's signal red is the puck ring).
+    val pointerColor = Color(if (!m.estimated) look.markerRing else if (look.dark) look.markerEstRing else look.markerEstFill)
+    val words = "Bike marker, " + (if (m.estimated) "position estimated" else "position good") +
+        (m.headingDeg?.let { ", heading ${Units.compass(it)}" } ?: ", heading not known yet")
+    Canvas(
+        Modifier.offset { IntOffset((m.x - half).roundToInt(), (m.y - half).roundToInt()) }.size(box)
+            .semantics { contentDescription = words },
+    ) {
+        // The design draws the puck 40 units wide (circle radius 17 plus its outline); here that is 54 dp.
+        val k = 54.dp.toPx() / 40f
+        translate(size.width / 2, size.height / 2) {
+            scale(k, k, pivot = Offset.Zero) {
+                m.pointerDeg?.let { deg ->
+                    rotate(deg.toFloat(), pivot = Offset.Zero) {
+                        drawPath(pointer, pointerColor)
+                        drawPath(pointer, Color(look.markerPointerEdge), style = Stroke(1.6f, join = StrokeJoin.Round))
+                    }
+                }
+                drawCircle(fill, 17f, Offset.Zero)
+                drawCircle(ring, 17f, Offset.Zero, style = Stroke(3f))
+                scale(0.55f, 0.55f, pivot = Offset.Zero) {
+                    val line = Stroke(3f, cap = StrokeCap.Round, join = StrokeJoin.Round)
+                    drawCircle(bike, 9.4f, Offset(-13f, 8f), style = Stroke(2.8f))
+                    drawCircle(bike, 9.4f, Offset(13f, 8f), style = Stroke(2.8f))
+                    drawPath(frame, bike, style = line)
+                    drawCircle(bike, 2.4f, Offset(0f, 8f), style = Stroke(2f))
+                }
+            }
         }
-    }
-
-    /** 54 dp across. The design draws it 40 units wide (circle radius 17 plus its outline). */
-    private fun puck(density: Float, look: Look, estimated: Boolean): Bitmap {
-        val px = (54 * density).toInt()
-        val bitmap = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888)
-        val c = Canvas(bitmap)
-        c.translate(px / 2f, px / 2f)
-        c.scale(px / 40f, px / 40f)
-        val fill = if (estimated) look.markerEstFill else look.markerFill
-        val ring = if (estimated) look.markerEstRing else look.markerRing
-        val bike = if (estimated) look.markerEstBike else look.markerBike
-        c.drawCircle(0f, 0f, 17f, paint(fill))
-        c.drawCircle(0f, 0f, 17f, paint(ring, 3f))
-        c.scale(0.55f, 0.55f)
-        c.drawCircle(-13f, 8f, 9.4f, paint(bike, 2.8f))
-        c.drawCircle(13f, 8f, 9.4f, paint(bike, 2.8f))
-        c.drawPath(PathParser.createPathFromPathData(FRAME), paint(bike, 3f))
-        c.drawCircle(0f, 8f, 2.4f, paint(bike, 2f))
-        return bitmap
-    }
-
-    /** 100 dp square, empty but for a small triangle near the top: turning the image swings the triangle round the puck. */
-    private fun pointer(density: Float, look: Look, estimated: Boolean): Bitmap {
-        val px = (100 * density).toInt()
-        val bitmap = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888)
-        val c = Canvas(bitmap)
-        c.translate(px / 2f, px / 2f)
-        c.scale(54 * density / 40f, 54 * density / 40f)
-        val tri = PathParser.createPathFromPathData("M0 -32 L8 -21 H-8 Z")
-        // Estimated: the warning color (E's hazard orange is the puck fill, C's signal red is the puck ring).
-        val warning = if (look.dark) look.markerEstRing else look.markerEstFill
-        c.drawPath(tri, paint(if (estimated) warning else look.markerRing))
-        c.drawPath(tri, paint(look.markerPointerEdge, 1.6f))
-        return bitmap
     }
 }

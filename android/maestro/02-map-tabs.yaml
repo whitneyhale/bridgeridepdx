@@ -12,9 +12,11 @@ appId: pdx.bridgeride.app
 - tapOn: "Library"
 - assertVisible: "Ride log"
 - tapOn: "Settings"
-- assertVisible: "Bridge Ride [0-9]+\\.[0-9]+\\.[0-9]+.*"
 - assertVisible: "Look"
 - assertVisible: "Battery.*"
+- scrollUntilVisible:
+    element: "Bridge Ride [0-9]+\\.[0-9]+\\.[0-9]+.*"
+    direction: DOWN
 - tapOn: "Map"
 - extendedWaitUntil:
     visible: "Map, 28 bridge ends, light"

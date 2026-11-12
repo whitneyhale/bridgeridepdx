@@ -223,17 +223,16 @@ fun Tag(text: String, container: Color = MaterialTheme.colorScheme.secondaryCont
 fun NotBuilt(text: String, modifier: Modifier = Modifier) {
     val color = MaterialTheme.colorScheme.onSurfaceVariant
     val corner = LocalLook.current.corner
-    Row(
+    Column(
         modifier.fillMaxWidth().drawBehind {
             drawRoundRect(
                 color, cornerRadius = CornerRadius(corner.toPx()),
                 style = Stroke(1.5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(6.dp.toPx(), 5.dp.toPx()))),
             )
-        }.padding(horizontal = 14.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp),
+        }.padding(horizontal = 14.dp, vertical = 10.dp),
     ) {
-        Text("Not built yet", color = color, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-        Text(text, color = color, fontSize = 14.sp, modifier = Modifier.weight(1f))
+        Text("NOT BUILT YET", color = color, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        Text(text, color = color, fontSize = 14.sp)
     }
 }
 
