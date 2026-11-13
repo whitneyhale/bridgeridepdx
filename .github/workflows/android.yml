@@ -1,0 +1,128 @@
+# Every push: data checks, palette check, unit tests, lint, debug and release APKs, Maestro on an emulator
+# against the release APK (a simulated ride over two bridges, with screenshots of every screen in both looks),
+# then a pre-release if versionName is new.
+name: Android
+
+on:
+  push:
+    branches: [main, phase-1]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with: { python-version: "3.12" }
+      - name: Data checks (JSON valid, name matcher 40 of 40)
+        run: |
+          for f in data/*.json routing/*.json docs/design/*.json; do python -c "import json,sys; json.load(open(sys.argv[1]))" "$f" || exit 1; done
+          python tools/match_bridge.py | tee match.txt
+          tail -1 match.txt | grep -qE "^([0-9]+) of \1 passed$" || { echo "name matcher cases failed"; exit 1; }
+          python tools/export_bridge_ends.py
+          python tools/export_bridge_info.py
+          git diff --exit-code android/app/src/main/assets/bridge_ends.csv android/app/src/main/assets/bridge_info.tsv || { echo "bridge_ends.csv or bridge_info.tsv is out of date: run tools/export_bridge_ends.py and tools/export_bridge_info.py"; exit 1; }
+          python tools/build_ride_flows.py
+          git diff --exit-code android/maestro/ || { echo "Maestro ride flows are out of date: run tools/build_ride_flows.py"; exit 1; }
+      - name: Palette check (contrast, color-blind separation) and map styles up to date
+        run: |
+          python tools/check_palette.py
+          git diff --exit-code docs/design/palette-report.md || { echo "palette-report.md is out of date: run tools/check_palette.py"; exit 1; }
+          python tools/build_map_styles.py
+          git diff --exit-code android/app/src/main/assets/ || { echo "map styles are out of date: run tools/build_map_styles.py"; exit 1; }
+      - uses: actions/setup-java@v6
+        with: { distribution: temurin, java-version: "17" }
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Unit tests, lint, debug and release APKs
+        working-directory: android
+        run: ./gradlew :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: reports
+          path: |
+            android/core/build/reports/tests/
+            android/app/build/reports/lint-results-debug.html
+      - uses: actions/upload-artifact@v7
+        with:
+          name: apk
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/apk/release/app-release.apk
+            android/app/build/outputs/mapping/release/mapping.txt
+
+  ui:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with: { name: apk, path: apk }
+      - name: Enable KVM for the emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+      - name: Maestro smoke test on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          # Default is 2 cores; starved of CPU, Pixel Launcher stalls and its "isn't responding" dialog covers the app.
+          cores: 4
+          ram-size: 4096M
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-snapshot-save
+          # The emulator sometimes drops "offline"; wait until it is up, and retry the suite once.
+          # Every flow starts with clearState, so a retry is safe. A real app bug fails both tries.
+          # System "isn't responding" dialogs (the busy emulator's launcher) are hidden so they cannot cover the app.
+          script: |
+            adb wait-for-device; for i in $(seq 1 60); do [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = 1 ] && break; sleep 2; done; sleep 10
+            adb shell settings put global hide_error_dialogs 1
+            adb shell input keyevent KEYCODE_HOME; sleep 30
+            for i in 1 2 3; do adb wait-for-device && adb install -r apk/apk/release/app-release.apk && break; sleep 10; done
+            adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml || { echo "::warning::Maestro failed once (often the emulator going offline); retrying the suite"; sleep 15; adb wait-for-device; maestro test android/maestro/ --format junit --output maestro-report.xml; }
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: maestro
+          path: |
+            maestro-report.xml
+            shot-*.png
+            ~/.maestro/tests/
+
+  # Publish a pre-release when versionName has no GitHub release yet. Runs only after the
+  # build and Maestro jobs pass, on a push (not a PR). Ship by bumping versionName/versionCode
+  # and adding docs/test-cards/v<versionName>.md.
+  release:
+    needs: [build, ui]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with: { name: apk, path: apk }
+      - name: Publish pre-release if this version is new
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="v$(grep -oP 'versionName = "\K[^"]+' android/app/build.gradle.kts)"
+          if gh release view "$v" >/dev/null 2>&1; then echo "Release $v already exists; nothing to do."; exit 0; fi
+          [ -f "docs/test-cards/$v.md" ] || { echo "missing docs/test-cards/$v.md"; exit 1; }
+          cp apk/apk/release/app-release.apk "bridgeride-$v.apk"
+          cp apk/apk/debug/app-debug.apk "bridgeride-$v-debug.apk"
+          gh release create "$v" "bridgeride-$v.apk" "bridgeride-$v-debug.apk" --target "$GITHUB_SHA" \
+            --prerelease --title "Bridge Ride $v" --notes-file "docs/test-cards/$v.md"

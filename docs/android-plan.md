@@ -16,13 +16,15 @@ Full plan: claude.ai doc "Bridge Ride PDX: Android plan" (private to Whitney), w
 | Themed rides allowed | design |
 | Greenways are the main PBOT signal | data |
 | One task at a time; done = works on the phone and the full retest passes | process |
+| 2026-11-09: light look E, dark look C; releases by major function with test-result rules (`docs/remaining-work.md`) | design, process |
+| 2026-11-09: shrunk release build is what ships; speed is measured only on it | process |
 
 ## Stack
 
 | Piece | Choice |
 |---|---|
 | App | Kotlin, Jetpack Compose, target SDK 36 |
-| Map | MapLibre Native, OpenFreeMap tiles (free, no key) |
+| Map | MapLibre Native, OpenFreeMap tiles (free, no key), two app styles built by `tools/build_map_styles.py` |
 | GPS | Fused location in a foreground service of type location |
 | Storage | On the phone; GPX export |
 | Planner | GraphHopper 11.1 on the PC (hybrid mode for speed); hosted later |

@@ -1,0 +1,41 @@
+# Release 0.2.1 (theme): light is E, dark is C. Switch in Settings, the map restyles, the choice survives a restart.
+# Screenshots are uploaded by CI so the two looks can be reviewed without a phone.
+appId: pdx.bridgeride.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: shot-2-map-light
+- tapOn: "Library"
+- assertVisible: "Ride log"
+- takeScreenshot: shot-3-library-light
+- tapOn: "Settings"
+- assertVisible: "Look"
+- takeScreenshot: shot-4-settings-light
+- tapOn: "Dark"
+- waitForAnimationToEnd:
+    timeout: 3000
+- takeScreenshot: shot-5-settings-dark
+- tapOn: "Map"
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, dark"
+    timeout: 30000
+- waitForAnimationToEnd:
+    timeout: 8000
+- takeScreenshot: shot-6-map-dark
+# The choice is saved: still dark after the app is closed and opened again.
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, dark"
+    timeout: 30000
+- tapOn: "Settings"
+- tapOn: "Light"
+- tapOn: "Map"
+- extendedWaitUntil:
+    visible: "Map, 28 bridge ends, light"
+    timeout: 30000
