@@ -46,6 +46,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -289,7 +290,8 @@ fun RideOverlay(status: RecorderStatus, follow: FollowState, plan: RidePlan?, co
                 Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.25f)).pointerInput(Unit) { detectTapGestures { } }
                     .semantics { contentDescription = "Screen locked" },
             ) {
-                Box(Modifier.align(Alignment.Center)) { Tag("Screen locked. Hold Unlock to use it.") }
+                // Below the bike marker and above the stats, so the note hides neither.
+                Box(Modifier.align(BiasAlignment(0f, 0.3f))) { Tag("Screen locked. Hold Unlock to use it.") }
                 HoldButton(
                     "Unlock", "hold 1 s", "Hold for one second to unlock the screen",
                     Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(start = 26.dp, end = 26.dp, bottom = 22.dp),
@@ -357,20 +359,21 @@ fun BridgeSheet(info: BridgeInfo, crossed: Int, onClose: () -> Unit) {
                     }
                     if (info.year.isNotBlank()) Tag("Built ${info.year}", MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.onSurface)
                 }
-                Text("${cap(info.type)}. ${info.category}.", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
-                Text(info.facility + if (info.facility.endsWith(".")) "" else ".")
-                if (info.summary.isNotBlank() && info.summary != info.facility) Text(info.summary)
-                info.crossings.filter { it.offered }.forEach { c ->
-                    val side = info.sideFor(c.direction)
-                    Text(cap(c.direction) + ": " + (side?.let { "ride the $it side" } ?: "side not confirmed in the data yet"), fontWeight = FontWeight.SemiBold)
-                }
+                // What a rider needs first sits above the fold on a small phone: the stamp, then which side to ride.
                 if (info.access != BikeAccess.NO) {
                     Text(
                         when (crossed) { 0 -> "Passport: not crossed yet."; 1 -> "Passport: crossed once."; else -> "Passport: crossed $crossed times." },
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
-                    NotBuilt("Route me over this bridge. Due in 0.5.")
                 }
+                info.crossings.filter { it.offered }.forEach { c ->
+                    val side = info.sideFor(c.direction)
+                    Text(cap(c.direction) + ": " + (side?.let { "ride the $it side" } ?: "side not confirmed in the data yet"), fontWeight = FontWeight.SemiBold)
+                }
+                Text("${cap(info.type)}. ${info.category}.", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
+                Text(info.facility + if (info.facility.endsWith(".")) "" else ".")
+                if (info.summary.isNotBlank() && info.summary != info.facility) Text(info.summary)
+                if (info.access != BikeAccess.NO) NotBuilt("Route me over this bridge. Due in 0.5.")
             }
         }
     }
@@ -490,11 +493,11 @@ private fun Choice(label: String, on: Boolean, modifier: Modifier = Modifier, on
             .border(look.border, if (look.dark) MaterialTheme.colorScheme.outline else look.borderColor, lookShape())
             .semantics { selected = on }
             .clickable(role = Role.Checkbox, onClick = onClick)
-            .padding(horizontal = 14.dp),
+            .padding(horizontal = 8.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            (if (on) "✓ " else "") + label, fontWeight = FontWeight.Bold,
+            (if (on) "✓ " else "") + label, fontWeight = FontWeight.Bold, maxLines = 1, softWrap = false, letterSpacing = 0.sp,
             color = if (on) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurface,
         )
     }

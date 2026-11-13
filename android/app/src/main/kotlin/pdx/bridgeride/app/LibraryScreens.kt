@@ -153,11 +153,11 @@ private fun Stamp(info: BridgeInfo, count: Int, stamped: Boolean, modifier: Modi
     }
     Column(
         modifier.clip(shape).then(frame).clickable(role = Role.Button, onClick = onTap)
-            .semantics(mergeDescendants = true) { contentDescription = words }.padding(8.dp),
+            .semantics(mergeDescendants = true) { contentDescription = words }.padding(horizontal = 4.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         BridgeIcon(info.id, Modifier.fillMaxWidth(), ink = if (stamped) BridgeInk.FULL else BridgeInk.GHOST, detail = 2)
-        Text(info.label, fontSize = 13.sp, fontWeight = if (stamped) FontWeight.Bold else FontWeight.Medium, textAlign = TextAlign.Center, maxLines = 1,
+        Text(info.label, fontSize = 12.sp, letterSpacing = 0.sp, fontWeight = if (stamped) FontWeight.Bold else FontWeight.Medium, textAlign = TextAlign.Center, maxLines = 1, softWrap = false,
             color = if (stamped) MaterialTheme.colorScheme.onSurface else muted)
         Text(
             when { info.access == BikeAccess.NO -> "no bikes"; stamped -> "×$count"; else -> "not yet" },
