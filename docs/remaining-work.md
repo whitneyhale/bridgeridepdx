@@ -21,7 +21,7 @@ Native Android app, released one major function at a time. Updated 2026-11-12 (r
 | 0.2 map with bridge ends, tabs | Released; desk test folded into the 0.2.1 card |
 | 0.2.1 E and C looks, shrunk release build | Released; failed Claude's screenshot review; superseded by 0.2.2 |
 | 0.2.2 layout fixes from that review | Released; Whitney's desk test done, bike test folded into the 0.3.0 card |
-| 0.3.0 ride basics and all screens | In CI; this is the build Whitney tests |
+| 0.3.0 ride basics and all screens | Released 2026-11-12; waiting on Whitney's test card (`docs/test-cards/v0.3.0.md`) |
 
 ## Decisions 2026-11-11 (release 0.3)
 
