@@ -31,6 +31,12 @@ data class FollowState(
 object FollowRules {
     /** N-09: no good fix for this long and the marker is drawn as estimated. */
     const val STALE_MS = 5_000L
+    /**
+     * The same, for a rider who was stopped at the last fix. Android slows GPS updates to one every
+     * 10 to 15 s when the phone is still (seen on the S24, 2026-11-12), so a short silence then is
+     * not a lost signal. Moving again brings the fixes back to one a second.
+     */
+    const val STALE_STOPPED_MS = 30_000L
     /** A fix worse than this does not move the marker. It is still recorded. */
     const val MAX_USABLE_ACCURACY_M = 35f
     /** Within this of the line the marker rides on the line. */
@@ -246,9 +252,10 @@ class RideFollower(private val line: RouteLine?) {
     private fun rebuild(nowMs: Long): FollowState {
         val good = lastGood
         val goodAge = if (good == null) 0L else nowMs - lastGoodAtMs
+        val staleMs = if (speed < FollowRules.COAST_MIN_SPEED_MPS) FollowRules.STALE_STOPPED_MS else FollowRules.STALE_MS
         val gps = when {
             good == null -> if (lastAnyAccuracy != null && nowMs - lastAnyAtMs <= FollowRules.STALE_MS) GpsState.WEAK else GpsState.WAITING
-            goodAge <= FollowRules.STALE_MS -> GpsState.GOOD
+            goodAge <= staleMs -> GpsState.GOOD
             nowMs - lastAnyAtMs <= FollowRules.STALE_MS -> GpsState.WEAK // fixes are arriving, but none good enough
             else -> GpsState.ESTIMATED
         }

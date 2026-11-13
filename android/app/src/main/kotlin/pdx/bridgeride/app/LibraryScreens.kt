@@ -103,7 +103,7 @@ private fun Passport(app: AppState, data: AppData, stamps: Map<String, Int>) {
     val total = data.bikeable.size
     val look = LocalLook.current
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Bridge passport", style = MaterialTheme.typography.headlineMedium, modifier = Modifier.weight(1f))
+        Text("Bridge passport", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))
         Tag("$got of $total")
     }
     // Progress as a bar and as the count beside it, never the bar alone.

@@ -118,7 +118,7 @@ class RidePlanTest {
         val line = TestTracks.hawthorneWestbound
         val fixes = mutableListOf<Fix>()
         for (t in 0..60) fixes += TestTracks.fixOn(line, t * 5.0, t * 1000L)            // 60 s moving
-        for (t in 61..120) fixes += TestTracks.fixOn(line, 300.0, t * 1000L)            // 60 s stopped
+        for (t in 61..120) fixes += TestTracks.fixOn(line, 300.0, t * 1000L, speed = 0f) // 60 s stopped
         for (t in 0..30) fixes += TestTracks.fixOn(line, 300.0 + t * 5.0, (180 + t) * 1000L) // a 60 s gap, then 30 s moving
         assertEquals(90_000L, MovingTime.ms(fixes))
         assertEquals(0L, MovingTime.ms(emptyList()))

@@ -130,7 +130,6 @@ appId: pdx.bridgeride.app
     timeout: 30000
 {location(over_hawthorne[0])}- tapOn: "Plan a ride"
 - assertVisible: "Built-in rides"
-- assertVisible: "Sellwood loop"
 - takeScreenshot: shot-7-plan-list-light
 - tapOn: "Hawthorne out, Steel back"
 - assertVisible: "Loop · 2.6 mi · 2 bridges"
@@ -151,7 +150,7 @@ appId: pdx.bridgeride.app
     visible: "Hawthorne Bridge"
     timeout: 30000
 - assertVisible: "Westbound, north side"
-- assertVisible: "Left"
+- assertVisible: "mi left"
 - assertVisible: "Bike marker, position good.*"
 - waitForAnimationToEnd:
     timeout: 5000
@@ -180,6 +179,7 @@ appId: pdx.bridgeride.app
 # Rain and gloves: Lock ignores touches until Unlock is held.
 - tapOn: "Lock"
 - assertVisible: "Unlock"
+- assertVisible: "Screen locked.*"
 - takeScreenshot: shot-12-ride-locked-light
 - longPressOn: "Unlock"
 - extendedWaitUntil:

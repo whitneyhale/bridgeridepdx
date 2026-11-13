@@ -18,10 +18,44 @@ class RecorderLogicTest {
         var t = start
         for (i in 0 until seconds) {
             if (gapAt != null && i == gapAt) t += gapS * 1000L
-            out += fix(t, 45.5134, -122.6740 + i * 0.00005)
+            // About 4 m/s the whole time, through a gap too: the rider keeps riding while GPS is silent.
+            out += fix(t, 45.5134, -122.6740 + (t - start) / 1000 * 0.00005)
             t += 1000L
         }
         return out
+    }
+
+    @Test fun S1_silence_while_stopped_is_a_pause_not_a_gap() {
+        // 20 minutes at a desk, a fix every 12 s in the same spot (Android slows GPS when the phone is still),
+        // then one real 20 s gap while riding away.
+        val desk = (0 until 100).map { fix(start + it * 12_000L, 45.5134, -122.6740) }
+        val away = (0 until 30).map { fix(desk.last().timeMs + 20_000L + it * 1000L, 45.5134, -122.6730 + it * 0.00005) }
+        val r = GapReport.of(desk + away)
+        assertEquals(99, r.stoppedPauses)
+        assertEquals(1, r.gapsOver10s)
+        assertEquals(20_000L, r.longestGapMs)
+    }
+
+    @Test fun S1_a_phone_sitting_still_adds_no_distance() {
+        // 150 minutes at a desk: a fix every 12 s, wandering up to 18 m, the phone reporting no speed to speak of.
+        val desk = (0 until 750).map {
+            val p = Geo.offset(LatLon(45.5134, -122.6740), (it * 67 % 360).toDouble(), (it * 7 % 19).toDouble())
+            Fix(start + it * 12_000L, p.lat, p.lon, 15f, 0.1f, null)
+        }
+        assertEquals(0.0, RideStats.distanceM(desk), 0.001)
+        assertEquals(0L, MovingTime.ms(desk))
+        // Then riding away counts in full, from where the phone sat.
+        val away = (1..30).map { Fix(desk.last().timeMs + it * 1000L, 45.5134, -122.6740 + it * 0.00005, 5f, 4f, 90f) }
+        assertEquals(RideStats.haversineM(45.5134, -122.6740, 45.5134, -122.6740 + 30 * 0.00005), RideStats.distanceM(desk + away), 12.0)
+    }
+
+    @Test fun S1_wander_without_a_speed_reading_is_held_to_the_fix_accuracy() {
+        // No speed from the phone: steps smaller than 10 m, or than the fix's own accuracy, are not movement.
+        val still = (0 until 200).map {
+            val p = Geo.offset(LatLon(45.5134, -122.6740), (it * 67 % 360).toDouble(), (it * 7 % 9).toDouble())
+            Fix(start + it * 1000L, p.lat, p.lon, 12f, null, null)
+        }
+        assertEquals(0.0, RideStats.distanceM(still), 0.001)
     }
 
     @Test fun S1_line_format_round_trips() {

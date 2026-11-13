@@ -194,6 +194,21 @@ class RideFollowerTest {
         assertEquals(GpsState.GOOD, ride(f, 30, 30).gps)
     }
 
+    @Test fun T15_a_stopped_phone_is_not_called_estimated_for_30_s() {
+        // Android slows GPS to a fix every 10 to 15 s when the phone is still. That is not a lost signal.
+        val f = RideFollower(line)
+        ride(f, 0, 20)
+        f.onFix(TestTracks.fixOn(line, 100.0, 21_000L, speed = 0f), 21_000L)
+        assertEquals(GpsState.GOOD, f.tick(36_000).gps, "15 s of silence while stopped")
+        assertEquals(GpsState.GOOD, f.tick(51_000).gps, "30 s")
+        assertEquals(GpsState.ESTIMATED, f.tick(51_001).gps, "longer than that is a real loss")
+        // The next fix, 12 s after the last, keeps it good.
+        val g = RideFollower(line)
+        ride(g, 0, 20)
+        g.onFix(TestTracks.fixOn(line, 100.0, 21_000L, speed = 0f), 21_000L)
+        assertEquals(GpsState.GOOD, g.onFix(TestTracks.fixOn(line, 100.0, 33_000L, speed = 0f), 33_000L).gps)
+    }
+
     @Test fun T15_marker_coasts_along_the_line_then_holds() {
         val f = RideFollower(line)
         ride(f, 0, 20) // 100 m along at 5 m/s

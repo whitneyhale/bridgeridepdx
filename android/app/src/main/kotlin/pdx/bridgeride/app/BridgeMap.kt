@@ -120,6 +120,8 @@ class MapController {
         this.map = map
         this.ends = ends
         this.density = density
+        // The map's own compass button would sit under the ride banner; Re-center does its job.
+        map.uiSettings.isCompassEnabled = false
         map.addOnCameraMoveStartedListener { reason ->
             if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE && following) {
                 following = false

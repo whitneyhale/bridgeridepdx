@@ -270,10 +270,11 @@ fun RideOverlay(status: RecorderStatus, follow: FollowState, plan: RidePlan?, co
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 val elapsed = status.startMs?.let { now - it }?.coerceAtLeast(0) ?: 0L
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    if (plan != null) Stat("Left", Units.miles(follow.remainingM ?: plan.lengthM), Modifier.weight(1.2f))
-                    else Stat("Ridden", Units.miles(status.distanceM), Modifier.weight(1.2f))
-                    Stat("mph", "%.0f".format(follow.speedMps * 2.236936), Modifier.weight(0.8f))
-                    Stat("Time", "%d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60), Modifier.weight(1f))
+                    // The number big, its unit small underneath: three of them fit side by side on any phone.
+                    if (plan != null) Stat("mi left", "%.1f".format((follow.remainingM ?: plan.lengthM) / 1609.344), Modifier.weight(1f))
+                    else Stat("mi ridden", "%.1f".format(status.distanceM / 1609.344), Modifier.weight(1f))
+                    Stat("mph", "%.0f".format(follow.speedMps * 2.236936), Modifier.weight(1f))
+                    Stat("time", "%d:%02d".format(elapsed / 60_000, (elapsed / 1000) % 60), Modifier.weight(1f))
                 }
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     TallButton("Lock", Modifier.weight(1f)) { locked = true }
@@ -287,6 +288,7 @@ fun RideOverlay(status: RecorderStatus, follow: FollowState, plan: RidePlan?, co
                 Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.25f)).pointerInput(Unit) { detectTapGestures { } }
                     .semantics { contentDescription = "Screen locked" },
             ) {
+                Box(Modifier.align(Alignment.Center)) { Tag("Screen locked. Hold Unlock to use it.") }
                 HoldButton(
                     "Unlock", "hold 1 s", "Hold for one second to unlock the screen",
                     Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(start = 26.dp, end = 26.dp, bottom = 22.dp),
@@ -412,9 +414,9 @@ fun SummaryScreen(file: File, data: AppData, rides: List<RideSummary>, onDone: (
             Panel(Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     val movingS = r.movingMs / 1000
-                    Stat("Distance", Units.miles(r.distanceM), Modifier.weight(1f))
-                    Stat("Moving", "%d:%02d".format(movingS / 60, movingS % 60), Modifier.weight(1f))
-                    Stat("Average", if (movingS > 0) Units.mph(r.distanceM / movingS) else "none", Modifier.weight(1f))
+                    Stat("miles", "%.1f".format(r.distanceM / 1609.344), Modifier.weight(1f))
+                    Stat("moving", "%d:%02d".format(movingS / 60, movingS % 60), Modifier.weight(1f))
+                    Stat("mph average", if (movingS > 0) "%.0f".format(r.distanceM / movingS * 2.236936) else "0", Modifier.weight(1f))
                 }
             }
             Panel(Modifier.fillMaxWidth()) {
@@ -431,11 +433,11 @@ fun SummaryScreen(file: File, data: AppData, rides: List<RideSummary>, onDone: (
                         val firstTime = id !in before && r.crossings.indexOfFirst { it.substringBefore(' ') == id } == i
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             BridgeIcon(id, Modifier.width(72.dp))
-                            Column(Modifier.weight(1f)) {
+                            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                                 Text(data.infoById[id]?.label ?: id, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
-                                Text(key.substringAfter(' '), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp)
+                                Text(key.substringAfter(' '), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 14.sp, maxLines = 1)
+                                if (firstTime) Tag("New stamp")
                             }
-                            if (firstTime) Tag("New stamp")
                         }
                     }
                 }
@@ -459,8 +461,10 @@ fun SummaryScreen(file: File, data: AppData, rides: List<RideSummary>, onDone: (
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text("GPS", style = MaterialTheme.typography.titleMedium)
                     Text(
-                        "${r.fixes} fixes. " + if (r.gaps.gapsOver10s == 0) "No gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s."
-                        else "${r.gaps.gapsOver10s} gaps over 10 s. Longest gap ${r.gaps.longestGapMs / 1000} s.",
+                        "${r.fixes} fixes. " + (
+                            if (r.gaps.gapsOver10s == 0) "No gaps over 10 s while moving."
+                            else "${r.gaps.gapsOver10s} gaps over 10 s while moving, longest ${r.gaps.longestGapMs / 1000} s."
+                            ) + if (r.gaps.stoppedPauses > 0) " ${r.gaps.stoppedPauses} quiet spells while stopped (Android slows GPS when the phone is still; not counted)." else "",
                     )
                 }
             }

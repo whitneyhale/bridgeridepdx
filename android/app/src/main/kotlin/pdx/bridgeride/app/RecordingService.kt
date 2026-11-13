@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import pdx.bridgeride.core.Fix
 import pdx.bridgeride.core.FixLine
 import pdx.bridgeride.core.GapReport
+import pdx.bridgeride.core.Odometer
 import pdx.bridgeride.core.RideMeta
 import pdx.bridgeride.core.RidePlan
 import pdx.bridgeride.core.RideStats
@@ -74,7 +75,7 @@ class RecordingService : Service() {
     private var writer: BufferedWriter? = null
     private var wakeLock: PowerManager.WakeLock? = null
     private var status = RecorderStatus()
-    private var lastGood: Fix? = null
+    private var odometer = Odometer()
 
     private val callback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
@@ -116,7 +117,7 @@ class RecordingService : Service() {
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "bridgeride:ride")
             .apply { acquire(6 * 60 * 60 * 1000L) } // 6 h safety cap
         status = RecorderStatus(recording = true, startMs = start)
-        lastGood = null
+        odometer = Odometer()
         Recorder.update(status)
         val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000L)
             .setMinUpdateIntervalMillis(1000L)
@@ -138,15 +139,14 @@ class RecordingService : Service() {
         var longest = status.longestGapMs
         status.lastFix?.let { prev ->
             val gap = f.timeMs - prev.timeMs
-            if (gap > GapReport.LIMIT_MS) gaps++
-            if (gap > longest) longest = gap
+            // A silence with the rider in the same place is a stop (Android slows GPS then), not a gap.
+            if (!GapReport.isStoppedPause(prev, f)) {
+                if (gap > GapReport.LIMIT_MS) gaps++
+                if (gap > longest) longest = gap
+            }
         }
-        // Distance: only between good fixes (same rule as RideStats.distanceM).
-        var dist = status.distanceM
-        if (f.accuracyM <= RideStats.MAX_ACCURACY_FOR_DISTANCE_M) {
-            lastGood?.let { dist += RideStats.haversineM(it.lat, it.lon, f.lat, f.lon) }
-            lastGood = f
-        }
+        // Distance: only real movement between good fixes (core Odometer, same rule as RideStats.distanceM).
+        val dist = odometer.add(f)
         status = status.copy(lastFix = f, fixes = status.fixes + 1, distanceM = dist, gapsOver10s = gaps, longestGapMs = longest)
         Recorder.update(status)
         getSystemService(NotificationManager::class.java)
