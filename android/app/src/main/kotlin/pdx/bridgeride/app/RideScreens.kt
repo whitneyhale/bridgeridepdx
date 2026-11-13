@@ -133,12 +133,13 @@ fun PlanSheet(app: AppState, data: AppData, rides: List<RideSummary>, onHeight: 
                         }
                     }
                     Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        if (plan.note.isNotBlank()) Text(plan.note, fontSize = 14.sp)
+                        // Stops first: which bridges, which way, which side. The description comes after.
                         StopRow("START", plan.start.ifBlank { "Start of the line" }, null, null)
                         plan.bridges.forEach { b ->
                             StopRow("BRIDGE · ${b.direction.uppercase()}" + (b.side?.let { " · ${it.uppercase()} SIDE" } ?: ""), b.label, b.bridgeId, null)
                         }
                         StopRow("END", if (plan.line.isLoop) "Back at the start" else "End of the line", null, null)
+                        if (plan.note.isNotBlank()) Text(plan.note, fontSize = 14.sp)
                         NotBuilt("Add, remove or reorder stops. Due in 0.5.")
                     }
                     // Go stays in reach below the list, however long the list is.

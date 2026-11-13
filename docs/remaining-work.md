@@ -44,6 +44,9 @@ The numbers behind the ride rules are in one place, `FollowRules` in `android/co
 | Off the line | more than 40 m (or 1.5 times the GPS error) for 8 s |
 | Coasting in a gap | along the line at the last speed for 10 s, then hold |
 | Heading from GPS | only above 1.5 m/s; below that hold it, or use the compass |
+| A stopped rider turns "estimated" | 30 s without a fix, not 5: Android slows GPS when the phone is still |
+| Distance counts a fix | 10 m or more (and its own accuracy) from the last counted fix, and not reported as standing still |
+| A silence over 10 s is a gap | only if the rider moved more than 30 m across it; otherwise a stopped pause |
 
 ## Decisions 2026-11-09
 

@@ -137,12 +137,16 @@ appId: pdx.bridgeride.app
 - waitForAnimationToEnd:
     timeout: 5000
 - takeScreenshot: shot-8-plan-ride-light
-- scrollUntilVisible:
-    element: "BRIDGE · WESTBOUND · NORTH SIDE"
-    direction: DOWN
-- scrollUntilVisible:
-    element: "BRIDGE · EASTBOUND · SOUTH SIDE"
-    direction: DOWN
+- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
+# On CI's small screen the second bridge is below the fold. Swipe inside the stop list
+# (a swipe from the middle of the screen would pan the map instead).
+- swipe:
+    start: "50%, 66%"
+    end: "50%, 53%"
+- swipe:
+    start: "50%, 66%"
+    end: "50%, 53%"
+- assertVisible: "BRIDGE · EASTBOUND · SOUTH SIDE"
 - takeScreenshot: shot-8b-plan-stops-light
 - tapOn: "Go"
 {PERMISSIONS}# On the line, 250 m before the river: the banner names the next bridge, its direction and side.
@@ -229,10 +233,8 @@ appId: pdx.bridgeride.app
 - extendedWaitUntil:
     visible: "Go"
     timeout: 15000
+- assertVisible: "BRIDGE · WESTBOUND · NORTH SIDE"
 - takeScreenshot: shot-17-ride-again-light
-- scrollUntilVisible:
-    element: "BRIDGE · WESTBOUND · NORTH SIDE"
-    direction: DOWN
 """
 
     # Dark look: the Steel Bridge lower deck, eastbound.

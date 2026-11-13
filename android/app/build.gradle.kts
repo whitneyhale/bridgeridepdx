@@ -12,8 +12,8 @@ android {
         minSdk = 29
         targetSdk = 36
         // Bump both for every release tag (v0.1.0 -> 1, v0.1.1 -> 2, ...).
-        versionCode = 4
-        versionName = "0.2.2"
+        versionCode = 5
+        versionName = "0.3.0"
         // Phone (S24) and the CI emulator only, to keep the APK small.
         ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
     }
